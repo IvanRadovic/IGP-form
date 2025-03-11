@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage/HomePage.tsx";
 import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 
-const AppNavigation = () => {
+const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const AppNavigation = () => {
   );
 };
 
-export default AppNavigation;
+export default AppRoutes;

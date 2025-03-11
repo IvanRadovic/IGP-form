@@ -8,13 +8,13 @@ import "./App.css";
 import { store } from "./redux/store.ts";
 
 /*=========== NAVIGATION ===========*/
-import AppNavigation from "./navigation/AppNavigation.tsx";
+import AppRoutes from "./routes/AppRoutes.tsx";
 
 function App() {
   return (
     <Provider store={store}>
       <Toaster />
-      <AppNavigation />
+      <AppRoutes />
     </Provider>
   );
 }

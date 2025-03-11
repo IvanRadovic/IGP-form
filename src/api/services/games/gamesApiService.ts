@@ -19,16 +19,19 @@ import { Game, CategoryGames } from "./interface.ts";
  *  });
  */
 export const getGames = (
+  page: number,
   onSuccess: (data: Game[]) => void,
   onError: (error: any) => void,
 ) => {
   apiCall<Game[]>({
     method: "get",
-    url: "/games/desktop.json",
+    url: `/games/desktop.json?page=${page}`,
     onSuccess,
     onError,
   });
 };
+
+/*===========================================================================*/
 
 /**
  * Get category games from the API and call the onSuccess or onError function
@@ -55,3 +58,5 @@ export const getCategoryGames = (
     onError,
   });
 };
+
+/*===========================================================================*/

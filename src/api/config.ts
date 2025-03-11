@@ -1,5 +1,8 @@
 import axios from "axios";
 
+/**
+ * Base URLs for the API calls.
+ */
 export const BASE_URLS = {
   default: "https://cdn-cms.igp.cloud/bto/static/files",
   generateInputs:
@@ -16,6 +19,6 @@ export const API = axios.create({
 /**
  * Axios instance for making API calls to the generate inputs base URL.
  */
-export const inputsApiCall = axios.create({
+export const inputsApi = axios.create({
   baseURL: BASE_URLS.generateInputs,
 });

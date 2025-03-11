@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+/*======= HOOKS ===========*/
+import { useFetchData } from "../../hooks/useFetchData.ts";
+
 /*======= API SERVICES ===========*/
 import { getGames } from "../../api/services/games/gamesApiService.ts";
 
@@ -7,28 +10,13 @@ import { getGames } from "../../api/services/games/gamesApiService.ts";
 import { Game } from "../../api/services/games/interface.ts";
 
 const HomePage = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const {
+    data: games,
+    loading: loadingGames,
+    error: errorGames,
+  } = useFetchData<Game[]>(getGames, 1);
 
-  const showGames = () => {
-    getGames(
-      (data) => {
-        const limitedData = data.slice(0, 10);
-        setGames(limitedData);
-      },
-      (error) => {
-        console.log(error);
-      },
-    );
-  };
-
-  useEffect(() => {
-    showGames();
-  }, []);
-
-  console.log(
-    "RESPONSE GAMES",
-    games.map((game) => game.name),
-  );
+  console.log("Response", games?.slice(0, 100));
 
   return (
     <div>

@@ -26,6 +26,9 @@ export interface Game {
     url: string;
   };
 }
+
+/*===========================================================================*/
+
 export interface GameRes {
   id: number;
   demoMode: boolean;

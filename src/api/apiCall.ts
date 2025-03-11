@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from "axios";
+import { AxiosInstance, AxiosRequestConfig } from "axios";
 import { API } from "./config.ts";
 
 interface ApiCallParams<T = unknown> {
@@ -8,6 +8,7 @@ interface ApiCallParams<T = unknown> {
   config?: AxiosRequestConfig;
   onSuccess?: (response: T) => void;
   onError?: (error: unknown) => void;
+  apiInstance?: AxiosInstance;
 }
 
 /**
@@ -36,17 +37,19 @@ export const apiCall = async <T = unknown>({
   config = {},
   onSuccess,
   onError,
+  apiInstance = API,
 }: ApiCallParams<T>): Promise<T> => {
   try {
     const isFormData = data instanceof FormData;
 
-    const response = await API({
+    const response = await apiInstance({
       method,
       url,
       data,
       headers: {
         "Content-Type": isFormData ? "multipart/form-data" : "application/json",
         ...config?.headers,
+        mode: "no-cors",
       },
       ...config,
     });

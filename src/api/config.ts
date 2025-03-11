@@ -5,8 +5,7 @@ import axios from "axios";
  */
 export const BASE_URLS = {
   default: "https://cdn-cms.igp.cloud/bto/static/files",
-  generateInputs:
-    "https://drive.google.com/file/d/13A1doN10ZtiboTq_dSvs8u-Hb9mtrWmM/view",
+  generateInputs: "https://gist.githubusercontent.com",
 };
 
 /**

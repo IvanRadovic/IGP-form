@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 type FetchFunction<T> = (
-  page: number,
   onSuccess: (data: T) => void,
   onError: (error: any) => void,
 ) => void;
@@ -18,10 +17,7 @@ type FetchFunction<T> = (
  * return <div>{data}</div>;
  */
 
-export const useFetchData = <T>(
-  fetchFunction: FetchFunction<T>,
-  page: number,
-) => {
+export const useFetchData = <T>(fetchFunction: FetchFunction<T>) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
@@ -30,7 +26,6 @@ export const useFetchData = <T>(
     setLoading(true);
     setError(null);
     fetchFunction(
-      page,
       (response) => {
         setData(response);
         setLoading(false);
@@ -40,7 +35,7 @@ export const useFetchData = <T>(
         setLoading(false);
       },
     );
-  }, [fetchFunction, page]);
+  }, [fetchFunction]);
 
   return { data, loading, error };
 };

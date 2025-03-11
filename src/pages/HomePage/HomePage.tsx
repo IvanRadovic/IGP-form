@@ -14,7 +14,7 @@ const HomePage = () => {
     data: games,
     loading: loadingGames,
     error: errorGames,
-  } = useFetchData<Game[]>(getGames, 1);
+  } = useFetchData<Game[]>(getGames);
 
   console.log("Response", games?.slice(0, 100));
 

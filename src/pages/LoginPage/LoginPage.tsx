@@ -1,4 +1,4 @@
-import background from "../../assets/casinoImage.webp";
+import background from "../../assets/images/casinoImage.webp";
 
 const LoginPage = () => {
   return (

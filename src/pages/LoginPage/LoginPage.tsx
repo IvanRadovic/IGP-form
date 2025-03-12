@@ -1,32 +1,8 @@
+/*========== COMPONENTS ===============*/
 import background from "../../assets/images/monkey2.webp";
-import { getDynamicInputs } from "../../api/services/generateInputs/inputsApiSerivce.ts";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { generateInputs } from "../../api/services/generateInputs/interface.ts";
-import MultiStep from "react-multistep";
+import MultiStepForm from "../../components/Layouts/MultiStep/MultiStepForm.tsx";
 
-import StepOne from "../../components/Layouts/MultiStep/StepOne/StepOne.tsx";
-import StepTwo from "../../components/Layouts/MultiStep/StepTwo/StepTwo.tsx";
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const [data, setInputsData] = useState<generateInputs[]>([]);
-  const [prevButton, setPrevButton] = useState<boolean>(false);
-  const [nextButton, setNextButton] = useState<boolean>(false);
-
-  // const getInputs = () => {
-  //   getDynamicInputs(
-  //     (response) => {
-  //       setInputsData(response);
-  //     },
-  //     (error) => {
-  //       console.error("Error fetching inputs", error);
-  //     },
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   getInputs();
-  // }, []);
   return (
     <div className="d-flex" style={{ height: "100vh" }}>
       <div
@@ -81,7 +57,9 @@ const LoginPage = () => {
             storm—bet, spin, and snag vine-swinging jackpots!
           </p>
 
-          <div>FOrma ce ici ovdeeee</div>
+          <div>
+            <MultiStepForm />
+          </div>
         </div>
       </div>
     </div>

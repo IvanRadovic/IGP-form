@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 
+/*=========== INTERFACES ============*/
 interface FormStepProps<T> {
   children: (methods: UseFormReturn<T>) => ReactNode;
   onSubmit: (data: T) => void;

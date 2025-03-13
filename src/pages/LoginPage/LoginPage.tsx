@@ -22,7 +22,7 @@ const LoginPage = () => {
           style={{
             left: "5%",
             top: "10%",
-            width: "300px",
+            width: "350px",
             background: "rgb(83 118 168 / 55%)",
             backdropFilter: "blur(8px)",
             borderRadius: "15px",

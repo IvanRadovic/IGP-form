@@ -1,36 +1,32 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-/*================ CONSTANTS ===============*/
+/*================ STEPS ===============*/
 import { steps } from "./steps.ts";
 
-interface FormData {
-  email: string;
-  password: string;
-  address: string;
-}
+/*========== FUNCTIONS REDUX ============*/
+import { updateForm } from "../../../store/formReducer/formReducer.ts";
+import { RootState } from "../../../store/store.ts";
 
 const MultiStepForm = () => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
-    address: "",
-  });
+  const [step, setStep] = useState(0);
+  const dispatch = useDispatch();
+  const formData = useSelector((state: RootState) => state.form);
 
+  // show the current step
   const StepComponent = steps[step].component;
 
-  const handleNext = (data: Partial<FormData>) => {
-    setFormData((prev) => ({ ...prev, ...data }));
+  const handleNext = (data: Partial<typeof formData>) => {
+    dispatch(updateForm(data));
     setStep(step + 1);
   };
-
   const handleBack = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (data: Partial<FormData>) => {
-    const finalData = { ...formData, ...data };
-    console.log("Final Form Data:", finalData);
+  const handleSubmit = (data: Partial<typeof formData>) => {
+    dispatch(updateForm(data));
+    console.log("Final Form Data:", { ...formData, ...data });
   };
 
   return (
@@ -38,6 +34,7 @@ const MultiStepForm = () => {
       <StepComponent
         onNext={step < steps.length - 1 ? handleNext : handleSubmit}
         onBack={step > 0 ? handleBack : undefined}
+        defaultValues={formData}
       />
     </div>
   );

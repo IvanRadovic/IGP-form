@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 import "./App.css";
 
 /*=========== REDUX ===========*/
-import { store } from "./redux/store.ts";
+import { store } from "./store/store.ts";
 
 /*=========== NAVIGATION ===========*/
-import AppRoutes from "./routes/AppRoutes.tsx";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (

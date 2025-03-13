@@ -4,13 +4,19 @@ import { UseFormReturn } from "react-hook-form";
 /*========== COMPONENTS ==============*/
 import FormStep from "../../FormStep/FormStep.tsx";
 
+/*========== VALIDATIONS ===============*/
+import { getValidations } from "../../../../../schemas/validationSchemas.ts";
+
+/*========== FIELDS ===============*/
 import data from "../../../../../config/sampleData.json";
 
 /*============= INTERFACE ===============*/
 interface StepOneData {
-  name: string;
-  lastName: string;
+  fname: string;
+  lname: string;
+  email: string;
 }
+
 interface StepOneProps {
   onNext: (data: StepOneData) => void;
   defaultValues: StepOneData;
@@ -18,46 +24,36 @@ interface StepOneProps {
 
 const StepOne: FC<StepOneProps> = ({ onNext, defaultValues }) => {
   const filteredData = data.fields.filter(
-    (item) => item.code === "fname" || item.code === "lname",
+    (item) =>
+      item.step === 1 && ["fname", "lname", "email"].includes(item.code),
   );
-
-  console.log("filteredData", filteredData);
 
   return (
     <FormStep onSubmit={onNext} defaultValues={defaultValues}>
       {(methods: UseFormReturn<StepOneData>) => (
         <>
-          <div className="form-group">
-            <label htmlFor="name">Enter name</label>
-            <input
-              {...methods.register("name", { required: "Email is required" })}
-              type="name"
-              className="form-control"
-              placeholder="Enter name"
-            />
-            {methods.formState.errors.name && (
-              <p className="error-text">
-                {methods.formState.errors.name.message}
-              </p>
-            )}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              {...methods.register("lastName", {
-                required: "Password is required",
-              })}
-              type="lastName"
-              className="form-control"
-              placeholder="Password"
-            />
-            {methods.formState.errors.lastName && (
-              <p className="error-text">
-                {methods.formState.errors.lastName.message}
-              </p>
-            )}
-          </div>
+          {filteredData.map((item) => (
+            <div className="form-group" key={item.code}>
+              <label htmlFor={item.code}>{item.name}</label>
+              <input
+                {...methods.register(
+                  item.code as keyof StepOneData,
+                  getValidations(item.validators, item.required),
+                )}
+                type="text"
+                className="form-control"
+                placeholder={`Enter ${item.name.toLowerCase()}`}
+              />
+              {methods.formState.errors[item.code as keyof StepOneData] && (
+                <p className="error-text">
+                  {
+                    methods.formState.errors[item.code as keyof StepOneData]
+                      ?.message
+                  }
+                </p>
+              )}
+            </div>
+          ))}
         </>
       )}
     </FormStep>

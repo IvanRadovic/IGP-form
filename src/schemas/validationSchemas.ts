@@ -1,22 +1,45 @@
-import * as yup from "yup";
+/**
+ * Get validations for a field based on the validators and isRequired
+ * @param validators - List of validators for the field
+ * @param isRequired - If the field is required
+ * @returns - Object with the validations for the field
+ * @example
+ * getValidations(validators, isRequired)
+ */
+export const getValidations = (validators: any[], isRequired: boolean) => {
+  const rules: any = {};
 
-export const stepOneSchema = yup.object().shape({
-  name: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-});
+  if (isRequired) {
+    rules.required = {
+      value: true,
+      message: "Field is required",
+    };
+  }
 
-export const stepTwoSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(3, "Username must be at least 3 characters")
-    .required("Username is required"),
-  password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Confirm Password is required"),
-});
+  validators.forEach((validator) => {
+    switch (validator.key) {
+      case "minLength":
+        rules.minLength = {
+          value: validator.parameters.targetLength,
+          message: validator.invalid_message,
+        };
+        break;
+      case "maxLength":
+        rules.maxLength = {
+          value: validator.parameters.targetLength,
+          message: validator.invalid_message,
+        };
+        break;
+      case "emailValidator":
+        rules.pattern = {
+          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+          message: validator.invalid_message,
+        };
+        break;
+      default:
+        break;
+    }
+  });
+
+  return rules;
+};

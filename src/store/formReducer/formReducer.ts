@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FormData {
+  fname: string;
+  lname: string;
   email: string;
-  password: string;
-  address: string;
 }
 
 const initialState: FormData = {
+  fname: "",
+  lname: "",
   email: "",
-  password: "",
-  address: "",
 };
 
 const formSlice = createSlice({

@@ -25,7 +25,7 @@ const MultiStepForm = () => {
 
   const handleSubmit = (data: Partial<typeof formData>) => {
     dispatch(updateForm(data));
-    console.log("Final Form Data:", { ...formData, ...data });
+    console.log("Final Form Data:", { ...data });
   };
 
   return (

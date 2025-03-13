@@ -1,0 +1,14 @@
+.navbar-subcontainer{
+height: 100%;
+width: 115px;
+}
+
+.navbar-category-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logout-button{
+    background-color: #8d8d8d;
+    color: #1A202C;
+}

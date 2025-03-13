@@ -11,6 +11,7 @@
 
 /*=========== LAYOUTS ==========*/
 @import "./layouts/forms.css";
+@import "./layouts/navbar.css";
 
 /*=========== PAGES ==========*/
 @import "./pages/HomePage.css";

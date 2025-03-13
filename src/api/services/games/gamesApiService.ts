@@ -52,7 +52,7 @@ export const getCategoryGames = (
 ) => {
   apiCall<CategoryGames[]>({
     method: "get",
-    url: "/category-games",
+    url: "/game-categories/extended.json",
     onSuccess,
     onError,
   });

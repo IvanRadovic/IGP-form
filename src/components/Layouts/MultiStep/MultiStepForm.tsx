@@ -41,17 +41,10 @@ const MultiStepForm = () => {
       secure: true,
       sameSite: "Lax",
     });
-    toastSuccess("Successfully logged in!");
+    cookieManager.set("username", data.username.toString(), {});
+    toastSuccess("Welcome to Monkey Casino!");
     dispatch(resetForm());
   };
-
-  const safeStep = Math.min(Math.max(step, 0), steps.length - 1);
-  // Get the current step configuration
-  const currentStep = steps[safeStep];
-
-  console.log("Current Step:", currentStep);
-  console.log("safeStep:", safeStep);
-  console.log("ZADNJI STEP JE:", steps.length - 1);
 
   return (
     <div>

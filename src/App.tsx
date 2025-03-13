@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 
 /*=========== STYLE =============*/
 import "./App.css";
+import "./style/index.css";
 
 /*=========== REDUX ===========*/
 import { store } from "./store/store.ts";

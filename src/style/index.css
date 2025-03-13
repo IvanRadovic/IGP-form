@@ -1,8 +1,6 @@
 
-
 /*============= ABSTRACTS =============*/
 @import "./abstracts/_variables.css";
-
 
 /*============= BASE =============*/
 @import "./base/_base.css";
@@ -11,3 +9,12 @@
 @import "./base/_typography.css";
 @import "./base/_utilities.css";
 
+/*=========== LAYOUTS ==========*/
+@import "./layouts/forms.css";
+
+/*=========== PAGES ==========*/
+@import "./pages/HomePage.css";
+@import "./pages/LoginPage.css";
+
+/*=========== COMPONENTS ==========*/
+@import "./components/button.css";

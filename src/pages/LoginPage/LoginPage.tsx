@@ -17,20 +17,7 @@ const LoginPage = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div
-          className="position-absolute p-4"
-          style={{
-            left: "5%",
-            top: "10%",
-            width: "350px",
-            background: "rgb(83 118 168 / 55%)",
-            backdropFilter: "blur(8px)",
-            borderRadius: "15px",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            fontFamily: "'Poppins', sans-serif",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-          }}
-        >
+        <div className="position-absolute p-4 loginContainer">
           <h1
             style={{
               color: "#fff",

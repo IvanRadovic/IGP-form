@@ -34,15 +34,17 @@ const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
       {(methods: UseFormReturn<StepTwoData>) => (
         <>
           {filteredData.map((item) => (
-            <div className="form-group" key={item.code}>
-              <label htmlFor={item.code}>{item.name}</label>
+            <div className="form-group mb-2" key={item.code}>
+              <label className="labels" htmlFor={item.code}>
+                {item.name}
+              </label>
               <input
                 {...methods.register(
                   item.code as keyof StepTwoData,
                   getValidations(item.validators, item.required),
                 )}
                 type={item.fieldType}
-                className="form-control"
+                className="form-control inputs"
                 placeholder={`Enter ${item.name.toLowerCase()}`}
               />
               {methods.formState.errors[item.code as keyof StepTwoData] && (

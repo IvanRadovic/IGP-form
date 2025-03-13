@@ -45,6 +45,14 @@ const MultiStepForm = () => {
     dispatch(resetForm());
   };
 
+  const safeStep = Math.min(Math.max(step, 0), steps.length - 1);
+  // Get the current step configuration
+  const currentStep = steps[safeStep];
+
+  console.log("Current Step:", currentStep);
+  console.log("safeStep:", safeStep);
+  console.log("ZADNJI STEP JE:", steps.length - 1);
+
   return (
     <div>
       <StepComponent

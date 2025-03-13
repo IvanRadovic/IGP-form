@@ -21,13 +21,15 @@ const FormStep = <T,>({
     <form onSubmit={methods.handleSubmit(onSubmit)}>
       {children(methods)}
 
-      <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+      <div className="d-flex justify-content-end align-items-center gap-3 mt-4">
         {onBack && (
-          <button type="button" onClick={onBack}>
+          <button type="button" className="button-47" onClick={onBack}>
             Back
           </button>
         )}
-        <button type="submit">Next</button>
+        <button type="submit" className="button-47">
+          Next
+        </button>
       </div>
     </form>
   );

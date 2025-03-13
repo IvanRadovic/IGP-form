@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 /*================ STEPS ===============*/
 import { steps } from "./steps.ts";
 
 /*========== FUNCTIONS REDUX ============*/
-import { updateForm } from "../../../store/formReducer/formReducer.ts";
+import {
+  resetForm,
+  updateForm,
+} from "../../../store/formReducer/formReducer.ts";
 import { RootState } from "../../../store/store.ts";
+
+/*========== SERVICES ============*/
+import { cookieManager } from "../../../services/cookie.ts";
+import { toastSuccess } from "../../../services/toastService.ts";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(0);
   const formData = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const StepComponent = steps[step].component;
 
@@ -26,6 +35,14 @@ const MultiStepForm = () => {
   const handleSubmit = (data: Partial<typeof formData>) => {
     dispatch(updateForm(data));
     console.log("Final Form Data:", { ...data });
+    cookieManager.set("authToken", "dummyToken", {
+      days: 1,
+      path: "/",
+      secure: true,
+      sameSite: "Lax",
+    });
+    toastSuccess("Successfully logged in!");
+    dispatch(resetForm());
   };
 
   return (

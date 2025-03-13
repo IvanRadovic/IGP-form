@@ -7,10 +7,13 @@ import FormStep from "../../FormStep/FormStep.tsx";
 /*========== FIELDS ===============*/
 import data from "../../../../../config/sampleData.json";
 import { getValidations } from "../../../../../schemas/validationSchemas.ts";
+import { getFilteredData } from "../../../../../services/general.ts";
 
 /*============= INTERFACE ===============*/
 interface StepTwoData {
   username: string;
+  password: string;
+  password_confirm: string;
 }
 
 interface StepTwoProps {
@@ -20,11 +23,12 @@ interface StepTwoProps {
 }
 
 const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
-  const filteredData = data.fields.filter(
-    (item) =>
-      item.step === 1 &&
-      ["username", "password", "password_confirm"].includes(item.code),
-  );
+  const filteredData = getFilteredData(data, 1, [
+    "username",
+    "password",
+    "password_confirm",
+  ]);
+
   return (
     <FormStep onSubmit={onNext} onBack={onBack} defaultValues={defaultValues}>
       {(methods: UseFormReturn<StepTwoData>) => (

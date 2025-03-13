@@ -10,23 +10,22 @@ import { getValidations } from "../../../../../schemas/validationSchemas.ts";
 /*========== FIELDS ===============*/
 import data from "../../../../../config/sampleData.json";
 
+/*========== SERVICES ===============*/
+import { getFilteredData } from "../../../../../services/general.ts";
+
 /*============= INTERFACE ===============*/
 interface StepOneData {
   fname: string;
   lname: string;
   email: string;
 }
-
 interface StepOneProps {
   onNext: (data: StepOneData) => void;
   defaultValues: StepOneData;
 }
 
 const StepOne: FC<StepOneProps> = ({ onNext, defaultValues }) => {
-  const filteredData = data.fields.filter(
-    (item) =>
-      item.step === 1 && ["fname", "lname", "email"].includes(item.code),
-  );
+  const filteredData = getFilteredData(data, 1, ["fname", "lname", "email"]);
 
   return (
     <FormStep onSubmit={onNext} defaultValues={defaultValues}>

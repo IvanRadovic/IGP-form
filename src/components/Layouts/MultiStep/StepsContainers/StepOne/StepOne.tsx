@@ -1,51 +1,60 @@
 import { FC } from "react";
 import { UseFormReturn } from "react-hook-form";
 
+/*========== COMPONENTS ==============*/
 import FormStep from "../../FormStep/FormStep.tsx";
 
-interface StepOneData {
-  email: string;
-  password: string;
-}
+import data from "../../../../../config/sampleData.json";
 
+/*============= INTERFACE ===============*/
+interface StepOneData {
+  name: string;
+  lastName: string;
+}
 interface StepOneProps {
   onNext: (data: StepOneData) => void;
   defaultValues: StepOneData;
 }
 
 const StepOne: FC<StepOneProps> = ({ onNext, defaultValues }) => {
+  const filteredData = data.fields.filter(
+    (item) => item.code === "fname" || item.code === "lname",
+  );
+
+  console.log("filteredData", filteredData);
+
   return (
     <FormStep onSubmit={onNext} defaultValues={defaultValues}>
       {(methods: UseFormReturn<StepOneData>) => (
         <>
           <div className="form-group">
-            <label htmlFor="email">Email address</label>
+            <label htmlFor="name">Enter name</label>
             <input
-              {...methods.register("email", { required: "Email is required" })}
-              type="email"
+              {...methods.register("name", { required: "Email is required" })}
+              type="name"
               className="form-control"
-              placeholder="Enter email"
+              placeholder="Enter name"
             />
-            {methods.formState.errors.email && (
+            {methods.formState.errors.name && (
               <p className="error-text">
-                {methods.formState.errors.email.message}
+                {methods.formState.errors.name.message}
               </p>
             )}
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="lastName">Last Name</label>
             <input
-              {...methods.register("password", {
+              {...methods.register("lastName", {
                 required: "Password is required",
               })}
-              type="password"
+              type="lastName"
               className="form-control"
               placeholder="Password"
             />
-            {methods.formState.errors.password && (
+            {methods.formState.errors.lastName && (
               <p className="error-text">
-                {methods.formState.errors.password.message}
+                {methods.formState.errors.lastName.message}
               </p>
             )}
           </div>

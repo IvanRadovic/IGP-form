@@ -10,10 +10,9 @@ import { RootState } from "../../../store/store.ts";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(0);
-  const dispatch = useDispatch();
   const formData = useSelector((state: RootState) => state.form);
+  const dispatch = useDispatch();
 
-  // show the current step
   const StepComponent = steps[step].component;
 
   const handleNext = (data: Partial<typeof formData>) => {
@@ -33,7 +32,7 @@ const MultiStepForm = () => {
     <div>
       <StepComponent
         onNext={step < steps.length - 1 ? handleNext : handleSubmit}
-        onBack={step > 0 ? handleBack : undefined}
+        onBack={step > 0 ? handleBack : () => {}}
         defaultValues={formData}
       />
     </div>

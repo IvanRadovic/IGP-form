@@ -37,7 +37,7 @@ export const GameCard = React.memo(
             </div>
           )}
         </div>
-        <h3 className="game-title-static">{title}</h3>
+        {/*<h3 className="game-title-static">{title}</h3>*/}
       </div>
     );
   },

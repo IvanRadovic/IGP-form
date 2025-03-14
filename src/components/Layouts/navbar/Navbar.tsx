@@ -9,6 +9,7 @@ import {
   FaGamepad,
   FaHome,
   FaRegUserCircle,
+  FaUserAlt,
 } from "react-icons/fa";
 import { TbPlayCardStar } from "react-icons/tb";
 
@@ -131,8 +132,8 @@ const Navbar: FC = () => {
           </Nav>
 
           <div className="d-flex align-items-center">
-            <div className=" d-flex justify-center align-items-center gap-1 text-white me-3 userContainer">
-              <FaRegUserCircle size={22} />
+            <div className=" d-flex justify-center align-items-center gap-2 text-white me-3 userContainer">
+              <FaUserAlt size={19} />
               {username}
             </div>
             <button className="btn btn-danger" onClick={handleLogout}>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GiGamepadCross } from "react-icons/gi";
 
 export const GameCard = React.memo(
   ({
@@ -33,7 +34,12 @@ export const GameCard = React.memo(
           {isHovered && (
             <div className="game-hover-overlay">
               <h3 className="game-title">{title}</h3>
-              {provider && <p className="game-provider">{provider}</p>}
+              {provider && (
+                <p className="game-provider">
+                  <GiGamepadCross size={16} color={"white"} />
+                  {provider}
+                </p>
+              )}
             </div>
           )}
         </div>

@@ -132,9 +132,8 @@ const Navbar: FC = () => {
             </NavDropdown>
           </Nav>
 
-          {/* 👤 Username i Logout dugme */}
           <div className="d-flex align-items-center">
-            <div className=" d-flex justify-center align-items-center gap-1 text-white me-3">
+            <div className=" d-flex justify-center align-items-center gap-1 text-white me-3 userContainer">
               <FaRegUserCircle size={22} />
               {username}
             </div>

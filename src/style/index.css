@@ -12,6 +12,7 @@
 /*=========== LAYOUTS ==========*/
 @import "./layouts/forms.css";
 @import "./layouts/navbar.css";
+@import "./layouts/game.css";
 
 /*=========== PAGES ==========*/
 @import "./pages/HomePage.css";

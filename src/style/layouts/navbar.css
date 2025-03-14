@@ -14,3 +14,8 @@ width: 90px;
 .nav-link:hover{
     color: #8eb8e2 !important;
 }
+
+.userContainer{
+    border-right: 0.5px solid white;
+    padding-right: 8px;
+}

@@ -1,0 +1,11 @@
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 2rem;
+}

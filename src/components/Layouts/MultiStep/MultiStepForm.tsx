@@ -13,8 +13,8 @@ import {
 import { RootState } from "../../../store/store.ts";
 
 /*========== SERVICES ============*/
-import { cookieManager } from "../../../services/cookie.ts";
-import { toastSuccess } from "../../../services/toastService.ts";
+import { cookieManager } from "../../../utils/cookie.ts";
+import { toastSuccess } from "../../../utils/toastService.ts";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(0);

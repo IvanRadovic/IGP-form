@@ -1,4 +1,17 @@
 import { FC } from "react";
+import { Navbar as BootstrapNavbar, Nav, NavDropdown } from "react-bootstrap";
+import {
+  FaDice,
+  FaGift,
+  FaCrown,
+  FaHeadset,
+  FaCreditCard,
+  FaGamepad,
+  FaHome,
+  FaRegUserCircle,
+} from "react-icons/fa";
+import { MdCasino } from "react-icons/md";
+import { TbPlayCardStar } from "react-icons/tb";
 
 /*========== COMPONENTS ============*/
 import logo from "../../../assets/images/logo/logo.png";
@@ -10,7 +23,7 @@ import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 import { getCategoryGames } from "../../../api/services/games/gamesApiService.ts";
 
 /*========== SERVICES ============*/
-import { cookieManager } from "../../../services/cookie.ts";
+import { cookieManager } from "../../../utils/cookie.ts";
 
 /*======= HOOKS ===========*/
 import { useFetchData } from "../../../hooks/useFetchData.ts";
@@ -27,32 +40,111 @@ const Navbar: FC = () => {
   } = useFetchData<CategoryGames[]>(getCategoryGames);
   const username = cookieManager.get("username");
 
-  const filteredCategoryGames = categoryGames?.filter(
-    (category) => category.publishing !== undefined,
-  );
+  const categoryIcons: Record<string, JSX.Element> = {
+    jackpot: <FaCrown />,
+    megaways: <FaDice />,
+    "bonus-buys": <FaGift />,
+    popular: <FaCrown />,
+    new: <FaGift />,
+    xmas: <FaDice />,
+    live: <FaDice />,
+    "table-games": <FaDice />,
+  };
+
+  const availableCategories = categoryGames
+    ?.filter(
+      (category) =>
+        category.publishing?.status === "published" &&
+        ["category", "subCategory", "tags", "type", "extraCategories"].includes(
+          category.type,
+        ),
+    )
+    .map((category) => ({
+      slug: category.slug,
+      title:
+        category.type === "extraCategories"
+          ? category.multilingual.find((m) => m.language === "en")?.title ||
+            category.slug
+          : category.title,
+      icon: categoryIcons[category.slug] || <FaGamepad />,
+    }));
 
   return (
-    <nav
-      className="navbar p-0"
+    <BootstrapNavbar
+      expand="lg"
       style={{ height: "100px", background: "#361243" }}
     >
-      <div className="navbar-brand navbar-subcontainer">
-        <img
-          src={logo}
-          className="w-100 h-100"
-          style={{ borderRadius: "50px" }}
-        />
+      <div className="container-fluid">
+        {/* Logo */}
+        <BootstrapNavbar.Brand href="#" className="navbar-brand">
+          <img
+            src={logo}
+            className="w-100 h-100"
+            style={{ borderRadius: "50px" }}
+          />
+        </BootstrapNavbar.Brand>
+
+        <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
+
+        <BootstrapNavbar.Collapse id="navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link className="nav-link" href="/">
+              <FaHome size={22} color={"#e4dfe0"} /> Home
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/live-casino">
+              <TbPlayCardStar size={22} color={"#db193e"} />
+              Live Casino
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/promotions">
+              🎁 Promotions
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/tournaments">
+              🏆 Tournaments
+            </Nav.Link>
+
+            {availableCategories && availableCategories.length > 0 && (
+              <NavDropdown title="Categories" id="category-dropdown">
+                <div style={{ maxHeight: "300px", overflowY: "auto" }}>
+                  {" "}
+                  {/* Scroll */}
+                  {availableCategories.map((category) => (
+                    <NavDropdown.Item
+                      key={category.slug}
+                      href={`/${category.slug}`}
+                      className="d-flex align-items-center jusify-content-center gap-2"
+                    >
+                      {category.icon} {category.title}
+                    </NavDropdown.Item>
+                  ))}
+                </div>
+              </NavDropdown>
+            )}
+            <NavDropdown title="More" id="more-dropdown">
+              <NavDropdown.Item href="/vip">
+                <FaCrown className="me-2" /> VIP
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/payments">
+                <FaCreditCard className="me-2" /> Payment Methods
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/help">
+                <FaHeadset className="me-2" /> Help Center
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+
+          {/* 👤 Username i Logout dugme */}
+          <div className="d-flex align-items-center">
+            <div className=" d-flex justify-center align-items-center gap-1 text-white me-3">
+              <FaRegUserCircle size={22} />
+              {username}
+            </div>
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </BootstrapNavbar.Collapse>
       </div>
-      <div className="navbar-menu">
-        <span className="text-white">{username}</span>
-        <button
-          className="btn btn-logout logout-button text-white"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      </div>
-    </nav>
+    </BootstrapNavbar>
   );
 };
 

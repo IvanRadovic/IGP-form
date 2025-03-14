@@ -7,7 +7,7 @@ import FormStep from "../../FormStep/FormStep.tsx";
 /*========== FIELDS ===============*/
 import data from "../../../../../config/sampleData.json";
 import { getValidations } from "../../../../../schemas/validationSchemas.ts";
-import { getFilteredData } from "../../../../../services/general.ts";
+import { getFilteredData } from "../../../../../utils/general.ts";
 
 /*============= INTERFACE ===============*/
 interface StepTwoData {

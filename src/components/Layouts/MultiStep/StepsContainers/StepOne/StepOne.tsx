@@ -11,7 +11,7 @@ import { getValidations } from "../../../../../schemas/validationSchemas.ts";
 import data from "../../../../../config/sampleData.json";
 
 /*========== SERVICES ===============*/
-import { getFilteredData } from "../../../../../services/general.ts";
+import { getFilteredData } from "../../../../../utils/general.ts";
 
 /*============= INTERFACE ===============*/
 interface StepOneData {

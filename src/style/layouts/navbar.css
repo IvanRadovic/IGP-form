@@ -1,14 +1,16 @@
-.navbar-subcontainer{
-height: 100%;
-width: 115px;
+.navbar-brand{
+height: 95px;
+width: 90px;
+}
+.nav-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    color: white !important;
+    font-size: 20px !important;
 }
 
-.navbar-category-list{
-    display: flex;
-    justify-content: space-between;
-}
-
-.logout-button{
-    background-color: #8d8d8d;
-    color: #1A202C;
+.nav-link:hover{
+    color: #8eb8e2 !important;
 }

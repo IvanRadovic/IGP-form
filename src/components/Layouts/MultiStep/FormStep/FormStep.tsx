@@ -7,6 +7,7 @@ interface FormStepProps<T> {
   onSubmit: (data: T) => void;
   defaultValues: T;
   onBack?: () => void;
+  isLastStep?: boolean;
 }
 
 const FormStep = <T,>({
@@ -14,9 +15,9 @@ const FormStep = <T,>({
   onSubmit,
   defaultValues,
   onBack,
+  isLastStep,
 }: FormStepProps<T>) => {
   const methods = useForm<T>({ defaultValues });
-
   return (
     <form onSubmit={methods.handleSubmit(onSubmit)}>
       {children(methods)}
@@ -27,8 +28,15 @@ const FormStep = <T,>({
             Back
           </button>
         )}
-        <button type="submit" className="button-47">
-          Next
+        <button
+          type="submit"
+          className="button-47"
+          style={{
+            background: isLastStep ? "#046FC3" : "#FFFFFF",
+            color: isLastStep ? "#FFFFFF" : "black",
+          }}
+        >
+          {isLastStep ? "SIGN UP" : "Next"}
         </button>
       </div>
     </form>

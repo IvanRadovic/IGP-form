@@ -6,7 +6,12 @@
  * @example
  * getValidations(validators, isRequired)
  */
-export const getValidations = (validators: any[], isRequired: boolean) => {
+// validationSchemas.ts
+export const getValidations = (
+  validators: any[],
+  isRequired: boolean,
+  getValues?: (field: string) => any,
+) => {
   const rules: any = {};
 
   if (isRequired) {
@@ -35,6 +40,11 @@ export const getValidations = (validators: any[], isRequired: boolean) => {
           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
           message: validator.invalid_message,
         };
+        break;
+      case "matchesField":
+        rules.validate = (value: string) =>
+          value === getValues?.(validator.parameters.target) ||
+          validator.invalid_message;
         break;
       default:
         break;

@@ -14,15 +14,21 @@ interface StepTwoData {
   username: string;
   password: string;
   password_confirm: string;
+  acceptedTerms: boolean;
+  isLastStep: boolean;
 }
-
 interface StepTwoProps {
   onNext: (data: StepTwoData) => void;
   onBack: () => void;
   defaultValues: StepTwoData;
 }
 
-const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
+const StepTwo: FC<StepTwoProps> = ({
+  onNext,
+  onBack,
+  defaultValues,
+  isLastStep,
+}) => {
   const filteredData = getFilteredData(data, 1, [
     "username",
     "password",
@@ -30,9 +36,15 @@ const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
   ]);
 
   return (
-    <FormStep onSubmit={onNext} onBack={onBack} defaultValues={defaultValues}>
+    <FormStep
+      onSubmit={onNext}
+      onBack={onBack}
+      defaultValues={defaultValues}
+      isLastStep={isLastStep}
+    >
       {(methods: UseFormReturn<StepTwoData>) => (
         <>
+          {/* ========== INPUTI ZA USERNAME, PASSWORD I PASSWORD CONFIRM ========== */}
           {filteredData.map((item) => (
             <div className="form-group mb-2" key={item.code}>
               <label className="labels" htmlFor={item.code}>
@@ -41,7 +53,11 @@ const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
               <input
                 {...methods.register(
                   item.code as keyof StepTwoData,
-                  getValidations(item.validators, item.required),
+                  getValidations(
+                    item.validators,
+                    item.required,
+                    methods.getValues,
+                  ),
                 )}
                 type={item.fieldType}
                 className="form-control inputs"
@@ -57,6 +73,29 @@ const StepTwo: FC<StepTwoProps> = ({ onNext, onBack, defaultValues }) => {
               )}
             </div>
           ))}
+
+          {/* ========== CHECKBOX ZA TERMS & CONDITIONS ========== */}
+          <div className="form-group mb-3">
+            <input
+              type="checkbox"
+              id="acceptedTerms"
+              {...methods.register("acceptedTerms", {
+                required: "You must accept the terms and conditions",
+              })}
+              className="form-check-input"
+            />
+            <label
+              className="form-check-label ms-2 labels"
+              htmlFor="acceptedTerms"
+            >
+              I accept the terms and conditions
+            </label>
+            {methods.formState.errors.acceptedTerms && (
+              <p className="error-text">
+                {methods.formState.errors.acceptedTerms.message}
+              </p>
+            )}
+          </div>
         </>
       )}
     </FormStep>

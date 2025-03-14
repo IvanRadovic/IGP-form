@@ -52,6 +52,7 @@ const MultiStepForm = () => {
         onNext={step < steps.length - 1 ? handleNext : handleSubmit}
         onBack={step > 0 ? handleBack : () => {}}
         defaultValues={formData}
+        isLastStep={step === steps.length - 1}
       />
     </div>
   );

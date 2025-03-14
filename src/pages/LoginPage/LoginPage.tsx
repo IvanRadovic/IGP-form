@@ -1,5 +1,5 @@
 /*========== COMPONENTS ===============*/
-import background from "../../assets/images/monkey2.webp";
+import background from "../../assets/images/background/monkey2.webp";
 import MultiStepForm from "../../components/Layouts/MultiStep/MultiStepForm.tsx";
 
 const LoginPage = () => {

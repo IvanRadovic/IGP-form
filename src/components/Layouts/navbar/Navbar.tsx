@@ -13,8 +13,13 @@ import {
 } from "react-icons/fa";
 import { TbPlayCardStar } from "react-icons/tb";
 
-/*========== COMPONENTS ============*/
+/*========== IMAGES ============*/
 import logo from "../../../assets/images/logo/logo.png";
+import home from "../../../assets/images/gamesLogo/casino (1).png";
+import more from "../../../assets/images/gamesLogo/more.png";
+import bonus from "../../../assets/images/gamesLogo/bonus.png";
+import trophy from "../../../assets/images/gamesLogo/trophy.png";
+import liveCasino from "../../../assets/images/gamesLogo/liveCasino.png";
 
 /*======= INTERFACES ===========*/
 import { CategoryGames } from "../../../api/services/games/interface.ts";
@@ -72,9 +77,9 @@ const Navbar: FC = () => {
     <BootstrapNavbar
       expand="lg"
       sticky="top"
-      style={{ height: "100px", background: "#361243" }}
+      style={{ height: "80px", background: "#361243" }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid navbarContainer">
         <BootstrapNavbar.Brand href="#" className="navbar-brand">
           <img
             src={logo}
@@ -88,47 +93,38 @@ const Navbar: FC = () => {
         <BootstrapNavbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
             <Nav.Link className="nav-link" href="/">
-              <FaHome size={22} color={"#e4dfe0"} /> Home
+              <img src={home} /> Home
             </Nav.Link>
             <Nav.Link className="nav-link" href="/live-casino">
-              <TbPlayCardStar size={22} color={"#db193e"} />
+              <img src={liveCasino} />
               Live Casino
             </Nav.Link>
             <Nav.Link className="nav-link" href="/promotions">
-              🎁 Promotions
+              <img src={bonus} />
+              Promotions
             </Nav.Link>
             <Nav.Link className="nav-link" href="/tournaments">
-              🏆 Tournaments
+              <img src={trophy} />
+              Tournaments
             </Nav.Link>
 
-            {availableCategories && availableCategories.length > 0 && (
-              <NavDropdown title="Categories" id="category-dropdown">
-                <div style={{ maxHeight: "300px", overflowY: "auto" }}>
-                  {" "}
-                  {/* Scroll */}
-                  {availableCategories.map((category) => (
-                    <NavDropdown.Item
-                      key={category.slug}
-                      href={`/${category.slug}`}
-                      className="d-flex align-items-center jusify-content-center gap-2"
-                    >
-                      {category.icon} {category.title}
-                    </NavDropdown.Item>
-                  ))}
-                </div>
-              </NavDropdown>
-            )}
-            <NavDropdown title="More" id="more-dropdown">
-              <NavDropdown.Item href="/vip">
-                <FaCrown className="me-2" /> VIP
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/payments">
-                <FaCreditCard className="me-2" /> Payment Methods
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/help">
-                <FaHeadset className="me-2" /> Help Center
-              </NavDropdown.Item>
-            </NavDropdown>
+            {/*{availableCategories && availableCategories.length > 0 && (*/}
+            {/*  <NavDropdown title="Categories" id="category-dropdown">*/}
+            {/*    <div style={{ maxHeight: "300px", overflowY: "auto" }}>*/}
+            {/*      {" "}*/}
+            {/*      /!* Scroll *!/*/}
+            {/*      {availableCategories.map((category) => (*/}
+            {/*        <NavDropdown.Item*/}
+            {/*          key={category.slug}*/}
+            {/*          href={`/${category.slug}`}*/}
+            {/*          className="d-flex align-items-center jusify-content-center gap-2"*/}
+            {/*        >*/}
+            {/*          {category.icon} {category.title}*/}
+            {/*        </NavDropdown.Item>*/}
+            {/*      ))}*/}
+            {/*    </div>*/}
+            {/*  </NavDropdown>*/}
+            {/*)}*/}
           </Nav>
 
           <div className="d-flex align-items-center">

@@ -10,14 +10,13 @@ import {
   FaHome,
   FaRegUserCircle,
 } from "react-icons/fa";
-import { MdCasino } from "react-icons/md";
 import { TbPlayCardStar } from "react-icons/tb";
 
 /*========== COMPONENTS ============*/
 import logo from "../../../assets/images/logo/logo.png";
 
 /*======= INTERFACES ===========*/
-import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
+import { CategoryGames } from "../../../api/services/games/interface.ts";
 
 /*======= API SERVICES ===========*/
 import { getCategoryGames } from "../../../api/services/games/gamesApiService.ts";
@@ -32,7 +31,6 @@ const Navbar: FC = () => {
   const handleLogout = () => {
     cookieManager.delete("authToken");
   };
-
   const {
     data: categoryGames,
     loading: loadingGames,
@@ -72,10 +70,10 @@ const Navbar: FC = () => {
   return (
     <BootstrapNavbar
       expand="lg"
+      sticky="top"
       style={{ height: "100px", background: "#361243" }}
     >
       <div className="container-fluid">
-        {/* Logo */}
         <BootstrapNavbar.Brand href="#" className="navbar-brand">
           <img
             src={logo}

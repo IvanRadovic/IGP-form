@@ -83,7 +83,11 @@ const HomePage = () => {
             key={game.id}
             ref={index === visibleGames.length - 1 ? lastGameRef : null}
           >
-            <GameCard title={game.name} imageUrl={game.desktopThumbnail?.url} />
+            <GameCard
+              title={game.name}
+              imageUrl={game.desktopThumbnail?.url}
+              provider={game.provider}
+            />
           </div>
         ))}
       </div>

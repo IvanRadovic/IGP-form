@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
-import banner from "../../assets/images/banner/banner.jpg";
+import bunner1 from "../../assets/images/banner/banner1.png";
+import bunner2 from "../../assets/images/banner/banner2 (1).png";
+import bunner3 from "../../assets/images/banner/banner3.png";
 
 /*======= HOOKS ===========*/
 import { useFetchData } from "../../hooks/useFetchData.ts";
@@ -93,9 +95,14 @@ const HomePage = () => {
     <div className="home-page">
       <div className="categories-search-container">
         <img
-          src={banner}
+          src={bunner1}
           className="w-100"
-          style={{ height: "500px", borderRadius: "10px" }}
+          style={{
+            height: "350px",
+            borderRadius: "10px",
+            objectFit: "cover",
+            objectPosition: "bottom",
+          }}
           alt="banner"
         />
         <CategoryGame categoryGames={categoryGames} />

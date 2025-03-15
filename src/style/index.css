@@ -13,6 +13,7 @@
 @import "./layouts/forms.css";
 @import "./layouts/navbar.css";
 @import "./layouts/game.css";
+@import "./layouts/categoryGames.css";
 
 /*=========== PAGES ==========*/
 @import "./pages/HomePage.css";

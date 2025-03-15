@@ -1,14 +1,22 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
+import banner from "../../assets/images/banner/banner.jpg";
+
 /*======= HOOKS ===========*/
 import { useFetchData } from "../../hooks/useFetchData.ts";
 
 /*======= API SERVICES ===========*/
-import { getGames } from "../../api/services/games/gamesApiService.ts";
+import {
+  getCategoryGames,
+  getGames,
+} from "../../api/services/games/gamesApiService.ts";
 
 /*======= INTERFACES ===========*/
-import { Game } from "../../api/services/games/interface.ts";
+import { CategoryGames, Game } from "../../api/services/games/interface.ts";
 import { GameCard } from "./components/game/GameCard.tsx";
+
+/*======= COMPONENTS ===========*/
+import CategoryGame from "./components/categoryGame/CategoryGame.tsx";
 
 const PAGE_SIZE = 24;
 
@@ -18,6 +26,12 @@ const HomePage = () => {
     loading: initialLoading,
     error: gamesError,
   } = useFetchData<Game[]>(getGames);
+
+  const {
+    data: categoryGames,
+    loading: loadingCategoryGames,
+    error: errorCategoryGames,
+  } = useFetchData<CategoryGames[]>(getCategoryGames);
 
   const [visibleGames, setVisibleGames] = useState<Game[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -77,6 +91,15 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      <div className="categories-search-container">
+        <img
+          src={banner}
+          className="w-100"
+          style={{ height: "500px", borderRadius: "10px" }}
+          alt="banner"
+        />
+        <CategoryGame categoryGames={categoryGames} />
+      </div>
       <div className="games-grid">
         {visibleGames.map((game, index) => (
           <div

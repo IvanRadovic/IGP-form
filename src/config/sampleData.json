@@ -73,7 +73,7 @@
           "key": "minLength",
           "name": "minLength",
           "warning": false,
-          "invalid_message": "min_length_not_met",
+          "invalid_message": "Username must be at least 4 characters long",
           "description": "Checks if input value length is greater than targetLength. In case it is less, method will return an error",
           "parameters": { "targetLength": 4 }
         },
@@ -81,7 +81,7 @@
           "key": "maxLength",
           "name": "maxLength",
           "warning": false,
-          "invalid_message": "max_length_not_met",
+          "invalid_message": "Username must be at most 20 characters long",
           "description": "Checks if input value length is less than targetLength. In case it is greater than that, method will return an error",
           "parameters": { "targetLength": 20 }
         },
@@ -89,7 +89,7 @@
           "key": "regex",
           "name": "regex",
           "warning": false,
-          "invalid_message": "regex_failed",
+          "invalid_message": "Field contains invalid characters",
           "description": "Checks input value against a regex",
           "parameters": { "regex": "^[a-z0-9\\-\\_]+$", "modifiers": "i" }
         }
@@ -110,7 +110,7 @@
           "key": "minLength",
           "name": "minLength",
           "warning": false,
-          "invalid_message": "min_length_not_met",
+          "invalid_message": "First name must be at least 2 characters long",
           "description": "Checks if input value length is greater than targetLength. In case it is less, method will return an error",
           "parameters": { "targetLength": 2 }
         },
@@ -118,7 +118,7 @@
           "key": "maxLength",
           "name": "maxLength",
           "warning": false,
-          "invalid_message": "max_length_not_met",
+          "invalid_message": "First name must be at most 25 characters long",
           "description": "Checks if input value length is less than targetLength. In case it is greater than that, method will return an error",
           "parameters": { "targetLength": 25 }
         }
@@ -139,7 +139,7 @@
           "key": "minLength",
           "name": "minLength",
           "warning": false,
-          "invalid_message": "min_length_not_met",
+          "invalid_message": "Last name must be at least 2 characters long",
           "description": "Checks if input value length is greater than targetLength. In case it is less, method will return an error",
           "parameters": { "targetLength": 2 }
         },
@@ -147,7 +147,7 @@
           "key": "maxLength",
           "name": "maxLength",
           "warning": false,
-          "invalid_message": "max_length_not_met",
+          "invalid_message": "Last name must be at most 25 characters long",
           "description": "Checks if input value length is less than targetLength. In case it is greater than that, method will return an error",
           "parameters": { "targetLength": 25 }
         }
@@ -168,7 +168,7 @@
           "key": "emailValidator",
           "name": "emailValidator",
           "warning": false,
-          "invalid_message": "email_validation_failed",
+          "invalid_message": "Email format is not valid",
           "description": "Check if email is provided in valid format",
           "parameters": {}
         }
@@ -235,7 +235,7 @@
           "key": "minLength",
           "name": "minLength",
           "warning": false,
-          "invalid_message": "min_length_not_met",
+          "invalid_message": "Password must be at least 6 characters long",
           "description": "Checks if input value length is greater than targetLength. In case it is less, method will return an error",
           "parameters": { "targetLength": 6 }
         },
@@ -243,7 +243,7 @@
           "key": "passwordStrength",
           "name": "passwordStrength",
           "warning": false,
-          "invalid_message": "password_strength_failed",
+          "invalid_message": "Password is not strong enough",
           "description": "",
           "parameters": {
             "regex": "^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
@@ -266,7 +266,7 @@
           "key": "matchesField",
           "name": "matchesField",
           "warning": false,
-          "invalid_message": "matchesField_failed",
+          "invalid_message": "Confirmation password does not match",
           "description": "Check if input value matches target field's value",
           "parameters": {
             "target": "password"

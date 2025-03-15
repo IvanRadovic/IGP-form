@@ -2,6 +2,12 @@
     background:linear-gradient(180deg, rgb(54, 18, 67) 30%, rgb(19, 6, 25) 100%);
 }
 
+.categories-search-container{
+    width: 1600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

@@ -41,6 +41,12 @@ export const getValidations = (
           message: validator.invalid_message,
         };
         break;
+      case "passwordStrength":
+        rules.pattern = {
+          value: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+          message: validator.invalid_message,
+        };
+        break;
       case "matchesField":
         rules.validate = (value: string) =>
           value === getValues?.(validator.parameters.target) ||

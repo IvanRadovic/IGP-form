@@ -1,22 +1,10 @@
 import { FC } from "react";
-import { Navbar as BootstrapNavbar, Nav, NavDropdown } from "react-bootstrap";
-import {
-  FaDice,
-  FaGift,
-  FaCrown,
-  FaHeadset,
-  FaCreditCard,
-  FaGamepad,
-  FaHome,
-  FaRegUserCircle,
-  FaUserAlt,
-} from "react-icons/fa";
-import { TbPlayCardStar } from "react-icons/tb";
+import { Navbar as BootstrapNavbar, Nav } from "react-bootstrap";
+import { FaDice, FaGift, FaCrown, FaGamepad, FaUserAlt } from "react-icons/fa";
 
 /*========== IMAGES ============*/
 import logo from "../../../assets/images/logo/logo.png";
 import home from "../../../assets/images/gamesLogo/casino (1).png";
-import more from "../../../assets/images/gamesLogo/more.png";
 import bonus from "../../../assets/images/gamesLogo/bonus.png";
 import trophy from "../../../assets/images/gamesLogo/trophy.png";
 import liveCasino from "../../../assets/images/gamesLogo/liveCasino.png";
@@ -34,9 +22,6 @@ import { cookieManager } from "../../../utils/cookie.ts";
 import { useFetchData } from "../../../hooks/useFetchData.ts";
 
 const Navbar: FC = () => {
-  const handleLogout = () => {
-    cookieManager.delete("authToken");
-  };
   const {
     data: categoryGames,
     loading: loadingGames,
@@ -55,23 +40,9 @@ const Navbar: FC = () => {
     "table-games": <FaDice />,
   };
 
-  const availableCategories = categoryGames
-    ?.filter(
-      (category) =>
-        category.publishing?.status === "published" &&
-        ["category", "subCategory", "tags", "type", "extraCategories"].includes(
-          category.type,
-        ),
-    )
-    .map((category) => ({
-      slug: category.slug,
-      title:
-        category.type === "extraCategories"
-          ? category.multilingual.find((m) => m.language === "en")?.title ||
-            category.slug
-          : category.title,
-      icon: categoryIcons[category.slug] || <FaGamepad />,
-    }));
+  const handleLogout = () => {
+    cookieManager.delete("authToken");
+  };
 
   return (
     <BootstrapNavbar

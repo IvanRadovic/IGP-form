@@ -13,7 +13,6 @@ export const GameCard = React.memo(
   }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    console.log("GameCard rendered", isHovered);
     return (
       <div
         className="game-card"

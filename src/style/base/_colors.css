@@ -1,0 +1,7 @@
+body {
+    color: var(--color-text);
+    background-color: var(--color-light);
+}
+
+.text-primary { color: var(--color-primary) }
+.bg-primary { background-color: var(--color-light) }

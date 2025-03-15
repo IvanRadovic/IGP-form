@@ -1,0 +1,24 @@
+:root {
+    /* Boje */
+    --color-primary: #361243;
+    --color-secondary: white;
+    --color-danger: #e74c3c;
+    --color-text: #333;
+    --color-light: #f8f9fa;
+    --color-dark: #2c3e50;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+
+
+    /* Font */
+    --font-size-sm: 1.4rem;
+    --font-size-md: 1.6rem;
+    --font-size-lg: 2.4rem;
+
+    /* Border */
+    --border-radius: 0.4rem;
+}

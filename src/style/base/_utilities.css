@@ -1,0 +1,14 @@
+
+.mt-sm { margin-top: var(--spacing-sm) }
+.mb-md { margin-bottom: var(--spacing-md) }
+
+.p-sm { padding: var(--spacing-sm) }
+.px-lg { padding: 0 var(--spacing-lg) }
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-center { text-align: center }

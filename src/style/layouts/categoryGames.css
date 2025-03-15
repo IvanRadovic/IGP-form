@@ -1,6 +1,7 @@
 .categories-container{
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     margin: 20px 0;
 }
@@ -32,4 +33,6 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.category span { font-size: 1.5rem}
 

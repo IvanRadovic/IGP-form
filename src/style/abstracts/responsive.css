@@ -1,0 +1,22 @@
+:root {
+    --bp-phone: 37.5em;    /* 600px (600 / 16 = 37.5) */
+    --bp-tablet: 56.25em;  /* 900px */
+    --bp-laptop: 75em;     /* 1200px */
+    --bp-desktop: 90em;    /* 1440px */
+}
+
+/* Telefoni (<= 600px) */
+@media (max-width: 37.5em) {
+}
+
+/* Tablet (<= 900px) */
+@media (max-width: 56.25em) {
+}
+
+/* Laptop (<= 1200px) */
+@media (max-width: 75em) {
+}
+
+/* Desktop (>= 1440px) */
+@media (min-width: 90em) {
+}

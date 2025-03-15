@@ -1,0 +1,15 @@
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: var(--font-size-md);
+}
+
+h1 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+}

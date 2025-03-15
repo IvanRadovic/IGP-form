@@ -8,7 +8,7 @@ import pokerTable from "../../../../assets/images/gamesLogo/poker-table.png";
 import poker from "../../../../assets/images/gamesLogo/poker.png";
 import chip from "../../../../assets/images/gamesLogo/chip.png";
 
-export const categoryImages: Record<string, string> = {
+export const CATEGORY_IMAGES: Record<string, string> = {
   jackpot,
   megaways: dice,
   "bonus-buys": casinoChip,

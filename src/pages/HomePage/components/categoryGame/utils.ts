@@ -1,14 +1,5 @@
-import { categoryImages } from "./constants.ts";
-
-interface Category {
-  slug: string;
-  title: string;
-  publishing?: {
-    status: string;
-  };
-  type: string;
-  multilingual?: { language: string; title: string }[];
-}
+import { CATEGORY_IMAGES } from "./constants.ts";
+import { Categories } from "./interface.ts";
 
 const validCategoryTypes = new Set([
   "category",
@@ -18,7 +9,12 @@ const validCategoryTypes = new Set([
   "extraCategories",
 ]);
 
-export const getAvailableCategories = (categoryGames: Category[] = []) =>
+/**
+ * Get available categories for the user to see
+ * @param categoryGames - List of categories
+ * @returns List of available categories for the user to see
+ */
+export const getAvailableCategories = (categoryGames: Categories[] = []) =>
   categoryGames
     ?.filter(
       ({ publishing, type }) =>
@@ -31,5 +27,5 @@ export const getAvailableCategories = (categoryGames: Category[] = []) =>
           ? multilingual?.find(({ language }) => language === "en")?.title ||
             slug
           : title,
-      icon: categoryImages[slug] || categoryImages.jackpot,
+      icon: CATEGORY_IMAGES[slug] || CATEGORY_IMAGES.jackpot,
     }));

@@ -32,7 +32,7 @@ const FormStep = <T,>({
           type="submit"
           className="button-47"
           style={{
-            background: isLastStep ? "#046FC3" : "#FFFFFF",
+            background: isLastStep ? "#361243" : "#FFFFFF",
             color: isLastStep ? "#FFFFFF" : "black",
           }}
         >

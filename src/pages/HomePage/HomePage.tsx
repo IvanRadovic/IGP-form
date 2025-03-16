@@ -97,9 +97,17 @@ const HomePage = () => {
       return;
     }
 
-    const filteredGames = categoryGames.filter((game) =>
-      game.title.toLowerCase().includes(query.toLowerCase()),
-    );
+    const lowerCaseQuery = query.toLowerCase();
+
+    const filteredGames = allGames?.filter(({ name, provider }) => {
+      const lowerCaseName = name.toLowerCase();
+      const lowerCaseProvider = provider.toLowerCase();
+      return (
+        lowerCaseName.includes(lowerCaseQuery) ||
+        lowerCaseProvider.includes(lowerCaseQuery)
+      );
+    });
+
     setVisibleGames(filteredGames);
   };
 

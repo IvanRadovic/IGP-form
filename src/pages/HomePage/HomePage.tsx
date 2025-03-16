@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import bunner1 from "../../assets/images/banner/banner1.png";
-import bunner2 from "../../assets/images/banner/banner2 (1).png";
-import bunner3 from "../../assets/images/banner/banner3.png";
 
 /*======= HOOKS ===========*/
 import { useFetchData } from "../../hooks/useFetchData.ts";

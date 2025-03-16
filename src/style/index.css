@@ -3,7 +3,6 @@
 @import "./abstracts/_variables.css";
 
 /*============= BASE =============*/
-@import "./base/_base.css";
 @import "./base/_colors.css";
 @import "./base/_general.css";
 @import "./base/_typography.css";

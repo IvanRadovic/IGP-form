@@ -16,7 +16,9 @@ import { RootState } from "../../../store/store.ts";
 import { cookieManager } from "../../../utils/cookie.ts";
 import { toastSuccess } from "../../../utils/toastService.ts";
 
-const MultiStepForm = () => {
+const MultiStepForm: React.FC<{ setLoading: (value: boolean) => void }> = ({
+  setLoading,
+}) => {
   const [step, setStep] = useState(0);
   const formData = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch();
@@ -35,15 +37,20 @@ const MultiStepForm = () => {
   const handleSubmit = (data: Partial<typeof formData>) => {
     dispatch(updateForm(data));
     console.log("Final Form Data:", { ...data });
-    cookieManager.set("authToken", "dummyToken", {
-      days: 1,
-      path: "/",
-      secure: true,
-      sameSite: "Lax",
-    });
-    cookieManager.set("username", data.username.toString(), {});
-    toastSuccess("Welcome to Monkey Casino!");
-    dispatch(resetForm());
+
+    setLoading(true);
+
+    setTimeout(() => {
+      cookieManager.set("authToken", "dummyToken", {
+        days: 1,
+        path: "/",
+        secure: true,
+        sameSite: "Lax",
+      });
+      cookieManager.set("username", data.username.toString(), {});
+      toastSuccess("Welcome to Monkey Casino!");
+      dispatch(resetForm());
+    }, 5000);
   };
 
   return (

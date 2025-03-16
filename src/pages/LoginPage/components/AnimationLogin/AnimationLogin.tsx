@@ -25,30 +25,18 @@ const LoginAnimation: React.FC<LoginAnimationProps> = ({ onFinish }) => {
   }, [onFinish]);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div className="d-flex flex-column align-items-center">
       <Lottie
         animationData={loginAnimation}
         play
         style={{ width: 500, height: 500 }}
       />
       <h3 className={"text-white"}>{progress} %</h3>
-      <div
-        style={{
-          width: "100%",
-          height: 10,
-          background: "#ddd",
-          marginTop: 10,
-          borderRadius: 5,
-        }}
-      >
+      <div className="animation-container">
         <div
+          className="progress-container"
           style={{
             width: `${progress}%`,
-            height: "100%",
-            background: "#f40606",
-            borderRadius: 5,
           }}
         />
       </div>

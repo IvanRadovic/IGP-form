@@ -17,6 +17,8 @@
 /*=========== PAGES ==========*/
 @import "./pages/HomePage.css";
 @import "./pages/LoginPage.css";
+@import "./pages/AnimationLogin.css";
 
 /*=========== COMPONENTS ==========*/
 @import "./components/button.css";
+@import "./components/search.css";

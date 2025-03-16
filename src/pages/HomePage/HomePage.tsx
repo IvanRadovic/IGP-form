@@ -17,6 +17,7 @@ import { GameCard } from "./components/game/GameCard.tsx";
 
 /*======= COMPONENTS ===========*/
 import CategoryGame from "./components/categoryGame/CategoryGame.tsx";
+import SearchField from "../../components/UI/serach/Search.tsx";
 
 const PAGE_SIZE = 24;
 
@@ -89,6 +90,22 @@ const HomePage = () => {
   if (gamesError) return <div>Error: {gamesError.message}</div>;
   if (initialLoading) return <div>Loading initial games...</div>;
 
+  const handleSearch = (query: string) => {
+    if (!query) {
+      setVisibleGames(allGames?.slice(0, PAGE_SIZE) || []);
+      setCurrentPage(1);
+      return;
+    }
+
+    const filteredGames = categoryGames.filter((game) =>
+      game.title.toLowerCase().includes(query.toLowerCase()),
+    );
+    setVisibleGames(filteredGames);
+  };
+
+  if (gamesError) return <div>Error: {gamesError.message}</div>;
+  if (initialLoading) return <div>Loading initial games...</div>;
+
   return (
     <div className="home-page">
       <div className="categories-search-container">
@@ -103,7 +120,11 @@ const HomePage = () => {
           }}
           alt="banner"
         />
+
         <CategoryGame categoryGames={categoryGames} />
+        <div className={"d-flex justify-content-center align-items-center"}>
+          <SearchField onSearch={handleSearch} />
+        </div>
       </div>
       <div className="games-grid">
         {visibleGames.map((game, index) => (

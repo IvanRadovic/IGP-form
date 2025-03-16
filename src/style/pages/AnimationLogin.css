@@ -1,0 +1,13 @@
+.animation-container{
+    width: 100%;
+    height: 1rem;
+    background: #ddd;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
+
+.progress-container{
+    height: 100%;
+    background-color: #f40606;
+    border-radius: 0.6rem;
+}

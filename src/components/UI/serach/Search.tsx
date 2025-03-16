@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from "react";
+import { FaSearch } from "react-icons/fa";
 import debounce from "lodash.debounce";
-import SearchField from "react-search-field";
 
-type SearchProps = {
+type SearchFieldProps = {
   onSearch: (query: string) => void;
   placeholder?: string;
   debounceTime?: number;
   className?: string;
 };
 
-const Search: React.FC<SearchProps> = ({
+const SearchField: React.FC<SearchFieldProps> = ({
   onSearch,
   placeholder = "Search...",
   debounceTime = 300,
@@ -29,14 +29,16 @@ const Search: React.FC<SearchProps> = ({
 
   return (
     <div className={`search-container ${className}`}>
-      <SearchField
-        placeholder="Search..."
-        onChange={onChange}
-        searchText="This is initial search text"
-        classNames="test-class"
+      <FaSearch className="search-icon" size={22} />
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={searchTerm}
+        onChange={handleChange}
+        className="search-input"
       />
     </div>
   );
 };
 
-export default Search;
+export default SearchField;

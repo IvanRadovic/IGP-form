@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
+
 /*========== FUNCTIONS ============*/
 import { getAvailableCategories } from "./utils.ts";
 
@@ -13,7 +15,14 @@ const CategoryGame: FC<CategoryGameProps> = ({ categoryGames = [] }) => {
     <div className="categories-container">
       {availableCategories?.map(({ slug, title, icon }) => (
         <div key={slug} className="category">
-          <img className="img-category" src={icon} alt={title} />
+          <img
+            className="img-category"
+            src={icon}
+            alt={title}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = fallBackImg;
+            }}
+          />
           <span>{title}</span>
         </div>
       ))}

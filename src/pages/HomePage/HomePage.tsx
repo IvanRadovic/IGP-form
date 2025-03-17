@@ -13,7 +13,7 @@ import {
 
 /*======= INTERFACES ===========*/
 import { CategoryGames, Game } from "../../api/services/games/interface.ts";
-import { GameCard } from "./components/game/GameCard.tsx";
+import { GameCard } from "./components/gameCard/GameCard.tsx";
 
 /*======= COMPONENTS ===========*/
 import CategoryGame from "./components/categoryGame/CategoryGame.tsx";

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 /*========== COMPONENTS ==============*/
-import FormStep from "../../FormStep/FormStep.tsx";
+import FormStep from "../../formStep/FormStep.tsx";
 
 /*========== VALIDATIONS ===============*/
 import { getValidations } from "../../../../../schemas/validationSchemas.ts";

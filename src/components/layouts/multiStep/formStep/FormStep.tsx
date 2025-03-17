@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 
-import { DefaultButton } from "../../../UI/button/DefaultButton/DefaultButton.tsx";
+import { DefaultButton } from "../../../ui/button/DefaultButton/DefaultButton.tsx";
 
 /*=========== INTERFACES ============*/
 interface FormStepProps<T> {

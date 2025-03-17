@@ -7,7 +7,7 @@ import HomePage from "../pages/HomePage/HomePage.tsx";
 import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 
 /*========== COMPONENTS ============*/
-import Navbar from "../components/Layouts/navbar/Navbar.tsx";
+import Navbar from "../components/layouts/navbar/Navbar.tsx";
 
 const AppRoutes = () => {
   const [token] = useCookies(["authToken"]);

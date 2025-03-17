@@ -1,6 +1,6 @@
 /*========== COMPONENTS ==============*/
-import StepOne from "./StepsContainers/StepOne/StepOne.tsx";
-import StepTwo from "./StepsContainers/StepTwo/StepTwo.tsx";
+import StepOne from "./stepsContainers/StepOne/StepOne.tsx";
+import StepTwo from "./stepsContainers/StepTwo/StepTwo.tsx";
 
 export const steps = [
   {

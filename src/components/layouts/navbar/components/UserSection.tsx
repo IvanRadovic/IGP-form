@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FaUserAlt } from "react-icons/fa";
-import { DefaultButton } from "../../../UI/button/DefaultButton/DefaultButton.tsx";
+import { DefaultButton } from "../../../ui/button/DefaultButton/DefaultButton.tsx";
 
 interface UserSectionProps {
   username: string;

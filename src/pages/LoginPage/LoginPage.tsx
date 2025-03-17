@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 /*========== COMPONENTS ===============*/
 import background from "../../assets/images/background/monkey2.webp";
-import MultiStepForm from "../../components/Layouts/MultiStep/MultiStepForm.tsx";
-import LoginAnimation from "./components/AnimationLogin/AnimationLogin.tsx";
+import MultiStepForm from "../../components/layouts/multiStep/MultiStepForm.tsx";
+import LoginAnimation from "./components/animationLogin/AnimationLogin.tsx";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
@@ -96,6 +96,7 @@ const LoginPage = () => {
           </div>
         </div>
       )}
+      {/*{loading ? <LoadingScreen onFinish={() => setLoading(false)} /> : <LoginContainer setLoading={setLoading} background={background} />}*/}
     </div>
   );
 };

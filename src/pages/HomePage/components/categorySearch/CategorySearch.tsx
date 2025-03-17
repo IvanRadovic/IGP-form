@@ -1,7 +1,7 @@
 import React from "react";
 
 import CategoryGame from "../categoryGame/CategoryGame.tsx";
-import SearchField from "../../../../components/UI/serach/Search.tsx";
+import SearchField from "../../../../components/ui/serach/Search.tsx";
 import { CategoryGames } from "../../../../api/services/games/interface.ts";
 
 interface Props {

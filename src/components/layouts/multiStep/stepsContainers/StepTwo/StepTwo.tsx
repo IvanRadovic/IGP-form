@@ -75,7 +75,7 @@ const StepTwo: FC<StepTwoProps> = ({
           ))}
 
           {/* ========== CHECKBOX ZA TERMS & CONDITIONS ========== */}
-          <div className="form-group mb-3">
+          <div className="form-group mb-3 mt-3">
             <input
               type="checkbox"
               id="acceptedTerms"
@@ -83,6 +83,7 @@ const StepTwo: FC<StepTwoProps> = ({
                 required: "You must accept the terms and conditions",
               })}
               className="form-check-input"
+              style={{ width: "1.6rem", height: "1.6rem" }}
             />
             <label
               className="form-check-label ms-2 labels"

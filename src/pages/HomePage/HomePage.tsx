@@ -1,157 +1,40 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-
-import bunner1 from "../../assets/images/banner/banner1.png";
-
 /*======= HOOKS ===========*/
-import { useFetchData } from "../../hooks/useFetchData.ts";
-
-/*======= API SERVICES ===========*/
-import {
-  getCategoryGames,
-  getGames,
-} from "../../api/services/games/gamesApiService.ts";
-
-/*======= INTERFACES ===========*/
-import { CategoryGames, Game } from "../../api/services/games/interface.ts";
-import { GameCard } from "./components/gameCard/GameCard.tsx";
+import { useGameSearch } from "./hooks/useGameSearch.ts";
+import { useGames } from "./hooks/useGames.ts";
+import { useInfiniteScroll } from "./hooks/useInfitiveScroll.ts";
 
 /*======= COMPONENTS ===========*/
-import CategoryGame from "./components/categoryGame/CategoryGame.tsx";
-import SearchField from "../../components/UI/serach/Search.tsx";
-
-const PAGE_SIZE = 24;
+import Banner from "./components/bunner/bunner.tsx";
+import CategorySearch from "./components/categorySearch/CategorySearch.tsx";
+import GamesList from "./components/gameList/GameList.tsx";
 
 const HomePage = () => {
+  const { allGames, isLoadingGames, gamesError, categoryGames } = useGames();
   const {
-    data: allGames,
-    loading: initialLoading,
-    error: gamesError,
-  } = useFetchData<Game[]>(getGames);
-
-  const {
-    data: categoryGames,
-    loading: loadingCategoryGames,
-    error: errorCategoryGames,
-  } = useFetchData<CategoryGames[]>(getCategoryGames);
-
-  const [visibleGames, setVisibleGames] = useState<Game[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const observer = useRef<IntersectionObserver>();
-  const hasMore = visibleGames.length < (allGames?.length || 0);
-
-  const loadMoreGames = useCallback(() => {
-    if (!allGames || isLoadingMore || !hasMore) return;
-
-    setIsLoadingMore(true);
-    setTimeout(() => {
-      const nextPage = currentPage + 1;
-      const nextIndex = nextPage * PAGE_SIZE;
-
-      setVisibleGames((prev) => [
-        ...prev,
-        ...allGames.slice(nextIndex, nextIndex + PAGE_SIZE),
-      ]);
-      setCurrentPage(nextPage);
-      setIsLoadingMore(false);
-    }, 300);
-  }, [allGames, currentPage, isLoadingMore, hasMore]);
-
-  const lastGameRef = useCallback(
-    (node: HTMLDivElement) => {
-      if (isLoadingMore) return;
-      if (observer.current) observer.current.disconnect();
-
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          loadMoreGames();
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    [isLoadingMore, hasMore, loadMoreGames],
+    visibleGames,
+    lastGameRef,
+    isLoadingMore,
+    setVisibleGames,
+    setCurrentPage,
+  } = useInfiniteScroll(allGames);
+  const { handleSearch } = useGameSearch(
+    allGames,
+    setVisibleGames,
+    setCurrentPage,
   );
 
-  useEffect(() => {
-    if (allGames?.length) {
-      setVisibleGames(allGames.slice(0, PAGE_SIZE));
-      setCurrentPage(1);
-    }
-  }, [allGames]);
-  useEffect(() => {
-    return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-    };
-  }, []);
-
   if (gamesError) return <div>Error: {gamesError.message}</div>;
-  if (initialLoading) return <div>Loading initial games...</div>;
-
-  const handleSearch = (query: string) => {
-    if (!query) {
-      setVisibleGames(allGames?.slice(0, PAGE_SIZE) || []);
-      setCurrentPage(1);
-      return;
-    }
-
-    const lowerCaseQuery = query.toLowerCase();
-
-    const filteredGames = allGames?.filter(({ name, provider }) => {
-      const lowerCaseName = name.toLowerCase();
-      const lowerCaseProvider = provider.toLowerCase();
-      return (
-        lowerCaseName.includes(lowerCaseQuery) ||
-        lowerCaseProvider.includes(lowerCaseQuery)
-      );
-    });
-
-    setVisibleGames(filteredGames);
-  };
-
-  if (gamesError) return <div>Error: {gamesError.message}</div>;
-  if (initialLoading) return <div>Loading initial games...</div>;
+  if (isLoadingGames) return <div>Loading initial games...</div>;
 
   return (
     <div className="home-page">
-      <div className="categories-search-container">
-        <img
-          src={bunner1}
-          className="w-100"
-          style={{
-            height: "350px",
-            borderRadius: "10px",
-            objectFit: "cover",
-            objectPosition: "bottom",
-          }}
-          alt="banner"
-        />
-
-        <CategoryGame categoryGames={categoryGames} />
-        <div className={"d-flex justify-content-center align-items-center"}>
-          <SearchField onSearch={handleSearch} />
-        </div>
-      </div>
-      <div className="games-grid">
-        {visibleGames.map((game, index) => (
-          <div
-            key={game.id}
-            ref={index === visibleGames.length - 1 ? lastGameRef : null}
-          >
-            <GameCard
-              title={game.name}
-              imageUrl={game.desktopThumbnail?.url}
-              provider={game.provider}
-            />
-          </div>
-        ))}
-      </div>
-
-      {isLoadingMore && (
-        <div className="loading-indicator">Loading more games...</div>
-      )}
+      <Banner />
+      <CategorySearch categoryGames={categoryGames} onSearch={handleSearch} />
+      <GamesList
+        games={visibleGames}
+        lastGameRef={lastGameRef}
+        isLoadingMore={isLoadingMore}
+      />
     </div>
   );
 };

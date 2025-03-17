@@ -28,15 +28,17 @@ const SearchField: React.FC<SearchFieldProps> = ({
   };
 
   return (
-    <div className={`search-container ${className}`}>
-      <FaSearch className="search-icon" size={22} />
-      <input
-        type="text"
-        placeholder={placeholder}
-        value={searchTerm}
-        onChange={handleChange}
-        className="search-input"
-      />
+    <div className="d-flex justify-content-center align-items-center">
+      <div className={`search-container ${className}`}>
+        <FaSearch className="search-icon" size={22} />
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={searchTerm}
+          onChange={handleChange}
+          className="search-input"
+        />
+      </div>
     </div>
   );
 };

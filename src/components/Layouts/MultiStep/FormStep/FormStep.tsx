@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 
+import { DefaultButton } from "../../../UI/button/DefaultButton/DefaultButton.tsx";
+
 /*=========== INTERFACES ============*/
 interface FormStepProps<T> {
   children: (methods: UseFormReturn<T>) => ReactNode;
@@ -24,11 +26,11 @@ const FormStep = <T,>({
 
       <div className="d-flex justify-content-end align-items-center gap-3 mt-4">
         {onBack && (
-          <button type="button" className="button-47" onClick={onBack}>
+          <DefaultButton type="button" className="button-47" onClick={onBack}>
             Back
-          </button>
+          </DefaultButton>
         )}
-        <button
+        <DefaultButton
           type="submit"
           className="button-47"
           style={{
@@ -37,7 +39,7 @@ const FormStep = <T,>({
           }}
         >
           {isLastStep ? "SIGN UP" : "Next"}
-        </button>
+        </DefaultButton>
       </div>
     </form>
   );

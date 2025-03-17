@@ -1,16 +1,14 @@
 import { FC } from "react";
-import { Navbar as BootstrapNavbar, Nav } from "react-bootstrap";
-import { FaUserAlt } from "react-icons/fa";
-
+import { Navbar as BootstrapNavbar } from "react-bootstrap";
 /*========== IMAGES ============*/
 import logo from "../../../assets/images/logo/logo.png";
-import home from "../../../assets/images/gamesLogo/casino (1).png";
-import bonus from "../../../assets/images/gamesLogo/bonus.png";
-import trophy from "../../../assets/images/gamesLogo/trophy.png";
-import liveCasino from "../../../assets/images/gamesLogo/liveCasino.png";
-
 /*========== SERVICES ============*/
 import { cookieManager } from "../../../utils/cookie.ts";
+
+/*========== COMPONENTS ============*/
+import UserSection from "./components/UserSection.tsx";
+import NavLinks from "./components/NavLinks.tsx";
+import NavbarBrand from "./components/NavBrand.tsx";
 
 const Navbar: FC = () => {
   const username = cookieManager.get("username");
@@ -26,47 +24,10 @@ const Navbar: FC = () => {
       style={{ height: "80px", background: "#361243" }}
     >
       <div className="container-fluid navbarContainer">
-        <BootstrapNavbar.Brand href="#" className="navbar-brand">
-          <img
-            src={logo}
-            className="w-100 h-100"
-            style={{ borderRadius: "50px" }}
-          />
-        </BootstrapNavbar.Brand>
-
-        <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
-
+        <NavbarBrand logo={logo} />
         <BootstrapNavbar.Collapse id="navbar-nav" style={{ height: "4.0rem" }}>
-          <Nav className="me-auto">
-            <Nav.Link className="nav-link" href="/">
-              <img src={home} /> Home
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/live-casino">
-              <img src={liveCasino} />
-              Live Casino
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/promotions">
-              <img src={bonus} />
-              Promotions
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/tournaments">
-              <img src={trophy} />
-              Tournaments
-            </Nav.Link>
-          </Nav>
-
-          <div className="d-flex align-items-center">
-            <div className=" d-flex justify-center align-items-center gap-2 text-white me-3 userContainer">
-              <FaUserAlt size={19} />
-              {username}
-            </div>
-            <button
-              className="btn btn-danger btn-logout"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
+          <NavLinks />
+          <UserSection handleLogout={handleLogout} username={username} />
         </BootstrapNavbar.Collapse>
       </div>
     </BootstrapNavbar>

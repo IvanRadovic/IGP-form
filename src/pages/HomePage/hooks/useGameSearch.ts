@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDebounce } from "use-debounce";
 import { Game } from "../../../api/services/games/interface.ts";
 
 /**
@@ -14,26 +15,40 @@ export const useGameSearch = (
   setCurrentPage: (page: number) => void,
 ) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery] = useDebounce(searchQuery, 300);
+  const [searchResultsCount, setSearchResultsCount] = useState(0);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+  };
 
-    if (!query) {
-      setVisibleGames(allGames?.slice(0, 24) || []);
-      setCurrentPage(1);
-      return;
-    }
+  useEffect(() => {
+    if (!allGames) return;
 
-    const lowerCaseQuery = query.toLowerCase();
-    const filteredGames =
-      allGames?.filter(
+    let filteredGames: Game[];
+
+    if (!debouncedQuery) {
+      filteredGames = allGames.slice(0, 24);
+    } else {
+      const lowerCaseQuery = debouncedQuery.toLowerCase();
+      filteredGames = allGames.filter(
         ({ name, provider }) =>
           name.toLowerCase().includes(lowerCaseQuery) ||
           provider.toLowerCase().includes(lowerCaseQuery),
-      ) || [];
+      );
+    }
 
     setVisibleGames(filteredGames);
-  };
+    setSearchResultsCount(filteredGames.length);
+    setCurrentPage(1);
+  }, [debouncedQuery, allGames, setVisibleGames, setCurrentPage]);
 
-  return { searchQuery, handleSearch };
+  const isSearching = searchQuery !== debouncedQuery;
+
+  return {
+    searchQuery,
+    handleSearch,
+    isSearching,
+    searchResultsCount,
+  };
 };

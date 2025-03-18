@@ -16,11 +16,11 @@ const AppRoutes = () => {
 
   useEffect(() => {
     setIsTokenInCookie(!!token.authToken);
-    setIsLoading(false); // Kada završi proveru, postavi loading na false
+    setIsLoading(false);
   }, [token.authToken]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Prikazuje loader dok se ne proveri token
+    return <div>Loading...</div>;
   }
 
   return (

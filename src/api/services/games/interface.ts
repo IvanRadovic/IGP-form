@@ -59,3 +59,10 @@ export interface CategoryGames {
   publishing: Publishing;
   type: string;
 }
+
+export interface ProcessedCategory {
+  id: number;
+  title: string;
+  type: string;
+  slug: string;
+}

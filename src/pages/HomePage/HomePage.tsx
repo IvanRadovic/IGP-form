@@ -8,6 +8,8 @@ import Banner from "./components/bunner/bunner.tsx";
 import CategorySearch from "./components/categorySearch/CategorySearch.tsx";
 import GamesList from "./components/gameList/GameList.tsx";
 import { useEffect, useMemo } from "react";
+import { filterVisibleCategories } from "../../utils/categoryFilter.ts";
+import ActiveLoader from "../../components/ui/loader/ActiveLoader.tsx";
 
 const HomePage = () => {
   const { allGames, isLoadingGames, gamesError, categoryGames } = useGames();
@@ -18,11 +20,10 @@ const HomePage = () => {
     setVisibleGames,
     setCurrentPage,
   } = useInfiniteScroll(allGames);
-  const { handleSearch } = useGameSearch(
-    allGames,
-    setVisibleGames,
-    setCurrentPage,
-  );
+  const { searchQuery, handleSearch, isSearching, searchResultsCount } =
+    useGameSearch(allGames, setVisibleGames, setCurrentPage);
+
+  const availableValues = filterVisibleCategories(allGames, categoryGames);
 
   // Create unique arrays from json data, for navigation
   const categoriesInGames = useMemo(
@@ -94,6 +95,7 @@ const HomePage = () => {
   );
 
   useEffect(() => {
+    console.log("AVAILABLE VALUES:", availableValues);
     console.log(" Categories in games:", categoriesInGames);
     console.log("Categories Overall:", categoriesOverall);
     console.log("Available Games:", filteredCategoryGames);
@@ -156,17 +158,32 @@ const HomePage = () => {
   ); // 10 items, one category from allGames doesn't exist into json data for categories
 
   if (gamesError) return <div>Error: {gamesError.message}</div>;
-  if (isLoadingGames) return <div>Loading initial games...</div>;
+  if (isLoadingGames) return <ActiveLoader title="Loading games..." />;
 
   return (
     <div className="home-page">
       <Banner />
       <CategorySearch categoryGames={categoryGames} onSearch={handleSearch} />
-      <GamesList
-        games={visibleGames}
-        lastGameRef={lastGameRef}
-        isLoadingMore={isLoadingMore}
-      />
+
+      {/* Search status indicators */}
+      {isSearching && <ActiveLoader title="Searching games..." />}
+      {!!searchQuery && !isSearching && (
+        <div className="d-flex justify-content-center align-items-center">
+          <h5 className="text-light">
+            ( {searchResultsCount} matching games )
+          </h5>
+        </div>
+      )}
+
+      {isLoadingGames ? (
+        <ActiveLoader title="Loading games..." />
+      ) : (
+        <GamesList
+          games={visibleGames}
+          lastGameRef={lastGameRef}
+          isLoadingMore={isLoadingMore}
+        />
+      )}
     </div>
   );
 };

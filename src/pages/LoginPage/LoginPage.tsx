@@ -11,40 +11,19 @@ const LoginPage = () => {
     <div className="d-flex" style={{ height: "100vh" }}>
       {loading ? (
         <div
+          className="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center text-white"
           style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
             background:
               "linear-gradient(180deg, rgb(54, 18, 67) 30%, rgb(19, 6, 25) 100%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "white",
-            textAlign: "center",
           }}
         >
           <LoginAnimation onFinish={() => setLoading(false)} />
-          <h2
-            style={{
-              marginTop: "20px",
-              fontSize: "2.2rem",
-              fontWeight: "bold",
-              color: "white",
-              textShadow: "2px 2px 4px rgba(255, 255, 255, 0.3)",
-            }}
-          >
+          <h2 className="mt-3 fs-1 fw-bold text-white text-shadow">
             Your adventure is about to begin...
           </h2>
           <p
-            style={{
-              fontSize: "1.8rem",
-              marginTop: "10px",
-              opacity: 0.8,
-              maxWidth: "600px",
-              color: "white",
-            }}
+            className="fs-3 mt-2 opacity-75 mx-auto"
+            style={{ maxWidth: "600px" }}
           >
             Get ready to enter a world of high-stakes excitement, thrilling
             spins, and untamed jackpots. The jungle of fortune awaits you.
@@ -52,9 +31,8 @@ const LoginPage = () => {
         </div>
       ) : (
         <div
-          className="d-flex justify-content-center align-items-end position-relative"
+          className="d-flex justify-content-center align-items-end position-relative w-100"
           style={{
-            width: "100%",
             backgroundImage: `url(${background})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -64,32 +42,13 @@ const LoginPage = () => {
           }}
         >
           <div className="position-absolute p-4 loginContainer">
-            <h1
-              style={{
-                color: "#fff",
-                fontSize: "4rem",
-                fontWeight: 700,
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
-                marginBottom: "1rem",
-                lineHeight: 1.2,
-                letterSpacing: "-0.5px",
-              }}
-            >
+            <h1 className="text-white display-1 fw-bold text-shadow mb-3">
               Monkey Business Just Got Wilder
             </h1>
-            <p
-              style={{
-                color: "rgba(255, 255, 255, 0.9)",
-                fontSize: "2.2rem",
-                lineHeight: 1.5,
-                textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
-                fontWeight: 300,
-              }}
-            >
+            <p className="text-white-50 fs-2 text-shadow fw-light">
               Join the primate party where slots are wilder than a rainforest
               storm—bet, spin, and snag vine-swinging jackpots!
             </p>
-
             <div>
               <MultiStepForm setLoading={setLoading} />
             </div>

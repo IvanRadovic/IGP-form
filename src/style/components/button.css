@@ -1,4 +1,3 @@
-
 .button-47 {
     align-items: center;
     border: 0 solid #E2E8F0;
@@ -20,10 +19,11 @@
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: manipulation
+    touch-action: manipulation;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.button-47:hover {
-    background: #b7babd;
-    border-color: #E2E8F0
-}
+/*.button-47:hover {*/
+/*    background-color: #e8e8e8;*/
+/*    border: 0.2rem solid #291659;*/
+/*}*/

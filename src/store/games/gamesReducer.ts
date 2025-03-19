@@ -42,6 +42,9 @@ const gamesSlice = createSlice({
     setSelectedSubCategory(state, action: PayloadAction<string | null>) {
       state.selectedSubCategory = action.payload;
     },
+    resetSubCategory(state) {
+      state.selectedSubCategory = null;
+    },
   },
 });
 
@@ -52,5 +55,6 @@ export const {
   setError,
   setSelectedSubCategory,
   setSelectedCategory,
+  resetSubCategory,
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

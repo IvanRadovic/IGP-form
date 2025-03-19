@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../store/store.ts";
+import { RxReset } from "react-icons/rx";
 
 /*========== IMAGES ============*/
 import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
@@ -18,9 +18,11 @@ import {
   selectSelectedSubCategory,
 } from "../../../../store/selector.ts";
 import {
+  resetSubCategory,
   setSelectedCategory,
   setSelectedSubCategory,
 } from "../../../../store/games/gamesReducer.ts";
+import { DefaultButton } from "../../../../components/ui/button/DefaultButton/DefaultButton.tsx";
 
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
@@ -30,11 +32,16 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const filteredGames = useSelector(selectFilteredGames);
 
+  // const memoizedsubCategoryList = useMemo(() => selectedSubCategory, [selectedCategory]);
+  const memoizedFilteredGames = useMemo(() => filteredGames, [filteredGames]);
+
+  console.log("categoryList", memoizedFilteredGames);
+
   return (
     <>
       <div className="categories-container">
         <div
-          className="category"
+          className={`category ${selectedCategory ? "" : "active"}`}
           onClick={() => dispatch(setSelectedCategory(null))}
         >
           <img className="img-category" src={casino} alt="All games" />
@@ -44,7 +51,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
           {categoryList?.map(({ title, image, slug }) => (
             <div
               key={title}
-              className="category"
+              className={`category ${selectedCategory === slug ? "active" : ""}`}
               onClick={() => dispatch(setSelectedCategory(slug))}
             >
               <img
@@ -59,28 +66,26 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             </div>
           ))}
         </div>
-        <div
-          className="category"
-          onClick={() => dispatch(setSelectedSubCategory("some-subcategory"))}
-        >
-          <img className="img-category" src={filter} alt="advances filter" />
-          <span>Filter</span>
-        </div>
       </div>
 
       {selectedCategory && (
-        <div className="subCategories">
-          {filteredGames.map((game, index) => (
-            <div
-              key={index}
-              className={`subCategory ${
-                selectedSubCategory === game.subCategory ? "active" : ""
-              }`}
-              onClick={() => dispatch(setSelectedSubCategory(game.subCategory))}
-            >
-              <span>{game.subCategory}</span>
-            </div>
-          ))}
+        <div className="d-flex gap-3">
+          {[...new Set(filteredGames.map((game) => game.subCategory))].map(
+            (subCategory, index) => (
+              <div
+                key={index}
+                className={`subCategory ${
+                  selectedSubCategory === subCategory ? "active" : ""
+                }`}
+                onClick={() => dispatch(setSelectedSubCategory(subCategory))}
+              >
+                <span className="text-white">{subCategory}</span>
+              </div>
+            ),
+          )}
+          <DefaultButton onClick={() => dispatch(resetSubCategory())}>
+            <RxReset size={22} color={"blue"} />
+          </DefaultButton>
         </div>
       )}
     </>

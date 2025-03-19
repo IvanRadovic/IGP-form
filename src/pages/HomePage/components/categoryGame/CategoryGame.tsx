@@ -1,11 +1,9 @@
 import { FC, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RxReset } from "react-icons/rx";
 
 /*========== IMAGES ============*/
 import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
 import casino from "../../../../assets/images/new/casino.png";
-import filter from "../../../../assets/images/new/filter.png";
 
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
@@ -22,20 +20,22 @@ import {
   setSelectedCategory,
   setSelectedSubCategory,
 } from "../../../../store/games/gamesReducer.ts";
-import { DefaultButton } from "../../../../components/ui/button/DefaultButton/DefaultButton.tsx";
+
+/*========== COMPONENTS ============*/
+import FilterList from "../advancedFilter/FilterList.tsx";
 
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
   const categoryList = useSelector(selectFilteredCategories);
-
-  const selectedCategory = useSelector(selectSelectedCategory);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
+  const selectedCategory = useSelector(selectSelectedCategory);
   const filteredGames = useSelector(selectFilteredGames);
+  const subCategories = useMemo(
+    () => [...new Set(filteredGames.map((game) => game.subCategory))],
+    [filteredGames],
+  );
 
-  // const memoizedsubCategoryList = useMemo(() => selectedSubCategory, [selectedCategory]);
   const memoizedFilteredGames = useMemo(() => filteredGames, [filteredGames]);
-
-  console.log("categoryList", memoizedFilteredGames);
 
   return (
     <>
@@ -69,23 +69,34 @@ const CategoryGame: FC<CategoryGameProps> = () => {
       </div>
 
       {selectedCategory && (
-        <div className="d-flex gap-3">
-          {[...new Set(filteredGames.map((game) => game.subCategory))].map(
-            (subCategory, index) => (
-              <div
-                key={index}
-                className={`subCategory ${
-                  selectedSubCategory === subCategory ? "active" : ""
-                }`}
-                onClick={() => dispatch(setSelectedSubCategory(subCategory))}
-              >
-                <span className="text-white">{subCategory}</span>
-              </div>
-            ),
-          )}
-          <DefaultButton onClick={() => dispatch(resetSubCategory())}>
-            <RxReset size={22} color={"blue"} />
-          </DefaultButton>
+        <div className="row mainFilter">
+          <FilterList
+            filters={subCategories}
+            selectedFilter={selectedSubCategory}
+            title="Subcategories"
+            resetAction={resetSubCategory}
+            onFilterSelect={(filter) =>
+              dispatch(setSelectedSubCategory(filter))
+            }
+          />
+          <FilterList
+            filters={subCategories}
+            selectedFilter={selectedSubCategory}
+            title="Tags"
+            resetAction={resetSubCategory}
+            onFilterSelect={(filter) =>
+              dispatch(setSelectedSubCategory(filter))
+            }
+          />
+          <FilterList
+            filters={subCategories}
+            selectedFilter={selectedSubCategory}
+            title="Types"
+            resetAction={resetSubCategory}
+            onFilterSelect={(filter) =>
+              dispatch(setSelectedSubCategory(filter))
+            }
+          />
         </div>
       )}
     </>

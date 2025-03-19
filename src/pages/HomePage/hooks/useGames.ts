@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { RootState } from "../../../store/store.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchData } from "../../../hooks/useFetchData.ts";
 
 /*======= API SERVICES ===========*/
 import {
@@ -14,6 +13,7 @@ import {
   setGames,
   setLoading,
 } from "../../../store/games/gamesReducer.ts";
+import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 /**
  * Custom hook to fetch games and category games data
@@ -31,7 +31,6 @@ import {
 export const useGames = () => {
   const dispatch = useDispatch();
 
-  // Ispravan selektor sa fallback vrednostima
   const gamesState = useSelector(
     (state: RootState) =>
       state.games || {
@@ -44,50 +43,29 @@ export const useGames = () => {
 
   const { games, categoryGames, isLoading, error } = gamesState;
 
-  // Memorized fetch funkcije
-  const fetchGamesMemoized = useCallback(getGames, []);
-  const fetchCategoryGamesMemoized = useCallback(getCategoryGames, []);
-
-  // Fetch podaci
-  const {
-    data: allGames,
-    loading: isLoadingGames,
-    error: gamesError,
-  } = useFetchData(fetchGamesMemoized);
-  const {
-    data: categoryGamesData,
-    loading: isLoadingCategories,
-    error: categoriesError,
-  } = useFetchData(fetchCategoryGamesMemoized);
-
-  // Efekat koji ažurira Redux store samo kada se podaci promene
   useEffect(() => {
-    if (isLoadingGames || isLoadingCategories) {
+    const fetchData = async () => {
       dispatch(setLoading(true));
-    }
 
-    if (gamesError || categoriesError) {
-      dispatch(setError(gamesError || categoriesError));
-    }
+      try {
+        const [gamesData, categoryGamesData] = await Promise.all([
+          new Promise<Game[]>((resolve, reject) => getGames(resolve, reject)),
+          new Promise<CategoryGames[]>((resolve, reject) =>
+            getCategoryGames(resolve, reject),
+          ),
+        ]);
 
-    if (allGames) {
-      dispatch(setGames(allGames));
-    }
+        dispatch(setGames(gamesData));
+        dispatch(setCategoryGames(categoryGamesData));
+      } catch (err) {
+        dispatch(setError(err));
+      } finally {
+        dispatch(setLoading(false));
+      }
+    };
 
-    if (categoryGamesData) {
-      dispatch(setCategoryGames(categoryGamesData));
-    }
-
-    dispatch(setLoading(false));
-  }, [
-    allGames,
-    categoryGamesData,
-    isLoadingGames,
-    isLoadingCategories,
-    gamesError,
-    categoriesError,
-    dispatch,
-  ]);
+    fetchData();
+  }, [dispatch]);
 
   return { games, categoryGames, isLoading, error };
 };

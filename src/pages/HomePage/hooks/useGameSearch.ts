@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useDebounce } from "use-debounce";
 
@@ -14,7 +14,6 @@ import { selectFilteredGames } from "../../../store/selector.ts";
  * @param setVisibleGames - Function to set visible games
  * @param setCurrentPage - Function to set current page
  */
-
 export const useGameSearch = () => {
   const allGames = useSelector(selectFilteredGames);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,9 +21,9 @@ export const useGameSearch = () => {
   const [filteredGames, setFilteredGames] = useState<Game[]>(allGames);
   const [searchResultsCount, setSearchResultsCount] = useState(0);
 
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
-  };
+  }, []);
 
   useEffect(() => {
     if (!allGames) return;
@@ -44,7 +43,10 @@ export const useGameSearch = () => {
     setSearchResultsCount(resultGames.length);
   }, [debouncedQuery, allGames]);
 
-  const isSearching = searchQuery !== debouncedQuery;
+  const isSearching = useMemo(
+    () => searchQuery !== debouncedQuery,
+    [searchQuery, debouncedQuery],
+  );
 
   return {
     searchQuery,

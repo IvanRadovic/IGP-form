@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
 import { Game } from "../../../api/services/games/interface.ts";
 
@@ -18,7 +18,10 @@ export const useInfiniteScroll = (allGames: Game[] | undefined) => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const observer = useRef<IntersectionObserver | null>(null);
 
-  const hasMore = visibleGames.length < (allGames?.length || 0);
+  const hasMore = useMemo(
+    () => visibleGames.length < (allGames?.length || 0),
+    [visibleGames, allGames],
+  );
 
   const loadMoreGames = useCallback(() => {
     if (!allGames || isLoadingMore || !hasMore) return;
@@ -69,7 +72,7 @@ export const useInfiniteScroll = (allGames: Game[] | undefined) => {
     lastGameRef,
     isLoadingMore,
     loadMoreGames,
-    setVisibleGames,
-    setCurrentPage,
+    setVisibleGames: useCallback(setVisibleGames, []),
+    setCurrentPage: useCallback(setCurrentPage, []),
   };
 };

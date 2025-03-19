@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDebounce } from "use-debounce";
+
+/*************** interface ***************/
 import { Game } from "../../../api/services/games/interface.ts";
+
+/*************** redux functions ***************/
+import { selectFilteredGames } from "../../../store/selector.ts";
 
 /**
  * Custom hook to handle search functionality for games list on home page
@@ -9,13 +15,11 @@ import { Game } from "../../../api/services/games/interface.ts";
  * @param setCurrentPage - Function to set current page
  */
 
-export const useGameSearch = (
-  allGames: Game[] | undefined,
-  setVisibleGames: (games: Game[]) => void,
-  setCurrentPage: (page: number) => void,
-) => {
+export const useGameSearch = () => {
+  const allGames = useSelector(selectFilteredGames);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
+  const [filteredGames, setFilteredGames] = useState<Game[]>(allGames);
   const [searchResultsCount, setSearchResultsCount] = useState(0);
 
   const handleSearch = (query: string) => {
@@ -25,28 +29,26 @@ export const useGameSearch = (
   useEffect(() => {
     if (!allGames) return;
 
-    let filteredGames: Game[];
+    let resultGames = allGames;
 
-    if (!debouncedQuery) {
-      filteredGames = allGames.slice(0, 24);
-    } else {
+    if (debouncedQuery) {
       const lowerCaseQuery = debouncedQuery.toLowerCase();
-      filteredGames = allGames.filter(
+      resultGames = allGames.filter(
         ({ name, provider }) =>
           name.toLowerCase().includes(lowerCaseQuery) ||
           provider.toLowerCase().includes(lowerCaseQuery),
       );
     }
 
-    setVisibleGames(filteredGames);
-    setSearchResultsCount(filteredGames.length);
-    setCurrentPage(1);
-  }, [debouncedQuery, allGames, setVisibleGames, setCurrentPage]);
+    setFilteredGames(resultGames);
+    setSearchResultsCount(resultGames.length);
+  }, [debouncedQuery, allGames]);
 
   const isSearching = searchQuery !== debouncedQuery;
 
   return {
     searchQuery,
+    filteredGames,
     handleSearch,
     isSearching,
     searchResultsCount,

@@ -37,7 +37,7 @@ const gamesSlice = createSlice({
     },
     setSelectedCategory(state, action: PayloadAction<string | null>) {
       state.selectedCategory = action.payload;
-      state.selectedSubCategory = null; // Resetujemo subkategoriju kada promenimo glavnu kategoriju
+      state.selectedSubCategory = null;
     },
     setSelectedSubCategory(state, action: PayloadAction<string | null>) {
       state.selectedSubCategory = action.payload;

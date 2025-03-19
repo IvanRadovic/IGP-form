@@ -9,10 +9,10 @@ interface Props {
   onSearch: (query: string) => void;
 }
 
-const CategorySearch: React.FC<Props> = ({ categoryGames, onSearch }) => (
+const CategorySearch: React.FC<Props> = ({ onSearch }) => (
   <div className="categories-search-container">
-    <CategoryGame categoryGames={categoryGames} />
     <SearchField onSearch={onSearch} />
+    <CategoryGame />
   </div>
 );
 

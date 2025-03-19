@@ -12,23 +12,23 @@ import { filterVisibleCategories } from "../../utils/categoryFilter.ts";
 import ActiveLoader from "../../components/ui/loader/ActiveLoader.tsx";
 
 const HomePage = () => {
-  const { allGames, isLoadingGames, gamesError, categoryGames } = useGames();
+  const { games, isLoading, error, categoryGames } = useGames();
   const {
     visibleGames,
     lastGameRef,
     isLoadingMore,
     setVisibleGames,
     setCurrentPage,
-  } = useInfiniteScroll(allGames);
+  } = useInfiniteScroll(games);
   const { searchQuery, handleSearch, isSearching, searchResultsCount } =
-    useGameSearch(allGames, setVisibleGames, setCurrentPage);
+    useGameSearch(games, setVisibleGames, setCurrentPage);
 
-  const availableValues = filterVisibleCategories(allGames, categoryGames);
+  const availableValues = filterVisibleCategories(games, categoryGames);
 
   // Create unique arrays from json data, for navigation
   const categoriesInGames = useMemo(
-    () => [...new Set(allGames?.map((game) => game.category))],
-    [allGames],
+    () => [...new Set(games?.map((game) => game.category))],
+    [games],
   ); // 11 items
 
   // Subcategories
@@ -47,7 +47,7 @@ const HomePage = () => {
   const uniqueSubCategories = useMemo(() => {
     const subCategoryMap = new Map<string, Set<string>>(); // subCategory -> Set(category)
 
-    allGames?.forEach((game) => {
+    games?.forEach((game) => {
       if (game.subCategory && game.category) {
         if (!subCategoryMap.has(game.subCategory)) {
           subCategoryMap.set(game.subCategory, new Set());
@@ -60,38 +60,38 @@ const HomePage = () => {
       subCategory: sub,
       categories: Array.from(categories), // pretvaramo Set u niz
     }));
-  }, [allGames]);
+  }, [games]);
 
   // Unique type
   const uniqueTypes = useMemo(
-    () => [...new Set(allGames?.map((game) => game.type).filter(Boolean))],
-    [allGames],
+    () => [...new Set(games?.map((game) => game.type).filter(Boolean))],
+    [games],
   );
 
   // Unique tags (pošto je `tags` niz, spajamo sve u jedan Set)
   const uniqueTags = useMemo(
-    () => [...new Set(allGames?.map((game) => game.tags).filter(Boolean))],
-    [allGames],
+    () => [...new Set(games?.map((game) => game.tags).filter(Boolean))],
+    [games],
   );
 
   // Unique extraCategories
   const uniqueExtraCategories = useMemo(() => {
     const extraCategoriesSet = new Set<string>();
-    allGames?.forEach((game) => {
+    games?.forEach((game) => {
       if (game.extraCategories && game.extraCategories.trim() !== "") {
         extraCategoriesSet.add(game.extraCategories);
       }
     });
     return Array.from(extraCategoriesSet);
-  }, [allGames]);
+  }, [games]);
 
   // Novi niz: filtriramo igre sa `extraCategories` koje nisu prazan string
   const gamesWithExtraCategories = useMemo(
     () =>
-      allGames?.filter(
+      games?.filter(
         (game) => game.extraCategories && game.extraCategories.trim() !== "",
       ),
-    [allGames],
+    [games],
   );
 
   useEffect(() => {
@@ -155,15 +155,15 @@ const HomePage = () => {
       uniqueTags,
       uniqueExtraCategories,
     ],
-  ); // 10 items, one category from allGames doesn't exist into json data for categories
+  ); // 10 items, one category from games doesn't exist into json data for categories
 
-  if (gamesError) return <div>Error: {gamesError.message}</div>;
-  if (isLoadingGames) return <ActiveLoader title="Loading games..." />;
+  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <ActiveLoader title="Loading games..." />;
 
   return (
     <div className="home-page">
       <Banner />
-      <CategorySearch categoryGames={categoryGames} onSearch={handleSearch} />
+      <CategorySearch onSearch={handleSearch} />
 
       {/* Search status indicators */}
       {isSearching && <ActiveLoader title="Searching games..." />}
@@ -175,7 +175,7 @@ const HomePage = () => {
         </div>
       )}
 
-      {isLoadingGames ? (
+      {isLoading ? (
         <ActiveLoader title="Loading games..." />
       ) : (
         <GamesList

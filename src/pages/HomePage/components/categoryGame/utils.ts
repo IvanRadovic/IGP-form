@@ -1,4 +1,4 @@
-import { CATEGORY_IMAGES } from "./constants.ts";
+// import { CATEGORY_IMAGES } from "../../../../constants.ts";
 import { Categories } from "./interface.ts";
 
 const validCategoryTypes = new Set([
@@ -14,23 +14,23 @@ const validCategoryTypes = new Set([
  * @param categoryGames - List of categories
  * @returns List of available categories for the user to see
  */
-export const getAvailableCategories = (categoryGames: Categories[] = []) => {
-  return categoryGames
-    ?.filter(
-      ({ publishing, type }) =>
-        publishing?.status === "published" && validCategoryTypes.has(type),
-    )
-    ?.map(({ slug, title, type, multilingual }) => {
-      const categoryTitle =
-        type === "extraCategories"
-          ? multilingual?.find(({ language }) => language === "en")?.title ||
-            slug
-          : title;
-
-      return {
-        slug,
-        title: categoryTitle,
-        icon: CATEGORY_IMAGES[slug] || CATEGORY_IMAGES.jackpot,
-      };
-    });
-};
+// export const getAvailableCategories = (categoryGames: Categories[] = []) => {
+//   return categoryGames
+//     ?.filter(
+//       ({ publishing, type }) =>
+//         publishing?.status === "published" && validCategoryTypes.has(type),
+//     )
+//     ?.map(({ slug, title, type, multilingual }) => {
+//       const categoryTitle =
+//         type === "extraCategories"
+//           ? multilingual?.find(({ language }) => language === "en")?.title ||
+//             slug
+//           : title;
+//
+//       return {
+//         slug,
+//         title: categoryTitle,
+//         icon: CATEGORY_IMAGES[slug],
+//       };
+//     });
+// };

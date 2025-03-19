@@ -25,7 +25,7 @@ const FilterList: FC<FilterListProps> = ({
   return (
     <div className="filterSubcontainer col-4">
       <div className="d-flex justify-content-between align-items-center gap-4 mb-4">
-        <h2 className="text-white mb-0">{title}:</h2>
+        <h4 className="text-white mb-0">{title}:</h4>
         <span onClick={() => dispatch(resetAction())}>
           <RxReset size={18} color={"gray"} />
         </span>

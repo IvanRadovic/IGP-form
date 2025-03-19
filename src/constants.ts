@@ -6,9 +6,9 @@ import casino from "./assets/images/gamesLogo/casino.png";
 import cardGame from "./assets/images/gamesLogo/card-game.png";
 import pokerTable from "./assets/images/gamesLogo/poker-table.png";
 import poker from "./assets/images/gamesLogo/poker.png";
-import chip from "./assets/images/gamesLogo/chip.png";
 import wheel from "./assets/images/new/wheel.png";
 import lucky from "./assets/images/new/lucky.png";
+import game from "./assets/images/new/game.png";
 
 export const CATEGORY_IMAGES_ARRAY: string[] = [
   jackpot,
@@ -19,6 +19,6 @@ export const CATEGORY_IMAGES_ARRAY: string[] = [
   wheel,
   dice,
   poker,
-  wheel,
+  game,
   casinoChip,
 ];

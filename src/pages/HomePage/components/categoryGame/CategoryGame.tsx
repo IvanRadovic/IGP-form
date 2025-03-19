@@ -1,9 +1,10 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 /*========== IMAGES ============*/
 import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
 import casino from "../../../../assets/images/new/casino.png";
+import filter from "../../../../assets/images/new/filter.png";
 
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
@@ -26,6 +27,7 @@ import FilterList from "../advancedFilter/FilterList.tsx";
 
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const categoryList = useSelector(selectFilteredCategories);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const selectedCategory = useSelector(selectSelectedCategory);
@@ -66,9 +68,16 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             </div>
           ))}
         </div>
+        <div
+          className="category"
+          onClick={() => setFilterIsOpen(!filterIsOpen)}
+        >
+          <img className="img-category" src={filter} alt="advances filter" />
+          <span>Filter</span>
+        </div>
       </div>
 
-      {selectedCategory && (
+      {filterIsOpen && (
         <div className="row mainFilter">
           <FilterList
             filters={subCategories}

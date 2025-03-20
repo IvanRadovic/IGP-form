@@ -5,18 +5,87 @@
     --bp-desktop: 90em;    /* 1440px */
 }
 
-/* Telefoni (<= 600px) */
+
 @media (max-width: 37.5em) {
+    .img-bunner{
+        height: 20rem !important;
+    }
+
+    .categories-search-container {
+        width: 100% !important;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) !important;
+        margin-top: 5rem !important;
+    }
+
+    .advance-filter-mobile{
+        display: flex !important
+    ;
+        flex-direction: row !important;
+        gap: 0.5rem !important;
+        position: absolute !important;
+        top: 15rem !important;
+        right: 0rem !important;
+        height: 35px !important;
+        width: 53px !important;
+        padding: 2rem 5rem !important;
+        box-shadow: 6px 5px 57px -17px rgba(245, 245, 245, 1) !important;
+    }
+    .advance-filter{
+        display: none !important;
+    }
+
+    .img-category-mobile{
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        display: none;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        background-color: #361243;
+        transition: right 0.6s ease-in-out;
+    }
+
+    .navbar-collapse.show {
+        right: 0;
+        transition: right 0.3s ease-in-out;
+        flex-direction: column;
+    }
+
+    .navbar-toggler {
+        background-color: var(--color-secondary) !important;
+        font-size: var(--font-size-md) !important;
+        box-shadow: 6px 5px 57px -17px rgba(245, 245, 245, 1) !important;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .navbar-toggler-icon{
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+
+    .filterSubcontainer{
+        border-right: none !important;
+        border-bottom: 0.2px solid white !important;
+    }
+
 }
 
-/* Tablet (<= 900px) */
+
 @media (max-width: 56.25em) {
 }
 
-/* Laptop (<= 1200px) */
+
 @media (max-width: 75em) {
 }
 
-/* Desktop (>= 1440px) */
+
 @media (min-width: 90em) {
 }

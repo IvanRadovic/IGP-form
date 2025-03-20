@@ -9,10 +9,12 @@ interface FilterItemProps {
 const FilterItem: FC<FilterItemProps> = ({ filter, isActive, onClick }) => {
   return (
     <div
-      className={`filter-item ${isActive ? "active" : ""}`}
+      className={`filter-item ${isActive ? "activeFilterItem" : ""}`}
       onClick={onClick}
     >
-      <span className="text-white" style={{ fontSize: "1.3rem" }}>
+      <span
+        className={`filter-item-span ${isActive ? "activeFilterItem" : ""}`}
+      >
         {filter}
       </span>
     </div>

@@ -9,6 +9,7 @@ interface FilterListProps {
   filters: string[];
   selectedFilter: string | null;
   title: string;
+  url: string;
   resetAction: () => void;
   onFilterSelect: (filter: string) => void;
 }
@@ -19,15 +20,19 @@ const FilterList: FC<FilterListProps> = ({
   title,
   resetAction,
   onFilterSelect,
+  url,
 }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="filterSubcontainer col-4">
+    <div className="filterSubcontainer col-12 col-md-6 col-lg-4">
       <div className="d-flex justify-content-between align-items-center gap-4 mb-4">
-        <h4 className="text-white mb-0">{title}:</h4>
-        <span onClick={() => dispatch(resetAction())}>
-          <RxReset size={18} color={"gray"} />
+        <div className="d-flex align-items-center gap-3">
+          <img src={url} alt={title} className="coverFilterImage" />
+          <h4 className="text-white mb-0">{title}:</h4>
+        </div>
+        <span className="resetSpan" onClick={() => dispatch(resetAction())}>
+          <RxReset size={18} color={"white"} className="resetSpanIcon" />
         </span>
       </div>
       <div className="d-flex gap-3 align-items-center filter-container">

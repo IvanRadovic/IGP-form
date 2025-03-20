@@ -1,4 +1,5 @@
 .categories-container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,8 +23,8 @@
 
 
 .category {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,10 +46,10 @@
 }
 
 .img-category{
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
 }
 
-.category span { font-size: 1.5rem}
+.category span { font-size: 1.3rem}
 

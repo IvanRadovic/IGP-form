@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
 import casino from "../../../../assets/images/new/casino.png";
 import filter from "../../../../assets/images/new/filter.png";
+import list from "../../../../assets/images/categoriesFilter/application.png";
+import priceTag from "../../../../assets/images/categoriesFilter/price-tag.png";
+import types from "../../../../assets/images/categoriesFilter/shapes.png";
 
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
@@ -37,8 +40,6 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     [filteredGames],
   );
 
-  const memoizedFilteredGames = useMemo(() => filteredGames, [filteredGames]);
-
   return (
     <>
       <div className="categories-container">
@@ -69,10 +70,21 @@ const CategoryGame: FC<CategoryGameProps> = () => {
           ))}
         </div>
         <div
-          className="category"
+          className="category advance-filter"
           onClick={() => setFilterIsOpen(!filterIsOpen)}
         >
           <img className="img-category" src={filter} alt="advances filter" />
+          <span>Advance Filter</span>
+        </div>
+        <div
+          className="category advance-filter-mobile"
+          onClick={() => setFilterIsOpen(!filterIsOpen)}
+        >
+          <img
+            className="img-category img-category-mobile"
+            src={filter}
+            alt="advances filter"
+          />
           <span>Filter</span>
         </div>
       </div>
@@ -80,6 +92,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
       {filterIsOpen && (
         <div className="row mainFilter">
           <FilterList
+            url={list}
             filters={subCategories}
             selectedFilter={selectedSubCategory}
             title="Subcategories"
@@ -89,6 +102,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             }
           />
           <FilterList
+            url={priceTag}
             filters={subCategories}
             selectedFilter={selectedSubCategory}
             title="Tags"
@@ -98,6 +112,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             }
           />
           <FilterList
+            url={types}
             filters={subCategories}
             selectedFilter={selectedSubCategory}
             title="Types"

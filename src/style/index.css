@@ -1,6 +1,7 @@
 
 /*============= ABSTRACTS =============*/
 @import "./abstracts/_variables.css";
+@import "./abstracts/responsive.css";
 
 /*============= BASE =============*/
 @import "./base/_colors.css";
@@ -23,3 +24,4 @@
 /*=========== COMPONENTS ==========*/
 @import "./components/button.css";
 @import "./components/search.css";
+@import "./components/bunner.css";

@@ -10,11 +10,10 @@ export const selectSelectedCategory = (state: RootState) =>
   state.games.selectedCategory;
 export const selectSelectedSubCategory = (state: RootState) =>
   state.games.selectedSubCategory;
-export const subCategoryList = (state: RootState) =>
-  state.games.selectedSubCategory;
 export const selectCategoryGames = (state: RootState) =>
   state.games.categoryGames;
-
+export const selectSelectedTags = (state: RootState) =>
+  state.games.selectedTags;
 /**
  *  Selects all categories that have at least one game
  *  @returns {string[]} - List of categories
@@ -42,8 +41,13 @@ export const selectFilteredCategories = createSelector(
  * const filteredGames = useSelector(selectFilteredGames);
  */
 export const selectFilteredGames = createSelector(
-  [selectGames, selectSelectedCategory, selectSelectedSubCategory],
-  (games, selectedCategory, selectedSubCategory) => {
+  [
+    selectGames,
+    selectSelectedCategory,
+    selectSelectedSubCategory,
+    selectSelectedTags,
+  ],
+  (games, selectedCategory, selectedSubCategory, selectedTags) => {
     let filteredGames = games;
 
     if (selectedCategory) {
@@ -55,6 +59,13 @@ export const selectFilteredGames = createSelector(
     if (selectedSubCategory.length > 0) {
       filteredGames = filteredGames.filter((game) =>
         selectedSubCategory.includes(game.subCategory),
+      );
+    }
+
+    if (selectedTags.length > 0) {
+      console.log("- - ", selectedTags);
+      filteredGames = filteredGames.filter((game) =>
+        selectedTags.includes(game.tags),
       );
     }
 

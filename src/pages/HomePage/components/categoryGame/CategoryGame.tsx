@@ -18,11 +18,15 @@ import {
   selectFilteredGames,
   selectSelectedCategory,
   selectSelectedSubCategory,
+  selectSelectedTags,
 } from "../../../../store/selector.ts";
 import {
   resetSubCategory,
+  resetTags,
   setSelectedCategory,
   setSelectedSubCategory,
+  setSelectedTagList,
+  setSelectedTags,
   setSubCategoryList,
 } from "../../../../store/games/gamesReducer.ts";
 
@@ -32,10 +36,12 @@ import FilterList from "../advancedFilter/FilterList.tsx";
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
   const subsss = useSelector((state) => state.games.subCategoryList);
+  const tagsss = useSelector((state) => state.games.tagsList);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const categoryList = useSelector(selectFilteredCategories);
   // const subCategories = useSelector(subCategoryList);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
+  const selectedTags = useSelector(selectSelectedTags);
   const selectedCategory = useSelector(selectSelectedCategory);
   const filteredGames = useSelector(selectFilteredGames);
   const subCategories = useMemo(
@@ -43,8 +49,14 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     [filteredGames],
   );
 
+  const tagsListaa = useMemo(
+    () => [...new Set(filteredGames.map((game) => game.tags))],
+    [filteredGames],
+  );
+
   useEffect(() => {
     dispatch(setSubCategoryList(subCategories));
+    dispatch(setSelectedTagList(tagsListaa));
   }, [selectedCategory]);
 
   const handleSubCategorySelect = (filter: string) => {
@@ -110,16 +122,14 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             resetAction={resetSubCategory}
             onFilterSelect={handleSubCategorySelect}
           />
-          {/*<FilterList*/}
-          {/*  url={priceTag}*/}
-          {/*  filters={subCategories}*/}
-          {/*  selectedFilter={selectedSubCategory}*/}
-          {/*  title="Tags"*/}
-          {/*  resetAction={resetSubCategory}*/}
-          {/*  onFilterSelect={(filter) =>*/}
-          {/*    dispatch(setSelectedSubCategory(filter))*/}
-          {/*  }*/}
-          {/*/>*/}
+          <FilterList
+            url={priceTag}
+            filters={tagsss}
+            selectedFilter={selectedTags}
+            title="Tags"
+            resetAction={resetTags}
+            onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
+          />
           {/*<FilterList*/}
           {/*  url={types}*/}
           {/*  filters={subCategories}*/}

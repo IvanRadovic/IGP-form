@@ -8,7 +8,9 @@ interface GamesState {
   tagsList: [] | string[];
   selectedTags: string[] | [];
   selectedCategory: string | null;
+  selectedExtraCategory: string | null;
   selectedSubCategory: string[] | [];
+  extraCategories: [] | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -17,10 +19,12 @@ const initialState: GamesState = {
   games: [],
   categoryGames: [],
   selectedCategory: null,
+  selectedExtraCategory: null,
   selectedSubCategory: [],
   subCategoryList: [],
   tagsList: [],
   selectedTags: [],
+  extraCategories: [],
   isLoading: false,
   error: null,
 };
@@ -41,13 +45,24 @@ const gamesSlice = createSlice({
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
+
+    // Categories
     setSelectedCategory(state, action: PayloadAction<string | null>) {
       if (state.selectedCategory !== action.payload) {
         state.selectedCategory = action.payload;
-        state.selectedSubCategory = [];
+        // state.selectedSubCategory = [];
       }
     },
 
+    setSelectedExtraCategories(state, action: PayloadAction<string[]>) {
+      if (state.extraCategories !== action.payload) {
+        state.selectedExtraCategory = action.payload;
+        // state.selectedSubCategory = [];
+        // state.selectedCategory = null;
+      }
+    },
+
+    //Subcategories
     setSubCategoryList(state, action: PayloadAction<string[]>) {
       state.subCategoryList = action.payload;
     },
@@ -87,6 +102,7 @@ export const {
   setError,
   setSelectedSubCategory,
   setSelectedCategory,
+  setSelectedExtraCategories,
   resetSubCategory,
   setSubCategoryList,
   setSelectedTagList,

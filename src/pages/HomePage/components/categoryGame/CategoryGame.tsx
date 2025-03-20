@@ -19,11 +19,14 @@ import {
   selectSelectedCategory,
   selectSelectedSubCategory,
   selectSelectedTags,
+  selectFilteredExtraCategories,
+  selectSelectedExtraCategory,
 } from "../../../../store/selector.ts";
 import {
   resetSubCategory,
   resetTags,
   setSelectedCategory,
+  setSelectedExtraCategories,
   setSelectedSubCategory,
   setSelectedTagList,
   setSelectedTags,
@@ -39,10 +42,12 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   const tagsss = useSelector((state) => state.games.tagsList);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const categoryList = useSelector(selectFilteredCategories);
+  const extraCategories = useSelector(selectFilteredExtraCategories);
   // const subCategories = useSelector(subCategoryList);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const selectedTags = useSelector(selectSelectedTags);
   const selectedCategory = useSelector(selectSelectedCategory);
+  const selectedExtraCategory = useSelector(selectSelectedExtraCategory);
   const filteredGames = useSelector(selectFilteredGames);
   const subCategories = useMemo(
     () => [...new Set(filteredGames.map((game) => game.subCategory))],
@@ -55,9 +60,12 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   );
 
   useEffect(() => {
+    // extraCategories je niz objekata kategorija sa tipom === "extraCategories"
+    // u vrhu ide map nad tim nizom i pri
+    console.log("EXTRA CATEGORIES", extraCategories);
     dispatch(setSubCategoryList(subCategories));
     dispatch(setSelectedTagList(tagsListaa));
-  }, [selectedCategory]);
+  }, [selectedCategory, selectedExtraCategory]);
 
   const handleSubCategorySelect = (filter: string) => {
     dispatch(setSelectedSubCategory(filter));
@@ -65,6 +73,19 @@ const CategoryGame: FC<CategoryGameProps> = () => {
 
   return (
     <>
+      <ul style={{ color: "white" }}>
+        {extraCategories?.map((category) => (
+          <li key={category.title}>
+            <span
+              onClick={() =>
+                dispatch(setSelectedExtraCategories(category.slug))
+              }
+            >
+              {category.multilingual[0].title}
+            </span>
+          </li>
+        ))}
+      </ul>
       <div className="categories-container">
         <div
           className={`category ${selectedCategory ? "" : "active"}`}

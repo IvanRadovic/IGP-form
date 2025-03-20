@@ -8,12 +8,18 @@ import defaultImage from "../assets/images/background/image-fallback.jpg";
 export const selectGames = (state: RootState) => state.games.games;
 export const selectSelectedCategory = (state: RootState) =>
   state.games.selectedCategory;
+export const selectSelectedExtraCategory = (state: RootState) =>
+  state.games.selectedExtraCategory;
 export const selectSelectedSubCategory = (state: RootState) =>
   state.games.selectedSubCategory;
 export const selectCategoryGames = (state: RootState) =>
   state.games.categoryGames;
 export const selectSelectedTags = (state: RootState) =>
   state.games.selectedTags;
+
+export const extraCategories = (state: RootState) =>
+  state.games.extraCategories;
+
 /**
  *  Selects all categories that have at least one game
  *  @returns {string[]} - List of categories
@@ -35,6 +41,36 @@ export const selectFilteredCategories = createSelector(
 );
 
 /**
+ * Selects all categories that have no games
+ * @returns {string[]} - List of categories
+ * @example
+ * const extraCategories = useSelector(extraCategories);
+ */
+export const selectFilteredExtraCategories = createSelector(
+  [selectGames, selectCategoryGames],
+  (games, categories) => {
+    let extraCategories = categories.filter(
+      (category) => category.type === "extraCategories",
+    );
+
+    extraCategories = extraCategories
+      .filter((category) =>
+        games.some((game) =>
+          Array.isArray(game.extraCategories)
+            ? game.extraCategories.includes(category.slug)
+            : game.extraCategories === category.slug,
+        ),
+      )
+      .map((category, index) => ({
+        ...category,
+        image: CATEGORY_IMAGES_ARRAY[index] || defaultImage,
+      }));
+
+    return extraCategories;
+  },
+);
+
+/**
  * Selects all games that match selected category and subcategory
  * @returns {Game[]} - List of games
  * @example
@@ -44,15 +80,30 @@ export const selectFilteredGames = createSelector(
   [
     selectGames,
     selectSelectedCategory,
+    selectSelectedExtraCategory,
     selectSelectedSubCategory,
     selectSelectedTags,
   ],
-  (games, selectedCategory, selectedSubCategory, selectedTags) => {
+  (
+    games,
+    selectedCategory,
+    selectedExtraCategory,
+    selectedSubCategory,
+    selectedTags,
+  ) => {
     let filteredGames = games;
+    console.log("filter selectedCategory ---- ", selectedCategory);
+    console.log("filter selectedExtraCategory ---- ", selectedExtraCategory);
 
     if (selectedCategory) {
       filteredGames = filteredGames.filter(
         (game) => game.category === selectedCategory,
+      );
+    }
+
+    if (selectedExtraCategory) {
+      filteredGames = filteredGames.filter(
+        (game) => game.extraCategories === selectedExtraCategory,
       );
     }
 

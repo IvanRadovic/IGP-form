@@ -10,6 +10,8 @@ export const selectSelectedCategory = (state: RootState) =>
   state.games.selectedCategory;
 export const selectSelectedSubCategory = (state: RootState) =>
   state.games.selectedSubCategory;
+export const subCategoryList = (state: RootState) =>
+  state.games.selectedSubCategory;
 export const selectCategoryGames = (state: RootState) =>
   state.games.categoryGames;
 
@@ -50,9 +52,9 @@ export const selectFilteredGames = createSelector(
       );
     }
 
-    if (selectedSubCategory) {
-      filteredGames = filteredGames.filter(
-        (game) => game.subCategory === selectedSubCategory,
+    if (selectedSubCategory.length > 0) {
+      filteredGames = filteredGames.filter((game) =>
+        selectedSubCategory.includes(game.subCategory),
       );
     }
 

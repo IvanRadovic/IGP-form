@@ -36,11 +36,11 @@ const FilterList: FC<FilterListProps> = ({
         </span>
       </div>
       <div className="d-flex gap-3 align-items-center filter-container">
-        {filters.map((filter, index) => (
+        {filters?.map((filter, index) => (
           <FilterItem
             key={index}
             filter={filter}
-            isActive={selectedFilter === filter}
+            isActive={selectedFilter?.includes(filter)}
             onClick={() => onFilterSelect(filter)}
           />
         ))}

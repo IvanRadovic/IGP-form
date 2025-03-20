@@ -5,7 +5,8 @@ interface GamesState {
   games: Game[];
   categoryGames: CategoryGames[];
   selectedCategory: string | null;
-  selectedSubCategory: string | null;
+  selectedSubCategory: string[] | [];
+  subCategoryList: [];
   isLoading: boolean;
   error: string | null;
 }
@@ -14,7 +15,8 @@ const initialState: GamesState = {
   games: [],
   categoryGames: [],
   selectedCategory: null,
-  selectedSubCategory: null,
+  selectedSubCategory: [],
+  subCategoryList: [],
   isLoading: false,
   error: null,
 };
@@ -36,14 +38,25 @@ const gamesSlice = createSlice({
       state.error = action.payload;
     },
     setSelectedCategory(state, action: PayloadAction<string | null>) {
-      state.selectedCategory = action.payload;
-      state.selectedSubCategory = null;
+      if (state.selectedCategory !== action.payload) {
+        state.selectedCategory = action.payload;
+        state.selectedSubCategory = [];
+      }
+    },
+
+    setSubCategoryList(state, action: PayloadAction<string[]>) {
+      state.subCategoryList = action.payload;
     },
     setSelectedSubCategory(state, action: PayloadAction<string | null>) {
-      state.selectedSubCategory = action.payload;
+      if (state.selectedSubCategory.includes(action.payload)) {
+        state.selectedSubCategory.pop(action.payload);
+      } else {
+        state.selectedSubCategory.push(action.payload);
+      }
     },
     resetSubCategory(state) {
-      state.selectedSubCategory = null;
+      state.selectedSubCategory = [];
+      state.subCategoryList = null;
     },
   },
 });
@@ -56,5 +69,6 @@ export const {
   setSelectedSubCategory,
   setSelectedCategory,
   resetSubCategory,
+  setSubCategoryList,
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

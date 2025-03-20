@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 /*========== IMAGES ============*/
@@ -23,6 +23,7 @@ import {
   resetSubCategory,
   setSelectedCategory,
   setSelectedSubCategory,
+  setSubCategoryList,
 } from "../../../../store/games/gamesReducer.ts";
 
 /*========== COMPONENTS ============*/
@@ -30,8 +31,10 @@ import FilterList from "../advancedFilter/FilterList.tsx";
 
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
+  const subsss = useSelector((state) => state.games.subCategoryList);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const categoryList = useSelector(selectFilteredCategories);
+  // const subCategories = useSelector(subCategoryList);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const selectedCategory = useSelector(selectSelectedCategory);
   const filteredGames = useSelector(selectFilteredGames);
@@ -39,6 +42,14 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     () => [...new Set(filteredGames.map((game) => game.subCategory))],
     [filteredGames],
   );
+
+  useEffect(() => {
+    dispatch(setSubCategoryList(subCategories));
+  }, [selectedCategory]);
+
+  const handleSubCategorySelect = (filter: string) => {
+    dispatch(setSelectedSubCategory(filter));
+  };
 
   return (
     <>
@@ -93,34 +104,32 @@ const CategoryGame: FC<CategoryGameProps> = () => {
         <div className="row mainFilter">
           <FilterList
             url={list}
-            filters={subCategories}
+            filters={subsss}
             selectedFilter={selectedSubCategory}
             title="Subcategories"
             resetAction={resetSubCategory}
-            onFilterSelect={(filter) =>
-              dispatch(setSelectedSubCategory(filter))
-            }
+            onFilterSelect={handleSubCategorySelect}
           />
-          <FilterList
-            url={priceTag}
-            filters={subCategories}
-            selectedFilter={selectedSubCategory}
-            title="Tags"
-            resetAction={resetSubCategory}
-            onFilterSelect={(filter) =>
-              dispatch(setSelectedSubCategory(filter))
-            }
-          />
-          <FilterList
-            url={types}
-            filters={subCategories}
-            selectedFilter={selectedSubCategory}
-            title="Types"
-            resetAction={resetSubCategory}
-            onFilterSelect={(filter) =>
-              dispatch(setSelectedSubCategory(filter))
-            }
-          />
+          {/*<FilterList*/}
+          {/*  url={priceTag}*/}
+          {/*  filters={subCategories}*/}
+          {/*  selectedFilter={selectedSubCategory}*/}
+          {/*  title="Tags"*/}
+          {/*  resetAction={resetSubCategory}*/}
+          {/*  onFilterSelect={(filter) =>*/}
+          {/*    dispatch(setSelectedSubCategory(filter))*/}
+          {/*  }*/}
+          {/*/>*/}
+          {/*<FilterList*/}
+          {/*  url={types}*/}
+          {/*  filters={subCategories}*/}
+          {/*  selectedFilter={selectedSubCategory}*/}
+          {/*  title="Types"*/}
+          {/*  resetAction={resetSubCategory}*/}
+          {/*  onFilterSelect={(filter) =>*/}
+          {/*    dispatch(setSelectedSubCategory(filter))*/}
+          {/*  }*/}
+          {/*/>*/}
         </div>
       )}
     </>

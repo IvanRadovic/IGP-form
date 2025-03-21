@@ -16,9 +16,10 @@ export const selectCategoryGames = (state: RootState) =>
   state.games.categoryGames;
 export const selectSelectedTags = (state: RootState) =>
   state.games.selectedTags;
-
 export const extraCategories = (state: RootState) =>
   state.games.extraCategories;
+export const selectSelectedTypes = (state: RootState) =>
+  state.games.selectedTypes;
 
 /**
  *  Selects all categories that have at least one game
@@ -83,6 +84,7 @@ export const selectFilteredGames = createSelector(
     selectSelectedExtraCategory,
     selectSelectedSubCategory,
     selectSelectedTags,
+    selectSelectedTypes,
   ],
   (
     games,
@@ -90,20 +92,13 @@ export const selectFilteredGames = createSelector(
     selectedExtraCategory,
     selectedSubCategory,
     selectedTags,
+    selectedType,
   ) => {
     let filteredGames = games;
-    console.log("filter selectedCategory ---- ", selectedCategory);
-    console.log("filter selectedExtraCategory ---- ", selectedExtraCategory);
 
     if (selectedCategory) {
       filteredGames = filteredGames.filter(
         (game) => game.category === selectedCategory,
-      );
-    }
-
-    if (selectedExtraCategory) {
-      filteredGames = filteredGames.filter(
-        (game) => game.extraCategories === selectedExtraCategory,
       );
     }
 
@@ -114,9 +109,20 @@ export const selectFilteredGames = createSelector(
     }
 
     if (selectedTags.length > 0) {
-      console.log("- - ", selectedTags);
       filteredGames = filteredGames.filter((game) =>
         selectedTags.includes(game.tags),
+      );
+    }
+
+    if (selectedType.length > 0) {
+      filteredGames = filteredGames.filter((game) =>
+        selectedType.includes(game.type),
+      );
+    }
+
+    if (selectedExtraCategory) {
+      filteredGames = filteredGames.filter(
+        (game) => game.extraCategories === selectedExtraCategory,
       );
     }
 

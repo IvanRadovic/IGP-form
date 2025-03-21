@@ -4,12 +4,14 @@ import { Game, CategoryGames } from "../../api/services/games/interface";
 interface GamesState {
   games: Game[];
   categoryGames: CategoryGames[];
-  subCategoryList: [] | string[];
-  tagsList: [] | string[];
-  selectedTags: string[] | [];
   selectedCategory: string | null;
-  selectedExtraCategory: string | null;
+  subCategoryList: [] | string[];
   selectedSubCategory: string[] | [];
+  tagsList: [] | string[];
+  typesList: [] | string[];
+  selectedTypes: string[] | [];
+  selectedTags: string[] | [];
+  selectedExtraCategory: string | null;
   extraCategories: [] | null;
   isLoading: boolean;
   error: string | null;
@@ -19,10 +21,12 @@ const initialState: GamesState = {
   games: [],
   categoryGames: [],
   selectedCategory: null,
-  selectedExtraCategory: null,
-  selectedSubCategory: [],
   subCategoryList: [],
+  selectedSubCategory: [],
+  selectedExtraCategory: null,
   tagsList: [],
+  typesList: [],
+  selectedTypes: [],
   selectedTags: [],
   extraCategories: [],
   isLoading: false,
@@ -33,15 +37,19 @@ const gamesSlice = createSlice({
   name: "games",
   initialState,
   reducers: {
+    // Games
     setGames(state, action: PayloadAction<Game[]>) {
       state.games = action.payload;
     },
+    // Category
     setCategoryGames(state, action: PayloadAction<CategoryGames[]>) {
       state.categoryGames = action.payload;
     },
+    // Loading
     setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
+    // Error
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
@@ -84,6 +92,18 @@ const gamesSlice = createSlice({
         state.selectedTags.push(action.payload);
       }
     },
+
+    //types
+    setTypesList(state, action: PayloadAction<string[]>) {
+      state.typesList = action.payload;
+    },
+    setSelectedTypes(state, action: PayloadAction<string | null>) {
+      if (state.selectedTypes.includes(action.payload)) {
+        state.selectedTypes.pop(action.payload);
+      } else {
+        state.selectedTypes.push(action.payload);
+      }
+    },
   },
 });
 
@@ -98,5 +118,7 @@ export const {
   setSubCategoryList,
   setSelectedTagList,
   setSelectedTags,
+  setSelectedTypes,
+  setTypesList,
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

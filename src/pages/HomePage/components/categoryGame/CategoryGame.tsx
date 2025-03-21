@@ -21,6 +21,7 @@ import {
   selectSelectedTags,
   selectFilteredExtraCategories,
   selectSelectedExtraCategory,
+  selectSelectedTypes,
 } from "../../../../store/selector.ts";
 import {
   setSelectedCategory,
@@ -29,6 +30,8 @@ import {
   setSelectedTagList,
   setSelectedTags,
   setSubCategoryList,
+  setTypesList,
+  setSelectedTypes,
 } from "../../../../store/games/gamesReducer.ts";
 
 /*========== COMPONENTS ============*/
@@ -42,10 +45,12 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   // Selectors
   const subsCategories = useSelector((state) => state.games.subCategoryList);
   const tags = useSelector((state) => state.games.tagsList);
+  const types = useSelector((state) => state.games.typesList);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const selectedTags = useSelector(selectSelectedTags);
   const selectedCategory = useSelector(selectSelectedCategory);
   const selectedExtraCategory = useSelector(selectSelectedExtraCategory);
+  const selectedTypes = useSelector(selectSelectedTypes);
 
   // Selected filters
   const categoryList = useSelector(selectFilteredCategories);
@@ -62,10 +67,16 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     [filteredGames],
   );
 
+  const typesList = useMemo(
+    () => [...new Set(filteredGames.map((game) => game.type))],
+    [filteredGames],
+  );
+
   // Effects
   useEffect(() => {
     dispatch(setSubCategoryList(subCategories));
     dispatch(setSelectedTagList(tagsList));
+    dispatch(setTypesList(typesList));
   }, [selectedCategory, selectedExtraCategory]);
 
   return (
@@ -146,16 +157,13 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             title="Tags"
             onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
           />
-          {/*<FilterList*/}
-          {/*  url={types}*/}
-          {/*  filters={subCategories}*/}
-          {/*  selectedFilter={selectedSubCategory}*/}
-          {/*  title="Types"*/}
-          {/*  resetAction={resetSubCategory}*/}
-          {/*  onFilterSelect={(filter) =>*/}
-          {/*    dispatch(setSelectedSubCategory(filter))*/}
-          {/*  }*/}
-          {/*/>*/}
+          <FilterList
+            url={types}
+            filters={types}
+            selectedFilter={selectedTypes}
+            title="Types"
+            onFilterSelect={(filter) => dispatch(setSelectedTypes(filter))}
+          />
         </div>
       )}
     </>

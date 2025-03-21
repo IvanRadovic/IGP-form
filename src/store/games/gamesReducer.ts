@@ -54,11 +54,10 @@ const gamesSlice = createSlice({
       }
     },
 
+    // Extra Categories
     setSelectedExtraCategories(state, action: PayloadAction<string[]>) {
       if (state.extraCategories !== action.payload) {
         state.selectedExtraCategory = action.payload;
-        // state.selectedSubCategory = [];
-        // state.selectedCategory = null;
       }
     },
 
@@ -85,13 +84,6 @@ const gamesSlice = createSlice({
         state.selectedTags.push(action.payload);
       }
     },
-
-    resetSubCategory(state) {
-      state.selectedSubCategory = state.subCategoryList;
-    },
-    resetTags(state) {
-      state.selectedTags = state.tagsList;
-    },
   },
 });
 
@@ -103,10 +95,8 @@ export const {
   setSelectedSubCategory,
   setSelectedCategory,
   setSelectedExtraCategories,
-  resetSubCategory,
   setSubCategoryList,
   setSelectedTagList,
   setSelectedTags,
-  resetTags,
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

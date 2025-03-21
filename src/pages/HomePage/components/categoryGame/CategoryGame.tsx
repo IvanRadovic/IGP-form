@@ -23,8 +23,6 @@ import {
   selectSelectedExtraCategory,
 } from "../../../../store/selector.ts";
 import {
-  resetSubCategory,
-  resetTags,
   setSelectedCategory,
   setSelectedExtraCategories,
   setSelectedSubCategory,
@@ -38,38 +36,37 @@ import FilterList from "../advancedFilter/FilterList.tsx";
 
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
-  const subsss = useSelector((state) => state.games.subCategoryList);
-  const tagsss = useSelector((state) => state.games.tagsList);
+
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
-  const categoryList = useSelector(selectFilteredCategories);
-  const extraCategories = useSelector(selectFilteredExtraCategories);
-  // const subCategories = useSelector(subCategoryList);
+
+  // Selectors
+  const subsCategories = useSelector((state) => state.games.subCategoryList);
+  const tags = useSelector((state) => state.games.tagsList);
   const selectedSubCategory = useSelector(selectSelectedSubCategory);
   const selectedTags = useSelector(selectSelectedTags);
   const selectedCategory = useSelector(selectSelectedCategory);
   const selectedExtraCategory = useSelector(selectSelectedExtraCategory);
+
+  // Selected filters
+  const categoryList = useSelector(selectFilteredCategories);
+  const extraCategories = useSelector(selectFilteredExtraCategories);
   const filteredGames = useSelector(selectFilteredGames);
+
+  // Filtered data
   const subCategories = useMemo(
     () => [...new Set(filteredGames.map((game) => game.subCategory))],
     [filteredGames],
   );
-
-  const tagsListaa = useMemo(
+  const tagsList = useMemo(
     () => [...new Set(filteredGames.map((game) => game.tags))],
     [filteredGames],
   );
 
+  // Effects
   useEffect(() => {
-    // extraCategories je niz objekata kategorija sa tipom === "extraCategories"
-    // u vrhu ide map nad tim nizom i pri
-    console.log("EXTRA CATEGORIES", extraCategories);
     dispatch(setSubCategoryList(subCategories));
-    dispatch(setSelectedTagList(tagsListaa));
+    dispatch(setSelectedTagList(tagsList));
   }, [selectedCategory, selectedExtraCategory]);
-
-  const handleSubCategorySelect = (filter: string) => {
-    dispatch(setSelectedSubCategory(filter));
-  };
 
   return (
     <>
@@ -137,18 +134,16 @@ const CategoryGame: FC<CategoryGameProps> = () => {
         <div className="row mainFilter">
           <FilterList
             url={list}
-            filters={subsss}
+            filters={subsCategories}
             selectedFilter={selectedSubCategory}
             title="Subcategories"
-            resetAction={resetSubCategory}
-            onFilterSelect={handleSubCategorySelect}
+            onFilterSelect={(filter) => setSelectedSubCategory(filter)}
           />
           <FilterList
             url={priceTag}
-            filters={tagsss}
+            filters={tags}
             selectedFilter={selectedTags}
             title="Tags"
-            resetAction={resetTags}
             onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
           />
           {/*<FilterList*/}

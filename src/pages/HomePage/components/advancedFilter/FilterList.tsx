@@ -31,9 +31,6 @@ const FilterList: FC<FilterListProps> = ({
           <img src={url} alt={title} className="coverFilterImage" />
           <h4 className="text-white mb-0">{title}:</h4>
         </div>
-        <span className="resetSpan" onClick={() => dispatch(resetAction())}>
-          <RxReset size={18} color={"white"} className="resetSpanIcon" />
-        </span>
       </div>
       <div className="d-flex gap-3 align-items-center filter-container">
         {filters?.map((filter, index) => (

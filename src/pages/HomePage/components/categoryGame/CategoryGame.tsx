@@ -7,7 +7,7 @@ import casino from "../../../../assets/images/new/casino.png";
 import filter from "../../../../assets/images/new/filter.png";
 import list from "../../../../assets/images/categoriesFilter/application.png";
 import priceTag from "../../../../assets/images/categoriesFilter/price-tag.png";
-import types from "../../../../assets/images/categoriesFilter/shapes.png";
+import typesImg from "../../../../assets/images/categoriesFilter/shapes.png";
 
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
@@ -148,7 +148,9 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             filters={subsCategories}
             selectedFilter={selectedSubCategory}
             title="Subcategories"
-            onFilterSelect={(filter) => setSelectedSubCategory(filter)}
+            onFilterSelect={(filter) =>
+              dispatch(setSelectedSubCategory(filter))
+            }
           />
           <FilterList
             url={priceTag}
@@ -158,7 +160,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
             onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
           />
           <FilterList
-            url={types}
+            url={typesImg}
             filters={types}
             selectedFilter={selectedTypes}
             title="Types"

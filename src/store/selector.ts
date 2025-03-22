@@ -4,8 +4,8 @@ import { RootState } from "./store.ts";
 /*========= CATEGORY IMAGES ==========*/
 import { CATEGORY_IMAGES_ARRAY } from "../constants.ts";
 import defaultImage from "../assets/images/background/image-fallback.jpg";
-import { useSelector } from "react-redux";
 
+/*========== SELECTORS ============*/
 export const selectGames = (state: RootState) => state.games.games;
 export const selectSelectedCategory = (state: RootState) =>
   state.games.selectedCategory;

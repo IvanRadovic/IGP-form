@@ -58,7 +58,7 @@ const gamesSlice = createSlice({
     setSelectedCategory(state, action: PayloadAction<string | null>) {
       if (state.selectedCategory !== action.payload) {
         state.selectedCategory = action.payload;
-        // state.selectedSubCategory = [];
+        state.extraCategories = null;
       }
     },
 

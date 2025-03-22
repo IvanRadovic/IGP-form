@@ -42,7 +42,6 @@ const CategoryGame: FC<CategoryGameProps> = () => {
 
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
 
-  // Selectors
   const subsCategories = useSelector((state) => state.games.subCategoryList);
   const tags = useSelector((state) => state.games.tagsList);
   const types = useSelector((state) => state.games.typesList);
@@ -52,12 +51,10 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   const selectedExtraCategory = useSelector(selectSelectedExtraCategory);
   const selectedTypes = useSelector(selectSelectedTypes);
 
-  // Selected filters
   const categoryList = useSelector(selectFilteredCategories);
   const extraCategories = useSelector(selectFilteredExtraCategories);
   const filteredGames = useSelector(selectFilteredGames);
 
-  // Filtered data
   const subCategories = useMemo(
     () => [...new Set(filteredGames.map((game) => game.subCategory))],
     [filteredGames],
@@ -81,19 +78,19 @@ const CategoryGame: FC<CategoryGameProps> = () => {
 
   return (
     <>
-      <ul style={{ color: "white" }}>
-        {extraCategories?.map((category) => (
-          <li key={category.title}>
-            <span
-              onClick={() =>
-                dispatch(setSelectedExtraCategories(category.slug))
-              }
-            >
-              {category.multilingual[0].title}
-            </span>
-          </li>
-        ))}
-      </ul>
+      {/*<ul style={{ color: "white" }}>*/}
+      {/*  {extraCategories?.map((category) => (*/}
+      {/*    <li key={category.title}>*/}
+      {/*      <span*/}
+      {/*        onClick={() =>*/}
+      {/*          dispatch(setSelectedExtraCategories(category.slug))*/}
+      {/*        }*/}
+      {/*      >*/}
+      {/*        {category.multilingual[0].title}*/}
+      {/*      </span>*/}
+      {/*    </li>*/}
+      {/*  ))}*/}
+      {/*</ul>*/}
       <div className="categories-container">
         <div
           className={`category ${selectedCategory ? "" : "active"}`}

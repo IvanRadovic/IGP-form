@@ -5,21 +5,18 @@
     box-shadow: 43px -12px 70px -53px rgba(232,232,232,1);
     border-radius: 10px;
 
-    /* Initial hidden state */
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     padding: 0 2rem;
     margin-bottom: 0;
 
-    /* Transition properties */
     transition: all 0.5s ease-in-out;
 }
 
 .mainFilter.open {
-    /* Visible state */
     opacity: 1;
-    max-height: 500px; /* Adjust based on your content height */
+    max-height: 500px;
     padding: 2rem 2rem 3rem;
     margin-bottom: 2rem;
 }
@@ -40,9 +37,6 @@
     align-items: center;
 }
 
-.advance-filter-mobile{
-    display: none;
-}
 
 .coverFilterImage{
     width: 20px;

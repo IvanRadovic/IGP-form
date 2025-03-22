@@ -19,30 +19,34 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   return (
     <>
       <div
-        className="category advance-filter"
-        onClick={() => setFilterIsOpen(!filterIsOpen)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && setFilterIsOpen(!filterIsOpen)}
-      >
-        <img className="img-category" src={filter} alt="advances filter" />
-        <span>Advance Filter</span>
-      </div>
-
-      {/* ========== MOBILE VERSION =========== */}
-      <div
-        className="category advance-filter-mobile"
+        className={`category advance-filter ${filterIsOpen ? "active" : ""}`}
         onClick={() => setFilterIsOpen(!filterIsOpen)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setFilterIsOpen(!filterIsOpen)}
       >
         <img
-          className="img-category img-category-mobile"
+          className={`img-category ${filterIsOpen ? "active-icon" : ""}`}
           src={filter}
-          alt="advances filter"
+          alt="advanced filter"
         />
-        <span>Filter</span>
+        <span className="filter-text">Advanced Filter</span>
+      </div>
+
+      {/* Mobile verzija sa optimizovanim animacijama */}
+      <div
+        className={`category advance-filter-mobile ${filterIsOpen ? "active" : ""}`}
+        onClick={() => setFilterIsOpen(!filterIsOpen)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setFilterIsOpen(!filterIsOpen)}
+      >
+        <img
+          className={`img-category img-category-mobile ${filterIsOpen ? "active-icon" : ""}`}
+          src={filter}
+          alt="advanced filter"
+        />
+        <span className="filter-text">Filter</span>
       </div>
     </>
   );

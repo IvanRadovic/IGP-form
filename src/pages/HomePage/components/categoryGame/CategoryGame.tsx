@@ -143,33 +143,29 @@ const CategoryGame: FC<CategoryGameProps> = () => {
         </div>
       </div>
 
-      {filterIsOpen && (
-        <div className="row mainFilter">
-          <FilterList
-            url={list}
-            filters={subsCategories}
-            selectedFilter={selectedSubCategory}
-            title="Subcategories"
-            onFilterSelect={(filter) =>
-              dispatch(setSelectedSubCategory(filter))
-            }
-          />
-          <FilterList
-            url={priceTag}
-            filters={tags}
-            selectedFilter={selectedTags}
-            title="Tags"
-            onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
-          />
-          <FilterList
-            url={typesImg}
-            filters={types}
-            selectedFilter={selectedTypes}
-            title="Types"
-            onFilterSelect={(filter) => dispatch(setSelectedTypes(filter))}
-          />
-        </div>
-      )}
+      <div className={`row mainFilter ${filterIsOpen ? "open" : ""}`}>
+        <FilterList
+          url={list}
+          filters={subsCategories}
+          selectedFilter={selectedSubCategory}
+          title="Subcategories"
+          onFilterSelect={(filter) => dispatch(setSelectedSubCategory(filter))}
+        />
+        <FilterList
+          url={priceTag}
+          filters={tags}
+          selectedFilter={selectedTags}
+          title="Tags"
+          onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
+        />
+        <FilterList
+          url={typesImg}
+          filters={types}
+          selectedFilter={selectedTypes}
+          title="Types"
+          onFilterSelect={(filter) => dispatch(setSelectedTypes(filter))}
+        />
+      </div>
     </>
   );
 };

@@ -5,12 +5,16 @@ import { Game } from "../../../api/services/games/interface.ts";
 const PAGE_SIZE = 24;
 
 /**
- * Custom hook to handle infinite scroll for games list
+ * @name useInfiniteScroll
+ * @description Custom hook to handle infinite scroll for games list on home page
  * @param allGames - List of all games
- * @returns visibleGames - List of games to display
+ * @returns visibleGames - List of games visible on the screen
+ * @returns lastGameRef - Ref for last game element
+ * @returns isLoadingMore - Loading state for more games
+ * @returns loadMoreGames - function to load more games
+ * @returns setVisibleGames - function to set visible games
+ * @returns setCurrentPage - function to set current page
  *
- * example usage:
- * const { allGames, isLoadingGames, gamesError, categoryGames } = useGames();
  */
 export const useInfiniteScroll = (allGames: Game[] | undefined) => {
   const [visibleGames, setVisibleGames] = useState<Game[]>([]);

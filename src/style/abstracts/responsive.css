@@ -9,6 +9,7 @@
 @media (max-width: 37.5em) {
     .img-bunner{
         height: 20rem !important;
+        margin-top: 4rem;
     }
 
     .categories-search-container {

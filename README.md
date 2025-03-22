@@ -25,7 +25,7 @@
 ### Games Section (Lobby)
 
 - **Game Categories Navigation**:
-    - Displays categories, subcategories, tags, and multilingual titles dynamically based on available data.
+    - Displays categories, subcategories, tags dynamically based on available data.
 - **Games Grid**:
     - Shows game thumbnails.
     - Displays titles and provider names on hover.
@@ -49,7 +49,7 @@
 ## Folder Structure
 
 - 📁 API
-    - 📁 services
+    - 📁 services // API services for different endpoints
     - 📄 apiCall.js // Dynamic function for API calls
     - 📄 config.ts // API configuration
 
@@ -96,16 +96,16 @@
 
 1. **Clone the repository**:
 
-git clone <repository-url>
+<b>git clone <IGP-form></b>
 
 2. **Navigate to the project directory:**
 
-cd monkey-casino-experience
+<bold>cd IGP-form</bold>
 
 3. **Install dependencies:**
 
-npm install or npm install --legacy-peer-deps
+<b>npm install or npm install --legacy-peer-deps </bold>
 
 4. **Start the development server:**
 
-npm run dev
+<b>npm run dev</b>

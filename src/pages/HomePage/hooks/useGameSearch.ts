@@ -9,10 +9,14 @@ import { Game } from "../../../api/services/games/interface.ts";
 import { selectFilteredGames } from "../../../store/selector.ts";
 
 /**
- * Custom hook to handle search functionality for games list on home page
- * @param allGames - List of all games
- * @param setVisibleGames - Function to set visible games
- * @param setCurrentPage - Function to set current page
+ * @name useGameSearch
+ * @desciprtion Custom hook to handle search functionality for games list on home page
+ * @returns searchQuery - search query string
+ * @returns filteredGames - list of games filtered by search query
+ * @returns handleSearch - function to handle search query
+ * @returns isSearching - boolean to check if search is in progress
+ * @returns searchResultsCount - count of search results
+ *
  */
 export const useGameSearch = () => {
   const allGames = useSelector(selectFilteredGames);

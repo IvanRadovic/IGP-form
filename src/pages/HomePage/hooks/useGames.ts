@@ -16,7 +16,8 @@ import {
 import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 /**
- * Custom hook to fetch games and category games data
+ * @name useGames
+ * @description Custom hook to fetch games and category games data
  * @returns allGames - List of all games
  * @returns isLoadingGames - Loading state for all games
  * @returns gamesError - Error state for all games
@@ -46,7 +47,6 @@ export const useGames = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(setLoading(true));
-
       try {
         const [gamesData, categoryGamesData] = await Promise.all([
           new Promise<Game[]>((resolve, reject) => getGames(resolve, reject)),
@@ -54,7 +54,6 @@ export const useGames = () => {
             getCategoryGames(resolve, reject),
           ),
         ]);
-
         dispatch(setGames(gamesData));
         dispatch(setCategoryGames(categoryGamesData));
       } catch (err) {

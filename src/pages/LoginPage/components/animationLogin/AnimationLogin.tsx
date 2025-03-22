@@ -6,6 +6,11 @@ interface LoginAnimationProps {
   onFinish: () => void;
 }
 
+/**
+ * @name LoginAnimation component
+ * @description - Renders login animation with progress bar and calls onFinish function on animation finish
+ * @param onFinish - function to be called on animation finish
+ */
 const LoginAnimation: React.FC<LoginAnimationProps> = ({ onFinish }) => {
   const [progress, setProgress] = useState<number>(0);
 
@@ -29,7 +34,7 @@ const LoginAnimation: React.FC<LoginAnimationProps> = ({ onFinish }) => {
       <Lottie
         animationData={loginAnimation}
         play
-        style={{ width: 500, height: 500 }}
+        style={{ width: 300, height: 300 }}
       />
       <h3 className={"text-white"}>{progress} %</h3>
       <div className="animation-container">

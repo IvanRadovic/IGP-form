@@ -1,6 +1,8 @@
 .home-page{
     background:linear-gradient(180deg, rgb(54, 18, 67) 30%, rgb(19, 6, 25) 100%);
+    padding-bottom: 3rem;
 }
+
 
 .categories-search-container{
     width: 1600px;

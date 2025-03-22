@@ -7,7 +7,8 @@ interface CookieOptions {
 }
 
 /**
- * Cookie manager service to handle cookie operations
+ * @name cookieManager
+ * @description Cookie manager service to handle cookie operations
  * @param {string} name - Cookie name to set in the browser
  * @param {string} value - Cookie value to set in the browser
  * @param {CookieOptions} options - Cookie options like days, path, domain, secure, sameSite

@@ -4,11 +4,9 @@ const DURATION = 3000;
 const POSITION: ToastPosition = "top-center";
 
 /**
- * Display a success toast message with the given text.
+ * @name toastSuccess
+ * @description Display a success toast message with the given text.
  * @param message
- *
- * @example
- * toastSuccess("User created successfully!");
  */
 export const toastSuccess = (message: string): void => {
   toast.success(message, {
@@ -18,7 +16,8 @@ export const toastSuccess = (message: string): void => {
 };
 
 /**
- * Display an error toast message with the given text.
+ * @name toastError
+ * @description Display an error toast message with the given text.
  * @param message
  *
  * @example
@@ -33,7 +32,8 @@ export const toastError = (message: string): void => {
 };
 
 /**
- * Display an information toast message with the given text.
+ * @name toastInformation
+ * @description Display an information toast message with the given text.
  * @param message
  *
  * @example

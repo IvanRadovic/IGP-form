@@ -7,9 +7,21 @@ import { useInfiniteScroll } from "./hooks/useInfitiveScroll.ts";
 import Banner from "./components/bunner/bunner.tsx";
 import CategorySearch from "./components/categorySearch/CategorySearch.tsx";
 import GamesList from "./components/gameList/GameList.tsx";
+import ActiveLoader from "../../components/ui/loader/ActiveLoader.tsx";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const { allGames, isLoadingGames, gamesError, categoryGames } = useGames();
+  const { isLoading, error } = useGames();
+  const subcategoriesList = useSelector((state) => state.games.subCategoryList);
+
+  console.log("subcategoriesList", subcategoriesList);
+  const {
+    searchQuery,
+    handleSearch,
+    isSearching,
+    searchResultsCount,
+    filteredGames: allGames,
+  } = useGameSearch();
   const {
     visibleGames,
     lastGameRef,
@@ -17,19 +29,26 @@ const HomePage = () => {
     setVisibleGames,
     setCurrentPage,
   } = useInfiniteScroll(allGames);
-  const { handleSearch } = useGameSearch(
-    allGames,
-    setVisibleGames,
-    setCurrentPage,
-  );
 
-  if (gamesError) return <div>Error: {gamesError.message}</div>;
-  if (isLoadingGames) return <div>Loading initial games...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <ActiveLoader title="Loading games..." />;
 
   return (
     <div className="home-page">
       <Banner />
-      <CategorySearch categoryGames={categoryGames} onSearch={handleSearch} />
+      <CategorySearch onSearch={handleSearch} />
+
+      {isSearching && visibleGames && (
+        <ActiveLoader title="Searching games..." />
+      )}
+      {!!searchQuery && !isSearching && (
+        <div className="d-flex justify-content-center align-items-center">
+          <h5 className="text-light">
+            ( {searchResultsCount} matching games )
+          </h5>
+        </div>
+      )}
+
       <GamesList
         games={visibleGames}
         lastGameRef={lastGameRef}
@@ -38,5 +57,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;

@@ -8,9 +8,14 @@ import home from "../../../../assets/images/gamesLogo/casino (1).png";
 import bonus from "../../../../assets/images/gamesLogo/bonus.png";
 import trophy from "../../../../assets/images/gamesLogo/trophy.png";
 import liveCasino from "../../../../assets/images/gamesLogo/liveCasino.png";
+import loyal from "../../../../assets/images/gamesLogo/loyalty-card.png";
 
-const images = { home, bonus, trophy, liveCasino };
+const images = { home, bonus, trophy, liveCasino, loyal };
 
+/**
+ * @name NavLinks component
+ * @description - Navigation links for the navbar - renders the navigation links in the navbar
+ */
 const NavLinks: FC = () => {
   return (
     <Nav className="me-auto">

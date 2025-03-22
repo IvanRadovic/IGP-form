@@ -1,54 +1,111 @@
-# React + TypeScript + Vite
+# Monkey Casino Experience
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div>
+<img src="./src/assets/images/screenshots/loginPage.png" alt="Project Logo" width="600" height="300">
+</div>
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Monkey Casino Experience** is a React-based application designed to deliver an engaging casino interface. The project focuses on implementing a two-step registration form and a dynamic games section (lobby) while adhering to the client's requirements for a "monkey-themed" casino. The design uses vibrant colors and humorous imagery to reflect the client's preferences.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+--- 
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Registration Form
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Two-step form** with fields such as First Name, Last Name, Email, Username, Password, Confirm Password, and Terms & Conditions.
+- **Dynamic field rendering** based on JSON configuration.
+- **Field validation** using React Hook Form.
+- **Step validation**: Prevent navigation to the next step until all fields in the current step are valid.
+- **Redirection**: On successful registration, users are redirected to the games section.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Games Section (Lobby)
+
+- **Game Categories Navigation**:
+    - Displays categories, subcategories, tags, and multilingual titles dynamically based on available data.
+- **Games Grid**:
+    - Shows game thumbnails.
+    - Displays titles and provider names on hover.
+- **Search Functionality**:
+    - Enables search by game name or provider.
+- **Infinite Loading**:
+    - Implements seamless loading of additional games.
+- **Advanced Filters**:
+    - Includes a modal with detailed search and filtering options.
+
+---
+## Technologies Used
+
+- **Framework**: React with Vite.
+- **Styling**: Bootstrap and custom CSS.
+- **Form Handling**: React Hook Form.
+- **State Management**: Redux.
+- **Dynamic Field Rendering**: JSON-based configuration.
+
+---
+## Folder Structure
+
+- 📁 API
+    - 📁 services
+    - 📄 apiCall.js // Dynamic function for API calls
+    - 📄 config.ts // API configuration
+
+- 📁 ASSETS // Images and other static assets
+
+- 📁 COMPONENTS
+    - 📁 layouts // Reusable layout components
+    - 📁 ui // UI components such as buttons, modals
+
+- 📁 CONFIG // Application-wide configurations
+
+- 📁 HOOKS // Custom hooks for shared logic
+
+- 📁 PAGES
+    - 📁 HomePage
+        - 📁 hooks // Page-specific hooks
+        - 📁 components // Page-specific components
+        - 📄 HomePage.jsx // Home page component
+    - 📁 LoginPage
+        - 📁 components // Page-specific components
+        - 📄 LoginPage.jsx // Login page component
+
+- 📁 ROUTES
+    - 📄 routes.js // Application routes
+
+- 📁 SCHEMAS
+    - 📄 validation.js // Form validation schemas
+
+- 📁 STORE // Redux State management store
+
+- 📁 STYLE
+    - 📁 abstracts // Variables, mixins, and other SCSS abstracts
+    - 📁 base // Base styles (resets, typography, etc.)
+    - 📁 components // Component-specific styles
+    - 📁 layouts // Layout-specific styles
+    - 📁 pages // Page-specific styles
+    - 📄 index.css // Global stylesheet
+
+- 📁 UTILS // Utility files with functions and constants
+
+
+---
+## How to Run the Project
+
+1. **Clone the repository**:
+
+git clone <repository-url>
+
+2. **Navigate to the project directory:**
+
+cd monkey-casino-experience
+
+3. **Install dependencies:**
+
+npm install or npm install --legacy-peer-deps
+
+4. **Start the development server:**
+
+npm run dev

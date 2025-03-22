@@ -1,10 +1,19 @@
-import { useFetchData } from "../../../hooks/useFetchData.ts";
-import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
+import { useCallback, useEffect, useMemo } from "react";
+import { RootState } from "../../../store/store.ts";
+import { useDispatch, useSelector } from "react-redux";
+
 /*======= API SERVICES ===========*/
 import {
   getCategoryGames,
   getGames,
 } from "../../../api/services/games/gamesApiService.ts";
+import {
+  setCategoryGames,
+  setError,
+  setGames,
+  setLoading,
+} from "../../../store/games/gamesReducer.ts";
+import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 /**
  * Custom hook to fetch games and category games data
@@ -20,23 +29,43 @@ import {
  */
 
 export const useGames = () => {
-  const {
-    data: allGames,
-    loading: isLoadingGames,
-    error: gamesError,
-  } = useFetchData<Game[]>(getGames);
-  const {
-    data: categoryGames,
-    loading: isLoadingCategories,
-    error: categoriesError,
-  } = useFetchData<CategoryGames[]>(getCategoryGames);
+  const dispatch = useDispatch();
 
-  return {
-    allGames,
-    isLoadingGames,
-    gamesError,
-    categoryGames,
-    isLoadingCategories,
-    categoriesError,
-  };
+  const gamesState = useSelector(
+    (state: RootState) =>
+      state.games || {
+        games: [],
+        categoryGames: [],
+        isLoading: false,
+        error: null,
+      },
+  );
+
+  const { games, categoryGames, isLoading, error } = gamesState;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(setLoading(true));
+
+      try {
+        const [gamesData, categoryGamesData] = await Promise.all([
+          new Promise<Game[]>((resolve, reject) => getGames(resolve, reject)),
+          new Promise<CategoryGames[]>((resolve, reject) =>
+            getCategoryGames(resolve, reject),
+          ),
+        ]);
+
+        dispatch(setGames(gamesData));
+        dispatch(setCategoryGames(categoryGamesData));
+      } catch (err) {
+        dispatch(setError(err));
+      } finally {
+        dispatch(setLoading(false));
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  return { games, categoryGames, isLoading, error };
 };

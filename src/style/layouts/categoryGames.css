@@ -1,18 +1,36 @@
 .categories-container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 1.5rem;
     margin: 20px 0;
 }
+
+.categoryScroll{
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    padding: 20px 20px 20px 5px;
+    overflow-x: auto;
+}
+
+.active {
+    background-color: #dbd8d8;
+    color: #361243 !important;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+}
+
+
 .category {
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    text-align: center;
     color: white;
     cursor: pointer;
     padding: 10px;
@@ -28,10 +46,10 @@
 }
 
 .img-category{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
 }
 
-.category span { font-size: 1.5rem}
+.category span { font-size: 1.3rem}
 

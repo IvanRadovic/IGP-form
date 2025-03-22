@@ -1,0 +1,72 @@
+.mainFilter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 43px -12px 70px -53px rgba(232,232,232,1);
+    padding:0 2rem 0rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.filterSubcontainer{
+    padding: 1rem 2rem;
+    border-right: 0.2px solid var(--color-secondary);
+}
+.filterSubcontainer:last-child {
+    border-right: none;
+}
+
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adjust the gap as needed */
+    align-items: center;
+}
+
+.advance-filter-mobile{
+    display: none;
+}
+
+.coverFilterImage{
+    width: 20px;
+    height: 20px;
+}
+
+
+.filter-item{
+    padding: 0.2rem;
+    cursor: pointer;
+}
+.filter-item-span{
+    color: var(--color-secondary);
+    font-size: 1.3rem;
+}
+
+
+.filter-item:hover, .activeFilterItem{
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    color: var(--color-primary) !important;
+}
+
+
+
+.filter-item span:hover{
+    color: var(--color-primary) !important;
+}
+
+.resetSpan{
+    cursor: pointer;
+    padding: 0.3rem;
+}
+
+.resetSpan:hover{
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+}
+
+.resetSpanIcon:hover{
+    color: var(--color-primary) !important;
+}
+

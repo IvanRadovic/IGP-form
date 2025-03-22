@@ -34,6 +34,7 @@
     "react-router-dom": "^7.3.0",
     "react-search-box": "^3.0.0",
     "react-search-field": "^2.0.1",
+    "use-debounce": "^10.0.4",
     "yup": "^1.6.1"
   },
   "devDependencies": {

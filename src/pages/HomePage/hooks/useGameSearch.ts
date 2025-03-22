@@ -1,5 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { useSelector } from "react-redux";
+import { useDebounce } from "use-debounce";
+
+/*************** interface ***************/
 import { Game } from "../../../api/services/games/interface.ts";
+
+/*************** redux functions ***************/
+import { selectFilteredGames } from "../../../store/selector.ts";
 
 /**
  * Custom hook to handle search functionality for games list on home page
@@ -7,33 +14,45 @@ import { Game } from "../../../api/services/games/interface.ts";
  * @param setVisibleGames - Function to set visible games
  * @param setCurrentPage - Function to set current page
  */
-
-export const useGameSearch = (
-  allGames: Game[] | undefined,
-  setVisibleGames: (games: Game[]) => void,
-  setCurrentPage: (page: number) => void,
-) => {
+export const useGameSearch = () => {
+  const allGames = useSelector(selectFilteredGames);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery] = useDebounce(searchQuery, 300);
+  const [filteredGames, setFilteredGames] = useState<Game[]>(allGames);
+  const [searchResultsCount, setSearchResultsCount] = useState(0);
 
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
+  }, []);
 
-    if (!query) {
-      setVisibleGames(allGames?.slice(0, 24) || []);
-      setCurrentPage(1);
-      return;
-    }
+  useEffect(() => {
+    if (!allGames) return;
 
-    const lowerCaseQuery = query.toLowerCase();
-    const filteredGames =
-      allGames?.filter(
+    let resultGames = allGames;
+
+    if (debouncedQuery) {
+      const lowerCaseQuery = debouncedQuery.toLowerCase();
+      resultGames = allGames.filter(
         ({ name, provider }) =>
           name.toLowerCase().includes(lowerCaseQuery) ||
           provider.toLowerCase().includes(lowerCaseQuery),
-      ) || [];
+      );
+    }
 
-    setVisibleGames(filteredGames);
+    setFilteredGames(resultGames);
+    setSearchResultsCount(resultGames.length);
+  }, [debouncedQuery, allGames]);
+
+  const isSearching = useMemo(
+    () => searchQuery !== debouncedQuery,
+    [searchQuery, debouncedQuery],
+  );
+
+  return {
+    searchQuery,
+    filteredGames,
+    handleSearch,
+    isSearching,
+    searchResultsCount,
   };
-
-  return { searchQuery, handleSearch };
 };

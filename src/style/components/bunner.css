@@ -1,0 +1,7 @@
+.img-bunner{
+    width: 100%;
+    height: 35rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: bottom;
+}

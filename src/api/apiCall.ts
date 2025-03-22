@@ -12,6 +12,8 @@ interface ApiCallParams<T = unknown> {
 }
 
 /**
+ * @async
+ * @function apiCall
  * Generic function to make API calls using Axios.
  * This function handles different HTTP methods (GET, POST, PUT, PATCH, DELETE),
  * supports sending data in the request body, and automatically sets appropriate headers.

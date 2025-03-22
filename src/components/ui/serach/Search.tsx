@@ -9,6 +9,14 @@ type SearchFieldProps = {
   className?: string;
 };
 
+/**
+ * @name SearchField
+ * @description - Renders a search input field with debounce functionality
+ * @param onSearch - Function to be called on search
+ * @param placeholder - Placeholder text for the search input
+ * @param debounceTime - Time in milliseconds for debounce
+ * @param className - Custom class name for the search container
+ */
 const SearchField: React.FC<SearchFieldProps> = ({
   onSearch,
   placeholder = "Search...",

@@ -29,7 +29,7 @@ const LoginAnimation: React.FC<LoginAnimationProps> = ({ onFinish }) => {
       <Lottie
         animationData={loginAnimation}
         play
-        style={{ width: 500, height: 500 }}
+        style={{ width: 300, height: 300 }}
       />
       <h3 className={"text-white"}>{progress} %</h3>
       <div className="animation-container">

@@ -97,6 +97,11 @@
         width: 100% !important;
     }
 
+    .lottieAnimation {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
 
 }
 

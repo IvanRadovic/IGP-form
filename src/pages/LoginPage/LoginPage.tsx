@@ -11,7 +11,8 @@ const LoginPage = () => {
       {loading ? (
         <LoadingScreen setLoading={setLoading} />
       ) : (
-        <LoginScreen setLoading={setLoading} />
+        // <LoginScreen setLoading={setLoading} />
+        <LoadingScreen setLoading={setLoading} />
       )}
     </div>
   );

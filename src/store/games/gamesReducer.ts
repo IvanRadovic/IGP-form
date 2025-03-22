@@ -1,21 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Game, CategoryGames } from "../../api/services/games/interface";
 
-interface GamesState {
-  games: Game[];
-  categoryGames: CategoryGames[];
-  selectedCategory: string | null;
-  subCategoryList: [] | string[];
-  selectedSubCategory: string[] | [];
-  tagsList: [] | string[];
-  typesList: [] | string[];
-  selectedTypes: string[] | [];
-  selectedTags: string[] | [];
-  selectedExtraCategory: string | null;
-  extraCategories: [] | null;
-  isLoading: boolean;
-  error: string | null;
-}
+/* ============ INTEFACES ===============*/
+import { Game, CategoryGames } from "../../api/services/games/interface";
+import { GamesState } from "./interface.ts";
 
 const initialState: GamesState = {
   games: [],
@@ -121,4 +108,5 @@ export const {
   setSelectedTypes,
   setTypesList,
 } = gamesSlice.actions;
+
 export const gamesReducer = gamesSlice.reducer;

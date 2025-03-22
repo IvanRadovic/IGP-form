@@ -10,16 +10,7 @@ import filter from "../../../../assets/images/new/filter.png";
 import { CategoryGameProps } from "./interface.ts";
 
 /*========== REDUX FUNCTIONS ============*/
-import {
-  selectFilteredCategories,
-  selectFilteredGames,
-  selectSelectedCategory,
-  selectSelectedSubCategory,
-  selectSelectedTags,
-  selectFilteredExtraCategories,
-  selectSelectedExtraCategory,
-  selectSelectedTypes,
-} from "../../../../store/selector.ts";
+
 import {
   setSelectedCategory,
   setSelectedTagList,
@@ -32,6 +23,18 @@ import FilterList from "../advancedFilter/FilterList.tsx";
 
 /*========== FUNCTIONS ============*/
 import { getFilterConfigs } from "./constants.ts";
+
+import {
+  selectAvailableFilters,
+  selectFilteredCategories,
+  selectFilteredExtraCategories,
+  selectFilteredGames,
+  selectSelectedCategory,
+  selectSelectedExtraCategory,
+  selectSelectedSubCategory,
+  selectSelectedTags,
+  selectSelectedTypes,
+} from "../../../../store/selectors";
 
 /**
  * @name CategoryGame component
@@ -54,20 +57,10 @@ const CategoryGame: FC<CategoryGameProps> = () => {
 
   const categoryList = useSelector(selectFilteredCategories);
   const extraCategories = useSelector(selectFilteredExtraCategories);
-  const filteredGames = useSelector(selectFilteredGames);
 
-  const subCategories = useMemo(
-    () => [...new Set(filteredGames.map((game) => game.subCategory))],
-    [filteredGames],
-  );
-  const tagsList = useMemo(
-    () => [...new Set(filteredGames.map((game) => game.tags))],
-    [filteredGames],
-  );
-
-  const typesList = useMemo(
-    () => [...new Set(filteredGames.map((game) => game.type))],
-    [filteredGames],
+  // Available filters
+  const { subCategories, tagsList, typesList } = useSelector(
+    selectAvailableFilters,
   );
 
   // Filter configurations

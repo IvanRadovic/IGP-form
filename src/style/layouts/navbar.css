@@ -23,9 +23,9 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 10px !important;
-    color: white !important;
+    color: var(--color-secondary) !important;
     font-size: 17px !important;
-    border-right: 1px solid white !important;
+    border-right: 1px solid var(--color-secondary) !important;
     padding: 0px 15px !important;
     border-radius: 10px !important;
 }
@@ -40,7 +40,7 @@
 }
 
 .userContainer {
-    border-right: 0.5px solid white;
+    border-right: 0.5px solid var(--color-secondary);
     padding-right: 8px;
     font-size: var(--font-size-md);
 }

@@ -4,7 +4,7 @@ import { Navbar as BootstrapNavbar } from "react-bootstrap";
 /*========== IMAGES ============*/
 import logo from "../../../assets/images/logo/logo.png";
 /*========== SERVICES ============*/
-import { cookieManager } from "../../../utils/cookie.ts";
+import { cookieManager } from "../../../utils/cookieManager.ts";
 
 /*========== COMPONENTS ============*/
 import UserSection from "./components/UserSection.tsx";

@@ -12,7 +12,7 @@ import {
 import { RootState } from "../../../store/store.ts";
 
 /*========== SERVICES ============*/
-import { cookieManager } from "../../../utils/cookie.ts";
+import { cookieManager } from "../../../utils/cookieManager.ts";
 import { toastSuccess } from "../../../utils/toastService.ts";
 
 /**

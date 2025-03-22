@@ -31,7 +31,7 @@
     justify-content: center;
     gap: 5px;
     text-align: center;
-    color: white;
+    color: var(--color-secondary);
     cursor: pointer;
     padding: 10px;
     border-radius: 20px;

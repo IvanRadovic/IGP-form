@@ -50,7 +50,7 @@
 
 - 📁 API
     - 📁 services // API services for different endpoints
-    - 📄 apiCall.js // Dynamic function for API calls
+    - 📄 apiCall.ts // Dynamic function for API calls
     - 📄 config.ts // API configuration
 
 - 📁 ASSETS // Images and other static assets
@@ -60,27 +60,39 @@
     - 📁 ui // UI components such as buttons, modals
 
 - 📁 CONFIG // Application-wide configurations
+    - 📄 sampleData.json // Sample data for input fields
 
 - 📁 HOOKS // Custom hooks for shared logic
+    - 📄 useFetchData.ts // Hook for fetching data from API
 
 - 📁 PAGES
     - 📁 HomePage
         - 📁 hooks // Page-specific hooks
         - 📁 components // Page-specific components
-        - 📄 HomePage.jsx // Home page component
+        - 📄 HomePage.tsx // Home page component
     - 📁 LoginPage
         - 📁 components // Page-specific components
-        - 📄 LoginPage.jsx // Login page component
+        - 📄 LoginPage.tsx // Login page component
 
 - 📁 ROUTES
-    - 📄 routes.js // Application routes
+    - 📄 Approutes.ts // Application routes
 
 - 📁 SCHEMAS
-    - 📄 validation.js // Form validation schemas
+    - 📄 validationSchemas.ts // Form validation schemas
 
 - 📁 STORE // Redux State management store
     - 📁 Reducers // Reducers for different slices of state
+      - 📁 formReducer // Reducer for form state
+          - 📄 formReducer.ts // Form reducer
+      - 📁 gamesReducer // Reducer for games state
+          - 📄 gamesReducer.ts // Games reducer
     - 📁 Selectors // Selectors for accessing state and functions for memoization
+        - 📄 baseSelectors.ts // Base selectors
+        - 📄 categorySelectors.ts // Category selectors
+        - 📄 filterSelectors.ts // Filter selectors
+        - 📄 gamesSelectors.ts // Games selectors
+    - 📄 root-Reducer.ts // Root reducer combining all reducers
+    - 📄 store.ts // Redux store configuration
 
 - 📁 STYLE
     - 📁 abstracts // Variables, mixins, and other SCSS abstracts
@@ -91,6 +103,9 @@
     - 📄 index.css // Global stylesheet
 
 - 📁 UTILS // Utility files with functions and constants
+    - 📄 cookieManager.ts // Functions for handling cookies
+    - 📄 general.ts // General utility functions
+    - 📄 toastService.ts // Functions for displaying toasts
 
 
 ---
@@ -102,7 +117,7 @@
 
 2. **Navigate to the project directory:**
 
-<bold>cd IGP-form</bold>
+<b>cd IGP-form</b>
 
 3. **Install dependencies:**
 

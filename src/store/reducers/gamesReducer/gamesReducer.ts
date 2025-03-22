@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 /* ============ INTEFACES ===============*/
-import { Game, CategoryGames } from "../../api/services/games/interface";
+import { Game, CategoryGames } from "../../../api/services/games/interface.ts";
 import { GamesState } from "./interface.ts";
 
 const initialState: GamesState = {

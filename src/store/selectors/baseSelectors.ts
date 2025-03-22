@@ -1,7 +1,6 @@
 import { RootState } from "../store.ts";
 
 // Selectors
-
 export const selectGames = (state: RootState) => state.games.games;
 export const selectSelectedCategory = (state: RootState) =>
   state.games.selectedCategory;

@@ -79,6 +79,8 @@
     - 📄 validation.js // Form validation schemas
 
 - 📁 STORE // Redux State management store
+    - 📁 Reducers // Reducers for different slices of state
+    - 📁 Selectors // Selectors for accessing state and functions for memoization
 
 - 📁 STYLE
     - 📁 abstracts // Variables, mixins, and other SCSS abstracts

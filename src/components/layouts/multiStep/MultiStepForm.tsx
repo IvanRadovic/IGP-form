@@ -8,7 +8,7 @@ import { STEPS } from "./STEPS.ts";
 import {
   resetForm,
   updateForm,
-} from "../../../store/formReducer/formReducer.ts";
+} from "../../../store/reducers/formReducer/formReducer.ts";
 import { RootState } from "../../../store/store.ts";
 
 /*========== SERVICES ============*/

@@ -12,7 +12,7 @@ import {
   setError,
   setGames,
   setLoading,
-} from "../../../store/games/gamesReducer.ts";
+} from "../../../store/reducers/gamesReducer/gamesReducer.ts";
 import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 /**

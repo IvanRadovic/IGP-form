@@ -1,4 +1,4 @@
-import { CategoryGames, Game } from "../../api/services/games/interface.ts";
+import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 export interface GamesState {
   games: Game[];

@@ -10,7 +10,7 @@ import {
   setSelectedSubCategory,
   setSelectedTags,
   setSelectedTypes,
-} from "../../../../store/games/gamesReducer.ts";
+} from "../../../../store/reducers/gamesReducer/gamesReducer.ts";
 
 export type FilterListConfig = {
   url: string;

@@ -1,34 +1,31 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-/*========== IMAGES ============*/
-import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
-import casino from "../../../../assets/images/new/casino.png";
-import filter from "../../../../assets/images/new/filter.png";
-
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
 
 /*========== REDUX FUNCTIONS ============*/
-
 import {
   setSelectedCategory,
   setSelectedTagList,
   setSubCategoryList,
   setTypesList,
-} from "../../../../store/games/gamesReducer.ts";
+} from "../../../../store/reducers/gamesReducer/gamesReducer.ts";
 
 /*========== COMPONENTS ============*/
 import FilterList from "../advancedFilter/FilterList.tsx";
+import FilterButton from "../categoryGameParts/filterButton/FilterButton.tsx";
+import CategoryList from "../categoryGameParts/categoriesList/CategoryList.tsx";
+import AllGamesButton from "../categoryGameParts/allGamesButton/AllGamesButton.tsx";
 
-/*========== FUNCTIONS ============*/
+/*========== CONSTANTS ============*/
 import { getFilterConfigs } from "./constants.ts";
 
+/*========== SELECTORS ============*/
 import {
   selectAvailableFilters,
   selectFilteredCategories,
   selectFilteredExtraCategories,
-  selectFilteredGames,
   selectSelectedCategory,
   selectSelectedExtraCategory,
   selectSelectedSubCategory,
@@ -39,7 +36,7 @@ import {
 /**
  * @name CategoryGame component
  * @description - Renders category games and advance filter for games
- * @components - FilterList
+ * @components - FilterList, FilterButton, CategoryList, AllGamesButton
  */
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
@@ -95,66 +92,23 @@ const CategoryGame: FC<CategoryGameProps> = () => {
 
   return (
     <>
-      {/*<ul style={{ color: "white" }}>*/}
-      {/*  {extraCategories?.map((category) => (*/}
-      {/*    <li key={category.title}>*/}
-      {/*      <span*/}
-      {/*        onClick={() =>*/}
-      {/*          dispatch(setSelectedExtraCategories(category.slug))*/}
-      {/*        }*/}
-      {/*      >*/}
-      {/*        {category.multilingual[0].title}*/}
-      {/*      </span>*/}
-      {/*    </li>*/}
-      {/*  ))}*/}
-      {/*</ul>*/}
       <div className="categories-container">
-        <div
-          className={`category ${selectedCategory ? "" : "active"}`}
-          onClick={() => dispatch(setSelectedCategory(null))}
-        >
-          <img className="img-category" src={casino} alt="All games" />
-          <span>All games</span>
-        </div>
-        <div className="categoryScroll">
-          {categoryList?.map(({ title, image, slug }) => (
-            <div
-              key={title}
-              className={`category ${selectedCategory === slug ? "active" : ""}`}
-              onClick={() => dispatch(setSelectedCategory(slug))}
-            >
-              <img
-                className="img-category"
-                src={image}
-                alt={title}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = fallBackImg;
-                }}
-              />
-              <span>{title}</span>
-            </div>
-          ))}
-        </div>
-        <div
-          className="category advance-filter"
-          onClick={() => setFilterIsOpen(!filterIsOpen)}
-        >
-          <img className="img-category" src={filter} alt="advances filter" />
-          <span>Advance Filter</span>
-        </div>
-        <div
-          className="category advance-filter-mobile"
-          onClick={() => setFilterIsOpen(!filterIsOpen)}
-        >
-          <img
-            className="img-category img-category-mobile"
-            src={filter}
-            alt="advances filter"
-          />
-          <span>Filter</span>
-        </div>
+        <AllGamesButton
+          selectedCategory={selectedCategory}
+          setSelectedCategory={() => dispatch(setSelectedCategory(null))}
+        />
+        <CategoryList
+          categories={categoryList}
+          selectedCategory={selectedCategory}
+          onSelectCategory={(slug) => dispatch(setSelectedCategory(slug))}
+        />
+        <FilterButton
+          filterIsOpen={filterIsOpen}
+          setFilterIsOpen={setFilterIsOpen}
+        />
       </div>
 
+      {/*=============== subcategories, types, tags ==================*/}
       <div className={`row mainFilter ${filterIsOpen ? "open" : ""}`}>
         {filterConfigs.map((config, index) => (
           <FilterList

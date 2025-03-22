@@ -1,9 +1,14 @@
 # Monkey Casino Experience
 ---
 
+<img src="./src/assets/images/screenshots/loginPage.png" alt="Project Logo" width="200" height="200">
+
 ## Description
 
 **Monkey Casino Experience** is a React-based application designed to deliver an engaging casino interface. The project focuses on implementing a two-step registration form and a dynamic games section (lobby) while adhering to the client's requirements for a "monkey-themed" casino. The design uses vibrant colors and humorous imagery to reflect the client's preferences.
+
+<img src="./src/assets/images/screenshots/homePage.png" alt="Project Logo" width="200" height="200">
+
 
 --- 
 ## Features
@@ -93,14 +98,14 @@
 
 git clone <repository-url>
 
-Navigate to the project directory:
+2. **Navigate to the project directory:**
 
 cd monkey-casino-experience
 
-Install dependencies:
+3. **Install dependencies:**
 
-npm install
+npm install or npm install --legacy-peer-deps
 
-Start the development server:
+4. **Start the development server:**
 
 npm run dev

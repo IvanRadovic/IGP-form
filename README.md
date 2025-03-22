@@ -48,57 +48,64 @@
 ---
 ## Folder Structure
 
-src/
-📁 API
-│   📁 services // API services
-│   │   
-│   📄 config.ts // API configuration
-│   📄 apiCall.ts // dynamic API call function 
-📁 ASSETS // Images, Fonts, etc.
-│   
-📁 COMPONENTS 
-│   📁 layouts // Layout components
-│   📁 ui // UI components
-📁 CONFIG 
-│   📄 sampleData.json // Sample data for dynamic field rendering
-📁 HOOKS
-│   📄 useFetchData.ts // Custom hook for fetching data from API
-📁 PAGES
-│   📁 HomePage // Home page
-│   │   📁 hooks // Custom hooks
-│   │   📁 components // Components
-│   │   📄 HomePage.tsx // Page component
-│   📁 LoginPage // Login page
-│       📁 components // Components
-│       📄 LoginPage.tsx // Page component
-📁 ROUTES
-│   📄 Approutes.ts // Application routes
-📁 SCHEMAS
-│   📄 validationSchemas.ts // Validation schemas
-📁 STORE
-│   📁 Reducers
-│   │   📁 formReducer // Form reducer
-│   │   │   📄 formReducer.ts 
-│   │   📁 gamesReducer // Games reducer
-│   │   │   📄 gamesReducer.ts
-│   📁 Selectors
-│   │   📄 baseSelectors.ts // Base selectors
-│   │   📄 categorySelectors.ts // Category selectors
-│   │   📄 filterSelectors.ts // Filter selectors
-│   │   📄 gamesSelectors.ts // Games selectors
-│   📄 root-Reducer.ts // Root reducer
-│   📄 store.ts // Store configuration
-📁 STYLE
-│   📁 abstracts
-│   📁 base  
-│   📁 components 
-│   📁 layouts
-│   📁 pages
-│   📄 index.css
-📁 UTILS
-│   📄 cookieManager.ts // Functions for managing cookies
-│   📄 general.ts // General utility functions
-│   📄 toastService.ts // Functions for displaying toasts
+- 📁 API
+    - 📁 services // API services for different endpoints
+    - 📄 apiCall.ts // Dynamic function for API calls
+    - 📄 config.ts // API configuration
+
+- 📁 ASSETS // Images and other static assets
+
+- 📁 COMPONENTS
+    - 📁 layouts // Reusable layout components
+    - 📁 ui // UI components such as buttons, modals
+
+- 📁 CONFIG // Application-wide configurations
+    - 📄 sampleData.json // Sample data for input fields
+
+- 📁 HOOKS // Custom hooks for shared logic
+    - 📄 useFetchData.ts // Hook for fetching data from API
+
+- 📁 PAGES
+    - 📁 HomePage
+        - 📁 hooks // Page-specific hooks
+        - 📁 components // Page-specific components
+        - 📄 HomePage.tsx // Home page component
+    - 📁 LoginPage
+        - 📁 components // Page-specific components
+        - 📄 LoginPage.tsx // Login page component
+
+- 📁 ROUTES
+    - 📄 Approutes.ts // Application routes
+
+- 📁 SCHEMAS
+    - 📄 validationSchemas.ts // Form validation schemas
+
+- 📁 STORE // Redux State management store
+    - 📁 Reducers // Reducers for different slices of state
+      - 📁 formReducer // Reducer for form state
+          - 📄 formReducer.ts // Form reducer
+      - 📁 gamesReducer // Reducer for games state
+          - 📄 gamesReducer.ts // Games reducer
+    - 📁 Selectors // Selectors for accessing state and functions for memoization
+        - 📄 baseSelectors.ts // Base selectors
+        - 📄 categorySelectors.ts // Category selectors
+        - 📄 filterSelectors.ts // Filter selectors
+        - 📄 gamesSelectors.ts // Games selectors
+    - 📄 root-Reducer.ts // Root reducer combining all reducers
+    - 📄 store.ts // Redux store configuration
+
+- 📁 STYLE
+    - 📁 abstracts // Variables, mixins, and other SCSS abstracts
+    - 📁 base // Base styles (resets, typography, etc.)
+    - 📁 components // Component-specific styles
+    - 📁 layouts // Layout-specific styles
+    - 📁 pages // Page-specific styles
+    - 📄 index.css // Global stylesheet
+
+- 📁 UTILS // Utility files with functions and constants
+    - 📄 cookieManager.ts // Functions for handling cookies
+    - 📄 general.ts // General utility functions
+    - 📄 toastService.ts // Functions for displaying toasts
 
 
 ---

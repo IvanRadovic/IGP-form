@@ -1,6 +1,7 @@
 .navbarContainer {
     max-width: 1600px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
 #navbar-nav {
@@ -10,7 +11,7 @@
 }
 
 .navbar-nav {
-    margin: auto !important;
+    margin: auto;
 }
 
 .navbar-brand {

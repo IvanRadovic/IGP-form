@@ -53,3 +53,106 @@
 
 .category span { font-size: 1.3rem}
 
+.category-item {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(219, 216, 216, 0.1);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(244, 244, 244, 0.1);
+}
+
+.category-item__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    z-index: 1;
+}
+
+.category-item__icon {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    filter: grayscale(0.3);
+}
+
+.category-item__label {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.category-item--active {
+    animation: activePulse 2s infinite;
+    box-shadow: 0 8px 32px rgba(54, 18, 67, 0.3);
+}
+
+.category-item--active .category-item__icon {
+    filter: grayscale(0);
+    /*transform: scale(1.15) rotateY(360deg);*/
+}
+
+.category-item--active .category-item__label {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.category-item:hover:not(.category-item--active) {
+    transform: translateY(-3px);
+    background: rgba(219, 216, 216, 0.2);
+}
+
+.category-item:hover:not(.category-item--active) .category-item__icon {
+    filter: grayscale(0.5);
+}
+
+.category-item--active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 22px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    z-index: 0;
+    animation: borderRotate 3s linear infinite;
+}
+
+.category-item--active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: inherit;
+    z-index: 1;
+}
+
+@keyframes activePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.98);
+    }
+}
+
+@keyframes borderRotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

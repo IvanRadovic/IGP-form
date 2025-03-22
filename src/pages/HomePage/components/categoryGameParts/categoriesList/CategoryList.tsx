@@ -32,21 +32,23 @@ const CategoryList: FC<CategoryListProps> = ({
       {categories?.map(({ title, image, slug }) => (
         <div
           key={title}
-          className={`category ${selectedCategory === slug ? "active" : ""}`}
+          className={`category-item ${selectedCategory === slug ? "category-item--active" : ""}`}
           onClick={() => onSelectCategory(slug)}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && onSelectCategory(slug)}
         >
-          <img
-            className="img-category"
-            src={image}
-            alt={title}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = callBackImg;
-            }}
-          />
-          <span>{title}</span>
+          <div className="category-item__inner">
+            <img
+              className="category-item__icon"
+              src={image}
+              alt={title}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = callBackImg;
+              }}
+            />
+            <span className="category-item__label">{title}</span>
+          </div>
         </div>
       ))}
     </div>

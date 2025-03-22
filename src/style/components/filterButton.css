@@ -1,5 +1,5 @@
 .advance-filter {
-    background: #562056ab;
+    background: #482a53;
     position: relative;
     overflow: hidden;
 }
@@ -20,9 +20,9 @@
 
 
 .img-category.active-icon {
-    transform: scale(1.1);
+    /*transform: scale(1.1);*/
     filter: drop-shadow(0 0 8px rgba(244, 244, 244, 0.8));
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /*transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);*/
 }
 
 

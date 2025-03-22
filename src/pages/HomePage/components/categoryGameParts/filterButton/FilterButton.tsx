@@ -33,7 +33,6 @@ const FilterButton: React.FC<FilterButtonProps> = ({
         <span className="filter-text">Advanced Filter</span>
       </div>
 
-      {/* Mobile verzija sa optimizovanim animacijama */}
       <div
         className={`category advance-filter-mobile ${filterIsOpen ? "active" : ""}`}
         onClick={() => setFilterIsOpen(!filterIsOpen)}

@@ -5,6 +5,12 @@ interface LoadingScreenProps {
   setLoading: (loading: boolean) => void;
 }
 
+/**
+ * @name LoadingScreen component
+ * @description - Renders loading screen with login animation and text
+ * @component - LoginAnimation (lottie animation)
+ * @param setLoading - function to be called on animation finish
+ */
 const LoadingScreen: FC<LoadingScreenProps> = ({ setLoading }) => {
   return (
     <div

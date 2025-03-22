@@ -5,6 +5,13 @@ import {
   ProcessedCategory,
 } from "../api/services/games/interface.ts";
 
+/**
+ * @name filterVisibleCategories
+ * @description - Filters visible categories based on the games and category definitions
+ * @param allGames - List of all games
+ * @param categoryDefinitions - List of category definitions
+ * @returns - List of processed categories
+ */
 export const filterVisibleCategories = (
   allGames: Game[],
   categoryDefinitions: CategoryGames[],

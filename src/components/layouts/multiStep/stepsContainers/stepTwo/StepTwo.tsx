@@ -23,6 +23,15 @@ interface StepTwoProps {
   defaultValues: StepTwoData;
 }
 
+/**
+ * @name StepTwo component for multi-step form - Step 2
+ * @Description - Takes form fields from sampleData.json and renders them in a form for step 2 in this case username, password, password_confirm and acceptedTerms
+ * @param onNext - function to be called on next button click (submit) - if it is last step it will call onSubmit function from FormStep
+ * @param onBack - function to be called on back button click - if it is first step it will not do anything (empty function)
+ * @param defaultValues - default values for form fields - initial values for form fields
+ * @param isLastStep - boolean to check if it is last step - if it is last step it will render submit button with text "SIGN UP" otherwise "Next"
+ *
+ */
 const StepTwo: FC<StepTwoProps> = ({
   onNext,
   onBack,

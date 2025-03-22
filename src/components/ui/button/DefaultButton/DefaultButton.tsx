@@ -8,6 +8,15 @@ interface DefaultButtonProps {
   style?: React.CSSProperties;
 }
 
+/**
+ * @name DefaultButton
+ * @description - Default button component with custom class name, type, and style support
+ * @param children - button content
+ * @param onClick - button click event
+ * @param className - custom class name for the button
+ * @param type - button type
+ * @param style - custom style for the button
+ */
 export const DefaultButton: React.FC<DefaultButtonProps> = ({
   children,
   onClick,

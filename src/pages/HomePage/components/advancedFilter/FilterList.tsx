@@ -1,6 +1,4 @@
-import { FC, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RxReset } from "react-icons/rx";
+import { FC } from "react";
 
 /*========== COMPONENTS ============*/
 import FilterItem from "./FilterItem.tsx";
@@ -14,16 +12,23 @@ interface FilterListProps {
   onFilterSelect: (filter: string) => void;
 }
 
+/**
+ * @name FilterList component
+ * @description - Renders a list of filters with title and filter items
+ * @param filters - list of filters
+ * @param selectedFilter - selected filter
+ * @param title - title of the filter list
+ * @param url - url of the filter image
+ * @param resetAction - function to reset the filter
+ * @param onFilterSelect - function to select a filter
+ */
 const FilterList: FC<FilterListProps> = ({
   filters,
   selectedFilter,
   title,
-  resetAction,
   onFilterSelect,
   url,
 }) => {
-  const dispatch = useDispatch();
-
   return (
     <div className="filterSubcontainer col-12 col-md-6 col-lg-4">
       <div className="d-flex justify-content-between align-items-center gap-4 mb-4">

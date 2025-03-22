@@ -11,6 +11,11 @@ import UserSection from "./components/UserSection.tsx";
 import NavLinks from "./components/NavLinks.tsx";
 import NavbarBrand from "./components/NavBrand.tsx";
 
+/**
+ * @name Navbar component
+ * @description - Navbar component is used to render the navbar in the application layout
+ *
+ */
 const Navbar: FC = () => {
   const [expanded, setExpanded] = useState(false);
   const username = cookieManager.get("username");

@@ -1,5 +1,6 @@
 /**
- * Get validations for a field based on the validators and isRequired
+ * @module validationSchemas
+ * @descrription Get validations for a field based on the validators and isRequired
  * @param validators - List of validators for the field
  * @param isRequired - If the field is required
  * @returns - Object with the validations for the field

@@ -7,6 +7,13 @@ interface UserSectionProps {
   handleLogout: () => void;
 }
 
+/**
+ * @name UserSection component
+ * @description  UserSection component is used to render user section in navbar
+ * @param username - username of logged in user
+ * @param handleLogout - function to be called on logout button click
+ *
+ */
 const UserSection: FC<UserSectionProps> = ({ username, handleLogout }) => {
   return (
     <div className="d-flex align-items-center">

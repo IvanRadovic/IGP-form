@@ -8,6 +8,12 @@ interface LoginScreenProps {
   setLoading: (loading: boolean) => void;
 }
 
+/**
+ * @name LoginScreen component
+ * @description - Renders login screen with background image and multi-step form
+ * @component - MultiStepForm (form)
+ * @param setLoading - function to be called on form submission
+ */
 const LoginScreen: FC<LoginScreenProps> = ({ setLoading }) => {
   return (
     <div

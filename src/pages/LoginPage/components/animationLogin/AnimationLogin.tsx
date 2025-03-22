@@ -6,6 +6,11 @@ interface LoginAnimationProps {
   onFinish: () => void;
 }
 
+/**
+ * @name LoginAnimation component
+ * @description - Renders login animation with progress bar and calls onFinish function on animation finish
+ * @param onFinish - function to be called on animation finish
+ */
 const LoginAnimation: React.FC<LoginAnimationProps> = ({ onFinish }) => {
   const [progress, setProgress] = useState<number>(0);
 

@@ -37,6 +37,11 @@ import {
 /*========== COMPONENTS ============*/
 import FilterList from "../advancedFilter/FilterList.tsx";
 
+/**
+ * @name CategoryGame component
+ * @description - Renders category games and advance filter for games
+ * @components - FilterList
+ */
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
 

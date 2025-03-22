@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 /*================ STEPS ===============*/
-import { steps } from "./steps.ts";
+import { STEPS } from "./STEPS.ts";
 
 /*========== FUNCTIONS REDUX ============*/
 import {
@@ -16,15 +15,20 @@ import { RootState } from "../../../store/store.ts";
 import { cookieManager } from "../../../utils/cookie.ts";
 import { toastSuccess } from "../../../utils/toastService.ts";
 
+/**
+ * @name MultiStepForm component for multi-step form
+ * @description - Main component for multi-step form functionality, it handles the steps and form data and passes it to the respective step component
+ * @param setLoading - function to set loading state in parent component
+ *
+ */
 const MultiStepForm: React.FC<{ setLoading: (value: boolean) => void }> = ({
   setLoading,
 }) => {
   const [step, setStep] = useState(0);
   const formData = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const StepComponent = steps[step].component;
+  const StepComponent = STEPS[step].component;
 
   const handleNext = (data: Partial<typeof formData>) => {
     dispatch(updateForm(data));
@@ -56,10 +60,10 @@ const MultiStepForm: React.FC<{ setLoading: (value: boolean) => void }> = ({
   return (
     <div>
       <StepComponent
-        onNext={step < steps.length - 1 ? handleNext : handleSubmit}
+        onNext={step < STEPS.length - 1 ? handleNext : handleSubmit}
         onBack={step > 0 ? handleBack : () => {}}
         defaultValues={formData}
-        isLastStep={step === steps.length - 1}
+        isLastStep={step === STEPS.length - 1}
       />
     </div>
   );

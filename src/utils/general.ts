@@ -1,5 +1,6 @@
 /**
- * Get filtered data based on fields step and names
+ * @name getFilteredData
+ * @descripti Get filtered data based on fields step and names
  * @param data - object with fields
  * @param step - number of step
  * @param names - array of names to filter

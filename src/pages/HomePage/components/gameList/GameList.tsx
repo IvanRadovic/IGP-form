@@ -8,6 +8,14 @@ interface Props {
   isLoadingMore: boolean;
 }
 
+/**
+ * @name GamesList component
+ * @description - Renders list of games with game card
+ * @param games - list of games to be rendered
+ * @param lastGameRef - ref function to check if last game is rendered
+ * @param isLoadingMore - boolean to check if more games are loading
+ * @components - GameCard
+ */
 const GamesList: React.FC<Props> = ({ games, lastGameRef, isLoadingMore }) => (
   <>
     <div className="games-grid">

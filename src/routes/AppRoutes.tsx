@@ -9,6 +9,10 @@ import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 /*========== COMPONENTS ============*/
 import Navbar from "../components/layouts/navbar/Navbar.tsx";
 
+/**
+ * @name AppRoutes component
+ * @description - Main component for routing in the application, it handles the routes and navigation based on the user's authentication status
+ */
 const AppRoutes = () => {
   const [token] = useCookies(["authToken"]);
   const [isTokenInCookie, setIsTokenInCookie] = useState<boolean>(false);

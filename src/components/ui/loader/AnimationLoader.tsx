@@ -1,12 +1,17 @@
 import React from "react";
 import Lottie from "react-lottie-player";
-import { Spinner } from "react-bootstrap";
 
 interface AnimationLoaderProps {
   title: string;
   lottieUrl: string;
 }
 
+/**
+ * @name AnimationLoader component
+ * @description - Renders animation loader with title
+ * @param title - title to be displayed
+ * @param lottieUrl - lottie animation url
+ */
 const AnimationLoader: React.FC<AnimationLoaderProps> = ({
   title,
   lottieUrl,

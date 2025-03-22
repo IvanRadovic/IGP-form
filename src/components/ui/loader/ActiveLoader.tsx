@@ -16,6 +16,11 @@ interface ActiveLoaderProps {
   title: string;
 }
 
+/**
+ * @name ActiveLoader component
+ * @description - Renders active loader with title
+ * @param title - title to be displayed
+ */
 const ActiveLoader: React.FC<ActiveLoaderProps> = ({ title }) => {
   const defaultOptions: LottieOptions = {
     loop: true,

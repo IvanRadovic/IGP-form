@@ -6,7 +6,7 @@ import { useDebounce } from "use-debounce";
 import { Game } from "../../../api/services/games/interface.ts";
 
 /*************** redux functions ***************/
-import { selectFilteredGames } from "../../../store/selector.ts";
+import { selectFilteredGames } from "../../../store/selectors";
 
 /**
  * @name useGameSearch

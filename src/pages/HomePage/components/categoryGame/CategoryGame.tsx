@@ -25,17 +25,16 @@ import {
 } from "../../../../store/selector.ts";
 import {
   setSelectedCategory,
-  setSelectedExtraCategories,
-  setSelectedSubCategory,
   setSelectedTagList,
-  setSelectedTags,
   setSubCategoryList,
   setTypesList,
-  setSelectedTypes,
 } from "../../../../store/games/gamesReducer.ts";
 
 /*========== COMPONENTS ============*/
 import FilterList from "../advancedFilter/FilterList.tsx";
+
+/*========== FUNCTIONS ============*/
+import { getFilterConfigs } from "./constants.ts";
 
 /**
  * @name CategoryGame component
@@ -72,6 +71,28 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   const typesList = useMemo(
     () => [...new Set(filteredGames.map((game) => game.type))],
     [filteredGames],
+  );
+
+  const filterConfigs = useMemo(
+    () =>
+      getFilterConfigs(
+        subsCategories,
+        tags,
+        types,
+        selectedSubCategory,
+        selectedTags,
+        selectedTypes,
+        dispatch,
+      ),
+    [
+      subsCategories,
+      tags,
+      types,
+      selectedSubCategory,
+      selectedTags,
+      selectedTypes,
+      dispatch,
+    ],
   );
 
   // Effects
@@ -144,27 +165,16 @@ const CategoryGame: FC<CategoryGameProps> = () => {
       </div>
 
       <div className={`row mainFilter ${filterIsOpen ? "open" : ""}`}>
-        <FilterList
-          url={list}
-          filters={subsCategories}
-          selectedFilter={selectedSubCategory}
-          title="Subcategories"
-          onFilterSelect={(filter) => dispatch(setSelectedSubCategory(filter))}
-        />
-        <FilterList
-          url={priceTag}
-          filters={tags}
-          selectedFilter={selectedTags}
-          title="Tags"
-          onFilterSelect={(filter) => dispatch(setSelectedTags(filter))}
-        />
-        <FilterList
-          url={typesImg}
-          filters={types}
-          selectedFilter={selectedTypes}
-          title="Types"
-          onFilterSelect={(filter) => dispatch(setSelectedTypes(filter))}
-        />
+        {filterConfigs.map((config, index) => (
+          <FilterList
+            key={`${config.title}-${index}`}
+            url={config.url}
+            filters={config.filters}
+            selectedFilter={config.selectedFilter}
+            title={config.title}
+            onFilterSelect={config.onFilterSelect}
+          />
+        ))}
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { Navbar as BootstrapNavbar } from "react-bootstrap";
+
 /*========== IMAGES ============*/
 import logo from "../../../assets/images/logo/logo.png";
 /*========== SERVICES ============*/
@@ -27,16 +28,13 @@ const Navbar: FC = () => {
       style={{ height: "80px", background: "#361243" }}
     >
       <div className="container-fluid navbarContainer">
-        {/* Logo */}
         <NavbarBrand logo={logo} />
 
-        {/* Burger Button */}
         <BootstrapNavbar.Toggle
           aria-controls="navbar-nav"
           className="custom-toggler"
         />
 
-        {/* Collapsible Nav Links */}
         <BootstrapNavbar.Collapse
           id="navbar-nav"
           className={`navbar-collapse ${expanded ? "show" : ""}`}

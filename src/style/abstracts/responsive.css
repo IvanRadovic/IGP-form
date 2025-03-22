@@ -75,6 +75,28 @@
         border-right: none !important;
         border-bottom: 0.2px solid white !important;
     }
+    .loginContainer {
+        width: 300px;
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .button-47{
+        width: 100% !important;
+        margin-top: 2rem !important;
+    }
+
+    .loginContainer {
+        align-items: center !important;
+    }
+
+    .loginForm {
+        position: relative !important;
+        top: 0px !important;
+        left: 0px !important;
+        width: 100% !important;
+    }
+
 
 }
 

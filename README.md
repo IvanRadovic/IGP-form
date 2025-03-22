@@ -1,13 +1,13 @@
 # Monkey Casino Experience
 ---
 
-<img src="./src/assets/images/screenshots/loginPage.png" alt="Project Logo" width="200" height="200">
+<div>
+<img src="./src/assets/images/screenshots/loginPage.png" alt="Project Logo" width="600" height="300">
+</div>
 
 ## Description
 
 **Monkey Casino Experience** is a React-based application designed to deliver an engaging casino interface. The project focuses on implementing a two-step registration form and a dynamic games section (lobby) while adhering to the client's requirements for a "monkey-themed" casino. The design uses vibrant colors and humorous imagery to reflect the client's preferences.
-
-<img src="./src/assets/images/screenshots/homePage.png" alt="Project Logo" width="200" height="200">
 
 
 --- 

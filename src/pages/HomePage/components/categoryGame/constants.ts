@@ -1,10 +1,11 @@
 import { AppDispatch } from "../../../../store/store.ts";
 
+/* ============= IMAGES =================*/
 import list from "../../../../assets/images/categoriesFilter/application.png";
 import priceTag from "../../../../assets/images/categoriesFilter/price-tag.png";
 import typesImg from "../../../../assets/images/categoriesFilter/shapes.png";
 
-/* ============= reducer functions =================*/
+/* ============= REDUX FUNCTIONS =================*/
 import {
   setSelectedSubCategory,
   setSelectedTags,

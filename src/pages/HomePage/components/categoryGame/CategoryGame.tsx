@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import fallBackImg from "../../../../assets/images/background/image-fallback.jpg";
 import casino from "../../../../assets/images/new/casino.png";
 import filter from "../../../../assets/images/new/filter.png";
-import list from "../../../../assets/images/categoriesFilter/application.png";
-import priceTag from "../../../../assets/images/categoriesFilter/price-tag.png";
-import typesImg from "../../../../assets/images/categoriesFilter/shapes.png";
 
 /*========== INTERFACES ============*/
 import { CategoryGameProps } from "./interface.ts";
@@ -73,6 +70,7 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     [filteredGames],
   );
 
+  // Filter configurations
   const filterConfigs = useMemo(
     () =>
       getFilterConfigs(

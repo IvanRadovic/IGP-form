@@ -67,6 +67,8 @@
     #navbar-nav{
         border-bottom: 0.2px solid var(--color-secondary);
         border-radius: 1rem;
+        background: #2b0c36;
+        padding-top: 1rem;
     }
 
     .category-item{

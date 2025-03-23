@@ -19,7 +19,7 @@
     width: 70px;
 }
 
-.nav-link {
+.navlinks {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -46,11 +46,11 @@
     font-size: var(--font-size-md);
 }
 
-.btn-logout {
-    font-size: var(--font-size-md) !important;
+.userSection{
+    display: flex;
+    align-items: center;
 }
 
-@media (max-width: 56.25em) {
-
-
+.btn-logout {
+    font-size: var(--font-size-md) !important;
 }

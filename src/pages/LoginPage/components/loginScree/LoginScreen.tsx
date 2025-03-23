@@ -24,7 +24,10 @@ const LoginScreen: FC<LoginScreenProps> = ({ setLoading }) => {
       }}
     >
       <div className="p-4 loginForm">
-        <h1 className="text-white display-1 fw-bold text-shadow mb-3">
+        <h1
+          className="text-white fw-bold text-shadow mb-3"
+          style={{ fontSize: "3.6rem" }}
+        >
           Monkey Business Just Got Wilder
         </h1>
         <p className="text-white-50 fs-2 text-shadow fw-light">

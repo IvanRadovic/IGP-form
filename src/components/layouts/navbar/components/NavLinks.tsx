@@ -18,10 +18,11 @@ const images = { home, bonus, trophy, liveCasino, loyal };
  */
 const NavLinks: FC = () => {
   return (
-    <Nav className="me-auto">
+    <Nav>
       {NavItems.map(({ href, src, label }) => (
-        <Nav.Link key={href} className="nav-link" href={href}>
-          <img src={images[src]} alt={label} /> {label}
+        <Nav.Link key={href} className="navlinks" href={href}>
+          <img src={images[src]} alt={label} />
+          <span>{label}</span>
         </Nav.Link>
       ))}
     </Nav>

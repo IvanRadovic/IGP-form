@@ -45,23 +45,28 @@
 
     .navbar-nav {
         flex: 1;
-        margin-right: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
     }
-    .me-auto {
-        margin-right: 0 !important;
-    }
-
-    .me-auto .navbar-nav{
-        gap: 1rem;
-        margin-bottom: 1.5rem !important;
-    }
-
-    .nav-link {
+    .navbar .navlinks {
+        justify-content: start !important;
         width: 100% !important;
         border-right: none !important;
         border-bottom: 0.2px solid var(--color-secondary) !important;
-        padding: 1rem 1.5rem !important;
-        font-size: 2rem;
+        padding: 1rem 1.8rem !important;
+        font-size: 2rem !important;
+        gap: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .userSection{
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #navbar-nav{
+        border-bottom: 0.2px solid var(--color-secondary);
+        border-radius: 1rem;
     }
 
     .category-item{
@@ -135,8 +140,8 @@
 
 }
 
-
 @media (max-width: 56.25em) {
+
 }
 
 

@@ -18,7 +18,7 @@ interface UserSectionProps {
  */
 const UserSection: FC<UserSectionProps> = ({ username, handleLogout }) => {
   return (
-    <div className="d-flex align-items-center">
+    <div className="userSection">
       <div className="d-flex justify-center align-items-center gap-2 text-white me-3 userContainer">
         <FaUserAlt size={19} />
         {username}

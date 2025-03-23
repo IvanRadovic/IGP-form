@@ -11,6 +11,7 @@ interface DefaultButtonProps {
 /**
  * @name DefaultButton
  * @description - Default button component with custom class name, type, and style support
+ * @interface DefaultButtonProps - interface for DefaultButton component
  * @param children - button content
  * @param onClick - button click event
  * @param className - custom class name for the button

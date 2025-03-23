@@ -34,9 +34,10 @@ import {
 } from "../../../../store/selectors";
 
 /**
- * @name CategoryGame component
- * @description - Renders category games and advance filter for games
- * @components - FilterList, FilterButton, CategoryList, AllGamesButton
+ * @component CategoryGame
+ * @description - CategoryGame renders category games and advance filter for games
+ * @interface CategoryGameProps - interface for props
+ * @containedComponents - FilterList, FilterButton, CategoryList, AllGamesButton
  */
 const CategoryGame: FC<CategoryGameProps> = () => {
   const dispatch = useDispatch();
@@ -53,14 +54,14 @@ const CategoryGame: FC<CategoryGameProps> = () => {
   const selectedTypes = useSelector(selectSelectedTypes);
 
   const categoryList = useSelector(selectFilteredCategories);
+
+  //TODO - implement extra categories to work together with categories (they work separately now)
   const extraCategories = useSelector(selectFilteredExtraCategories);
 
-  // Available filters
   const { subCategories, tagsList, typesList } = useSelector(
     selectAvailableFilters,
   );
 
-  // Filter configurations
   const filterConfigs = useMemo(
     () =>
       getFilterConfigs(
@@ -83,7 +84,6 @@ const CategoryGame: FC<CategoryGameProps> = () => {
     ],
   );
 
-  // Effects
   useEffect(() => {
     dispatch(setSubCategoryList(subCategories));
     dispatch(setSelectedTagList(tagsList));

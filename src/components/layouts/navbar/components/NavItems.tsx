@@ -1,5 +1,5 @@
 /**
- * @name NavItems
+ * @components NavItems
  * @description - Navigation items for the navbar
  * @type {Array<{href: string, src: string, label: string}>}
  */

@@ -7,8 +7,9 @@ interface FilterItemProps {
 }
 
 /**
- * @name FilterItem component
+ * @component FilterItem component
  * @description - Renders a single filter item with filter name and active state
+ * @interface FilterItemProps - interface for props
  * @param filter - filter name
  * @param isActive - boolean to check if filter is active
  * @param onClick - function to be called on filter click

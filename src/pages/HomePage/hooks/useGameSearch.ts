@@ -9,8 +9,8 @@ import { Game } from "../../../api/services/games/interface.ts";
 import { selectFilteredGames } from "../../../store/selectors";
 
 /**
- * @name useGameSearch
- * @desciprtion Custom hook to handle search functionality for games list on home page
+ * @hook useGameSearch
+ * @desciprtion useGameSearch hook to handle search functionality for games list on home page
  * @returns searchQuery - search query string
  * @returns filteredGames - list of games filtered by search query
  * @returns handleSearch - function to handle search query

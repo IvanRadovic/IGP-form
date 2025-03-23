@@ -25,10 +25,13 @@ interface StepOneProps {
 }
 
 /**
- * @name StepOne component for multi-step form - Step 1
- * @Description - Takes form fields from sampleData.json and renders them in a form for step 1 in this case fname, lname, email
+ * @component StepOne component for multi-step form - Step 1
+ * @interface StepOneProps - interface for StepOne component
+ * @interface StepOneData - interface for form fields in step
+ * @description - Takes form fields from sampleData.json and renders them in a form for step 1 in this case fname, lname, email
  * @param onNext - function to be called on next button click
  * @param defaultValues - default values for form fields
+ * @containedComponents - FormStep
  *
  */
 const StepOne: FC<StepOneProps> = ({ onNext, defaultValues }) => {

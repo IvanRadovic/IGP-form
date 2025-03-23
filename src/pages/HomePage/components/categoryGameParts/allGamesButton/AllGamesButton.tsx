@@ -9,8 +9,9 @@ interface AllGamesButtonProps {
 }
 
 /**
- * @name AllGamesButton
+ * @component AllGamesButton
  * @description - Renders all games button with casino icon and text "All games" to show all games on click
+ * @interface AllGamesButtonProps - interface for props
  * @param selectedCategory - selected category to highlight
  * @param setSelectedCategory - function to set selected category
  * @returns - All games button component with casino icon and text

@@ -13,14 +13,16 @@ interface FilterListProps {
 }
 
 /**
- * @name FilterList component
+ * @component FilterList component
  * @description - Renders a list of filters with title and filter items
+ * @interface FilterListProps - interface for props
  * @param filters - list of filters
  * @param selectedFilter - selected filter
  * @param title - title of the filter list
  * @param url - url of the filter image
  * @param resetAction - function to reset the filter
  * @param onFilterSelect - function to select a filter
+ * @containedComponents - FilterItem
  */
 const FilterList: FC<FilterListProps> = ({
   filters,

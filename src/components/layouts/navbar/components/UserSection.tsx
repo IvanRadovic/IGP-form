@@ -10,8 +10,10 @@ interface UserSectionProps {
 /**
  * @name UserSection component
  * @description  UserSection component is used to render user section in navbar
+ * @interface UserSectionProps - interface for UserSection component
  * @param username - username of logged in user
  * @param handleLogout - function to be called on logout button click
+ * @containedComponents - DefaultButton
  *
  */
 const UserSection: FC<UserSectionProps> = ({ username, handleLogout }) => {

@@ -16,9 +16,11 @@ import { cookieManager } from "../../../utils/cookieManager.ts";
 import { toastSuccess } from "../../../utils/toastService.ts";
 
 /**
- * @name MultiStepForm component for multi-step form
+ * @component MultiStepForm component for multi-step form
  * @description - Main component for multi-step form functionality, it handles the steps and form data and passes it to the respective step component
  * @param setLoading - function to set loading state in parent component
+ * @interface MultiStepFormProps - interface for MultiStepForm component
+ * @containedComponents - StepOne, StepTwo components
  *
  */
 const MultiStepForm: React.FC<{ setLoading: (value: boolean) => void }> = ({

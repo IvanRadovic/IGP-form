@@ -5,8 +5,8 @@ import { Game } from "../../../api/services/games/interface.ts";
 const PAGE_SIZE = 24;
 
 /**
- * @name useInfiniteScroll
- * @description Custom hook to handle infinite scroll for games list on home page
+ * @hook useInfiniteScroll
+ * @description useInfinitiveScrool hook to handle infinite scroll for games list on home page
  * @param allGames - List of all games
  * @returns visibleGames - List of games visible on the screen
  * @returns lastGameRef - Ref for last game element

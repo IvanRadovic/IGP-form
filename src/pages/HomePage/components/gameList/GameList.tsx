@@ -9,8 +9,9 @@ interface Props {
 }
 
 /**
- * @name GamesList component
- * @description - Renders list of games with game card
+ * @component GamesList
+ * @description - GamesList renders list of games with game card
+ * @interface Props - interface for props
  * @param games - list of games to be rendered
  * @param lastGameRef - ref function to check if last game is rendered
  * @param isLoadingMore - boolean to check if more games are loading

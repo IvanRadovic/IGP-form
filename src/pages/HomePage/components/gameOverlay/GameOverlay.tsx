@@ -8,8 +8,9 @@ interface GameHoverOverlayProps {
 }
 
 /**
- * @name GameHoverOverlay
- * @description - Renders game title and provider on game hover overlay with custom class name support
+ * @component GameHoverOverlay
+ * @description - GameHoverOverlay renders game title and provider on game hover overlay with custom class name support
+ * @interface GameHoverOverlayProps - interface for props
  * @param title - game title to be displayed
  * @param provider - game provider to be displayed
  * @param className - custom class name for the overlay

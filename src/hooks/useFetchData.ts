@@ -6,7 +6,9 @@ type FetchFunction<T> = (
 ) => void;
 
 /**
- * Fetch data from an API and return the data, loading state and error state of the request
+ * @hook useFetchData
+ * @description Fetch data from an API and return the data, loading state and error state of the request
+ * @interface FetchFunction - Interface for useFetchData hook
  * @param fetchFunction - Function that fetches the data from the API
  * @param page - Page number to fetch
  * @returns Object with the data, loading state and error state

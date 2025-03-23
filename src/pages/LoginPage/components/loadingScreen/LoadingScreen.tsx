@@ -6,9 +6,9 @@ interface LoadingScreenProps {
 }
 
 /**
- * @name LoadingScreen component
+ * @component LoadingScreen component
  * @description - Renders loading screen with login animation and text
- * @component - LoginAnimation (lottie animation)
+ * @containedComponents - LoginAnimation (lottie animation)
  * @param setLoading - function to be called on animation finish
  */
 const LoadingScreen: FC<LoadingScreenProps> = ({ setLoading }) => {

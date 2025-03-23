@@ -12,6 +12,7 @@ type SearchFieldProps = {
 /**
  * @name SearchField
  * @description - Renders a search input field with debounce functionality
+ * @interface SearchFieldProps - interface for SearchField component
  * @param onSearch - Function to be called on search
  * @param placeholder - Placeholder text for the search input
  * @param debounceTime - Time in milliseconds for debounce

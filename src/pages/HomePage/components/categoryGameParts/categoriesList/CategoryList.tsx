@@ -17,6 +17,7 @@ interface CategoryListProps {
 /**
  * @name CategoryList
  * @description - Renders list of categories for games with image and title
+ * @interface CategoryListProps - interface for props
  * @param categories - list of categories to be displayed
  * @param selectedCategory - selected category slug to highlight in the list of categories
  * @param onSelectCategory - function to select category on click

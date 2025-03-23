@@ -8,6 +8,7 @@ interface FilterButtonProps {
 /**
  * @name FilterButton
  * @description - Renders advance filter button for games. It has two versions, one for desktop and one for mobile
+ * @interface FilterButtonProps - interface for props
  * @param filterIsOpen - state to check if filter is open
  * @param setFilterIsOpen - function to set filter open state
  * @returns - Filter button component

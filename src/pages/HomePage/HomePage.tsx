@@ -10,6 +10,14 @@ import GamesList from "./components/gameList/GameList.tsx";
 import ActiveLoader from "../../components/ui/loader/ActiveLoader.tsx";
 import { useSelector } from "react-redux";
 
+/**
+ * @page HomePage
+ * @description - Home page component to render the home page of the application
+ * @containedComponents - Banner, CategorySearch, GamesList, ActiveLoader
+ * @hooks - useGames, useGameSearch, useInfiniteScroll
+ * @redux - subcategoriesList
+ * @returns - JSX Element
+ */
 const HomePage = () => {
   const { isLoading, error } = useGames();
   const subcategoriesList = useSelector((state) => state.games.subCategoryList);

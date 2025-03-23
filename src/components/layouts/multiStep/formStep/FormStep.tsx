@@ -13,13 +13,15 @@ interface FormStepProps<T> {
 }
 
 /**
- * @name FormStep component
+ * @component FormStep component
  * @description  FormStep component is used to render form fields and handle form submission in multi-step form, dynamic form fields can be rendered using this component
+ * @interface FormStepProps - interface for FormStep component
  * @param children - form fields to be rendered
  * @param onSubmit - function to be called on form submit
  * @param defaultValues - default values for form fields
  * @param onBack - function to be called on back button click
  * @param isLastStep - boolean to check if it is last step
+ * @containedComponents - DefaultButton
  *
  */
 const FormStep = <T,>({

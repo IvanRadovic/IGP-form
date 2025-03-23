@@ -5,9 +5,11 @@ import LoadingScreen from "./components/loadingScreen/LoadingScreen.tsx";
 import LoginScreen from "./components/loginScree/LoginScreen.tsx";
 
 /**
- *@name LoginPage - main page for login
- *@description - Renders login screen with background image and multi-step form, also handles loading screen on form submission
- *@components - LoadingScreen(loader), LoginScreen(login form)
+ * @page LoginPage - Login Page component to render the login page of the application
+ * @containedComponents - LoadingScreen, LoginScreen
+ * @hooks - useState
+ * @returns - JSX Element
+ *
  */
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);

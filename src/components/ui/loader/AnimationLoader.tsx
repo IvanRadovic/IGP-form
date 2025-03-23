@@ -9,8 +9,10 @@ interface AnimationLoaderProps {
 /**
  * @name AnimationLoader component
  * @description - Renders animation loader with title
+ * @interface AnimationLoaderProps - interface for AnimationLoader component
  * @param title - title to be displayed
  * @param lottieUrl - lottie animation url
+ * @componentsContained - Lottie from react-lottie-player
  */
 const AnimationLoader: React.FC<AnimationLoaderProps> = ({
   title,

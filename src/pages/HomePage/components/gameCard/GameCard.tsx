@@ -10,11 +10,12 @@ interface GameCardProps {
 
 /**
  * @name GameCard component
- * @description - Renders game card with game image and overlay
+ * @description - GameCard renders game card with game image and overlay
+ * @interface GameCardProps - interface for props
  * @param title - game title to be displayed
  * @param imageUrl - game image url to be displayed
  * @param provider - game provider to be displayed
- * @components - GameOverlay
+ * @containedComponents - GameOverlay
  */
 export const GameCard = ({ title, imageUrl, provider }: GameCardProps) => (
   <div

@@ -19,6 +19,7 @@ interface ActiveLoaderProps {
 /**
  * @name ActiveLoader component
  * @description - Renders active loader with title
+ * @interface ActiveLoaderProps - interface for ActiveLoader component
  * @param title - title to be displayed
  */
 const ActiveLoader: React.FC<ActiveLoaderProps> = ({ title }) => {

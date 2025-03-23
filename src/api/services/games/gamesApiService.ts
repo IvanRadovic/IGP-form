@@ -5,7 +5,11 @@ import { apiCall } from "../../apiCall.ts";
 import { Game, CategoryGames } from "./interface.ts";
 
 /**
- * Get games from the API and call the onSuccess or onError function
+ * @apiService getGames
+ * @description Get games from the API and call the onSuccess or onError function
+ * @endpoint /games/desktop.json
+ * @method GET - Fetch games from the API
+ * @interface Game - Game interface
  * @param onSuccess - Function to call when the API call is successful and returns data
  * @param onError - Function to call when the API call is unsuccessful and returns an error
  * @returns void
@@ -33,7 +37,11 @@ export const getGames = (
 /*===========================================================================*/
 
 /**
- * Get category games from the API and call the onSuccess or onError function
+ * @apiService getCategoryGames
+ * @description  Get category games from the API and call the onSuccess or onError function
+ * @endpoint /game-categories/extended.json
+ * @method GET - Fetch category games from the API
+ * @interface CategoryGames - CategoryGames interface
  * @param onSuccess - Function to call when the API call is successful and returns data
  * @param onError - Function to call when the API call is unsuccessful and returns an error
  * @returns void

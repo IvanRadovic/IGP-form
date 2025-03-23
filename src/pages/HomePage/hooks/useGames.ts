@@ -16,8 +16,8 @@ import {
 import { CategoryGames, Game } from "../../../api/services/games/interface.ts";
 
 /**
- * @name useGames
- * @description Custom hook to fetch games and category games data
+ * @hook useGames
+ * @description useGames hook to fetch games and category games data
  * @returns allGames - List of all games
  * @returns isLoadingGames - Loading state for all games
  * @returns gamesError - Error state for all games

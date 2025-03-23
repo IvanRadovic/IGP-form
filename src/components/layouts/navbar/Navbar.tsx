@@ -12,8 +12,9 @@ import NavLinks from "./components/NavLinks.tsx";
 import NavbarBrand from "./components/NavBrand.tsx";
 
 /**
- * @name Navbar component
+ * @component Navbar component
  * @description - Navbar component is used to render the navbar in the application layout
+ * @containedComponents - NavLinks, UserSection, NavbarBrand
  *
  */
 const Navbar: FC = () => {

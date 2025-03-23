@@ -10,11 +10,11 @@ interface Props {
 }
 
 /**
- * @name CategorySearch component
- * @description - Renders search field and category games
+ * @component CategorySearch
+ * @description - CategorySearch renders search field and category games
  * @param categoryGames - list of category games to display
  * @param onSearch - function to search games by query string
- * @components - SearchField, CategoryGame
+ * @containedComponents - SearchField, CategoryGame
  */
 const CategorySearch: React.FC<Props> = ({ onSearch }) => (
   <div className="categories-search-container">

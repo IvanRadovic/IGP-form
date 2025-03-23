@@ -5,9 +5,10 @@ interface NavbarBrandProps {
 }
 
 /**
- * @name NavbarBrand component
+ * @component  NavbarBrand component
  * @description  NavbarBrand component is used to render logo in navbar
  * @param logo - logo image path
+ * @interface NavbarBrandProps - interface for NavbarBrand component
  *
  */
 const NavbarBrand: FC<NavbarBrandProps> = ({ logo }) => {

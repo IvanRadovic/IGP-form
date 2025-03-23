@@ -23,6 +23,7 @@ export type FilterListConfig = {
 /**
  * @name getFilterConfigs
  * @description - Returns filter configurations for subcategories, tags and types with selected filters and dispatch function to update selected filter state
+ * @interface FilterListConfig - interface for filter configurations
  * @param subsCategories - list of subcategories to be displayed
  * @param tags - list of tags to be displayed
  * @param types - list of types to be displayed

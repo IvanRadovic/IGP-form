@@ -13,7 +13,7 @@ import loyal from "../../../../assets/images/gamesLogo/loyalty-card.png";
 const images = { home, bonus, trophy, liveCasino, loyal };
 
 /**
- * @name NavLinks component
+ * @component NavLinks component
  * @description - Navigation links for the navbar - renders the navigation links in the navbar
  */
 const NavLinks: FC = () => {

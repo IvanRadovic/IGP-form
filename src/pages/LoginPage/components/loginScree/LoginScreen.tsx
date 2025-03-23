@@ -9,9 +9,10 @@ interface LoginScreenProps {
 }
 
 /**
- * @name LoginScreen component
+ * @component LoginScreen component
  * @description - Renders login screen with background image and multi-step form
- * @component - MultiStepForm (form)
+ * @interface LoginScreenProps - interface for props
+ * @containedComponents - MultiStepForm (form)
  * @param setLoading - function to be called on form submission
  */
 const LoginScreen: FC<LoginScreenProps> = ({ setLoading }) => {
